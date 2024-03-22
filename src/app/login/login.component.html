@@ -1,0 +1,24 @@
+<div id="login-component">
+  <div id="login-form">
+    <h1>Login to your account</h1>
+<form [formGroup]="loginFormular" (ngSubmit)="login()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="email" value="" formControlName="email">
+  </mat-form-field>
+
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="password" value="" formControlName="password">
+  </mat-form-field>
+
+  <br>
+  <button mat-raised-button color="basic" matTooltip="Log in" type="submit" [disabled]="!loginFormular.valid">LOG IN</button>
+</form>
+  <br>
+    <div id="signup-link">
+  <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+    </div>
+</div>
+</div>

@@ -1,0 +1,25 @@
+#container-header{
+  display: flex;
+  background-color: rgb(42 42 46);
+  color: white;
+  padding: 10px 30px;
+  margin-bottom: 20px;
+
+  #links{
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    justify-content: right;
+    max-width: 50%;
+    margin: auto;
+  }
+  .link{
+    cursor: pointer;
+    list-style-type: none;
+  }
+
+  #logo{
+    max-width: 50%;
+    margin: auto;
+  }
+}
