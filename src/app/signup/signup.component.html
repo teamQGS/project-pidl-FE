@@ -1,1 +1,26 @@
-<p>signup works!</p>
+<div id="register-component">
+  <div id="register-form">
+    <h1>Create account</h1>
+    <form [formGroup]="registerFormular" (ngSubmit)="signup()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="email" value="" formControlName="email">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="username" value="" formControlName="username">
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="password" value="" formControlName="password">
+      </mat-form-field>
+
+      <br>
+      <button mat-raised-button color="basic" matTooltip="Sign up" type="submit" [disabled]="!registerFormular.valid">SIGN UP</button>
+    </form>
+    <br>
+  </div>
+</div>
