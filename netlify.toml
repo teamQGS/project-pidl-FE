@@ -1,0 +1,10 @@
+[build]
+    base = "/"
+    command = "ng build:prod"
+    publish = "/dist/browser"
+
+    [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
+
