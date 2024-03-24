@@ -1,7 +1,7 @@
 <div id="register-component">
   <div id="register-form">
     <h1>Login to your account</h1>
-<form [formGroup]="loginFormular" (ngSubmit)="login()">
+<form [formGroup]="loginFormular" (ngSubmit)="onSubmitLogin()">
   <mat-form-field class="example-full-width">
     <mat-label>Email</mat-label>
     <input matInput placeholder="email" value="" formControlName="email">

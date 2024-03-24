@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatButton} from "@angular/material/button";
@@ -8,7 +8,7 @@ import {Router, RouterLink} from "@angular/router";
 import {ToastService} from "angular-toastify";
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -23,16 +23,25 @@ import {ToastService} from "angular-toastify";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private formBuilder: FormBuilder, private router:Router,
-              private toastService: ToastService) {}
+  @Output() onSubmitLoginEvent = new EventEmitter;
+
+  constructor(private formBuilder: FormBuilder, private router: Router,
+              private toastService: ToastService) {
+  }
+
 
   loginFormular = this.formBuilder.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
 
-  login(){
-    console.log('Todo login');
+  onSubmitLogin() {
+    this.onSubmitLoginEvent.emit({
+      'email': this.loginFormular.value.email,
+      'password': this.loginFormular.value.password
+    });
+    this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/profile']);
+    });
   }
-
 }
