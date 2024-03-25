@@ -1,7 +1,7 @@
 [build]
     base = "project-pidl-FED/"
     command = "ng build:prod"
-    publish = "/dist/library-fe/browser"
+    publish = "dist/library-fe/browser"
 
     [[redirects]]
     from = "/*"
