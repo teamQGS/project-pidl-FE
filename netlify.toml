@@ -7,7 +7,4 @@
     from = "/*"
     to = "/index.html"
     status = 200
-    from = " "
-    to = "/home"
-    status = 200
 
