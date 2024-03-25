@@ -1,5 +1,5 @@
 [build]
-    base = "project-pidl-FED/"
+    base = "project-pidl-FE/"
     command = "ng build:prod"
     publish = "dist/library-fe/browser"
 
