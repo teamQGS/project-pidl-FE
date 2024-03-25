@@ -1,6 +1,6 @@
 [build]
     base = "/"
-    command = "ng build:prod"
+    command = "ng build"
     publish = "dist/library-fe/browser"
 
     [[redirects]]
