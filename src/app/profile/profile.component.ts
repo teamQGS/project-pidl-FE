@@ -2,10 +2,10 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
 import {FormBuilder} from "@angular/forms";
-import {UserService} from "../services/user.service";
+import {UserService} from "../services/user/user.service";
 import {Router} from "@angular/router";
 import {ToastService} from "angular-toastify";
-import {AxiosService} from "../services/axios.service";
+import {AxiosService} from "../services/axios/axios.service";
 
 @Component({
   selector: 'app-profile',

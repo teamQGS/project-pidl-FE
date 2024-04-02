@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {LoginComponent} from "../login-form/login.component";
-import {AxiosService} from "../services/axios.service";
+import {AxiosService} from "../services/axios/axios.service";
 
 @Component({
   selector: 'app-login-page',

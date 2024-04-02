@@ -6,8 +6,8 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router, RouterLink} from "@angular/router";
 import {ToastService} from "angular-toastify";
-import {UserDTO} from "../model/model";
-import {UserService} from "../services/user.service";
+import {UserDTO} from "../models/model";
+import {UserService} from "../services/user/user.service";
 
 @Component({
   selector: 'app-signup-form',

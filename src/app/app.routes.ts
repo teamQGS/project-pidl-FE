@@ -8,9 +8,10 @@ import {LoginPageComponent} from "./login-page/login-page.component";
 import {RegisterPageComponent} from "./register-page/register-page.component";
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'cart', component: CartComponent },
   { path: 'signup', component: RegisterPageComponent },
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: ProfileComponent},
+  { path: 'search/:searchTerm', component: HomeComponent}
 ]
