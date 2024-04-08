@@ -1,3 +1,22 @@
-<p>TODO profile page</p>
-<button mat-raised-button color="basic" matTooltip="log out" type="submit" (click)="logoutEvent.emit()">LOG OUT</button>
-<button mat-raised-button color="basic" matTooltip="log out" type="submit">Delete account</button>
+
+  <div class="profile-sidebar">
+    <div class="username">
+      <h1>Welcome, {{ username }}</h1></div>
+    <div class="profile-links">
+      <button routerLink="/profile/settings" mat-raised-button color="primary" matTooltip="Settings">
+        <mat-icon>settings</mat-icon>
+        Settings
+      </button>
+      <button mat-raised-button color="accent" matTooltip="Show order story">
+        <mat-icon>history</mat-icon>
+        Show order story
+      </button>
+      <button mat-raised-button color="warn" matTooltip="LOGOUT" (click)="onLogout()">
+        <mat-icon>exit_to_app</mat-icon>
+        LOG OUT
+      </button>
+    </div>
+  </div>
+
+
+

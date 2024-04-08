@@ -1,19 +1,22 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
+import { MatIconModule } from '@angular/material/icon';
 import {FormBuilder} from "@angular/forms";
-import {UserService} from "../services/user.service";
-import {Router} from "@angular/router";
+import {UserService} from "../services/user/user.service";
+import {Router, RouterLink} from "@angular/router";
 import {ToastService} from "angular-toastify";
-import {AxiosService} from "../services/axios.service";
+import {AxiosService} from "../services/axios/axios.service";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-    imports: [
-        MatButton,
-        MatTooltip
-    ],
+  imports: [
+    MatButton,
+    MatTooltip,
+    RouterLink,
+    MatIconModule,
+  ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -23,20 +26,20 @@ export class ProfileComponent {
 
   @Output() logoutEvent = new EventEmitter;
 
+  username: string = "user"
 
-  // deleteUser(): void {
-  //
-  //   // @ts-ignore
-  //   this.demoService.deleteUser(user, userId).subscribe(
-  //     () => {
-  //       console.log('Book was successfully deleted (on BE)');
-  //       this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-  //         this.router.navigate(['/home']);
-  //       });
-  //     },
-  //     error => {
-  //       console.error('Error (on BE)');
-  //     }
-  //   );
-  // }
+  onLogout() {
+    this.axiosService.request(
+      'POST',
+      '/api/users/logout', // Это эндпоинт для выхода из системы
+      {}
+    ).then(response => {
+      // Удалить токен из localStorage или другого места, где он хранится
+      window.localStorage.removeItem("auth_token"); // Пример удаления токена из localStorage
+      // Перенаправить пользователя на страницу входа или на другую страницу, если необходимо
+      this.router.navigateByUrl('/login');
+    }).catch(error => {
+      console.log('Error during logout:', error);
+    });
+  }
 }

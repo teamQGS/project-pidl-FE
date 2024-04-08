@@ -1,0 +1,35 @@
+ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li a{
+  height: 20rem;
+  width: 20rem;
+  border: 1px solid whitesmoke;
+  border-radius: 1rem;
+  display: flex;
+  margin: 0.5rem;
+  flex-direction: column;
+  overflow: hidden;
+  color: black;
+}
+
+li a:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
+.content{
+  padding: .5rem 1rem;
+  position: relative;
+}
+
+.price{
+  color: slategray;
+  margin-top: .7rem;
+}
+

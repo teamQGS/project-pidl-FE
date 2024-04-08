@@ -1,1 +1,19 @@
-<p>TODO home page</p>
+<app-search></app-search>
+<ul>
+  <li *ngFor="let products of products">
+    <a>
+      <img src="{{products.illustrationUrl}}" alt="">
+      <div class="content">
+        <div class="name">
+          {{products.name}}
+        </div>
+        <div class="description">
+          {{products.description}}
+        </div>
+        <div class="price">
+          {{products.price}}$
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
