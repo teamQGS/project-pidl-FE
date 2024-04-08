@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ProductsService} from "../services/products/products.service";
 import {NgForOf, NgOptimizedImage} from "@angular/common";
-import {ProductsDTO} from "../models/products";
+import {ProductsDTO} from "../model/products";
 import {ActivatedRoute} from "@angular/router";
 import {SearchComponent} from "../search/search.component";
 

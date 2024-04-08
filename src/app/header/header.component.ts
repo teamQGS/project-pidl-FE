@@ -13,7 +13,9 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
   cartPath = 'assets/images/shopping-cart.svg';
   logoPath = 'assets/images/colorkit.svg';
   userPath = 'assets/images/user.svg'
+
 }

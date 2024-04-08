@@ -1,0 +1,16 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-section {
+  margin-top: 20px;
+}
+
+.form-row {
+  margin-bottom: 20px;
+}
+
+.delete-profile {
+  margin-top: 20px;
+}

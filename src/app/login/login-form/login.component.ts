@@ -40,8 +40,5 @@ export class LoginComponent {
       'email': this.loginFormular.value.email,
       'password': this.loginFormular.value.password
     });
-    this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/profile']);
-    });
   }
 }

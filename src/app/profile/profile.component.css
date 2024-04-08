@@ -1,0 +1,17 @@
+.profile-sidebar{
+  margin: 0;
+  padding: 25px 0 25px;
+}
+
+.profile-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-links button {
+  margin-top: 10px;
+}
+
+.username{
+  text-align: center;
+}

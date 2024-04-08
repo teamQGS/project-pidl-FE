@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {LoginComponent} from "../login-form/login.component";
-import {AxiosService} from "../services/axios/axios.service";
+import {AxiosService} from "../../services/axios/axios.service";
+import {Router} from "@angular/router";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +14,7 @@ import {AxiosService} from "../services/axios/axios.service";
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
-  constructor(private axiosService: AxiosService) {}
+  constructor(private axiosService: AxiosService, private router: Router) {}
   onLogin(input: any){
     this.axiosService.request(
       "POST",
@@ -21,6 +23,11 @@ export class LoginPageComponent {
       password: input.password}
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
-    })
+      this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/profile']);
+      });
+    }).catch(error => {
+      console.log('error');
+    });
   }
 }

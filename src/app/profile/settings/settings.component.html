@@ -1,0 +1,63 @@
+<div class="settings">
+  <button mat-raised-button color="primary" matTooltip="Update info" (click)="showUpdateForm = true">
+    <mat-icon>update</mat-icon>
+    Update info
+  </button>
+
+  <div class="update-section" *ngIf="showUpdateForm">
+    <h1>Update profile info</h1>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmitUpdate()" class="update-form">
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>First name</mat-label>
+          <input matInput placeholder="First name" formControlName="firstName">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Last name</mat-label>
+          <input matInput placeholder="Last name" formControlName="lastName">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Address" formControlName="address">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Phone number</mat-label>
+          <input matInput placeholder="Phone number" formControlName="phoneNumber">
+        </mat-form-field>
+      </div>
+        <button mat-raised-button color="basic" matTooltip="Update" type="submit">Update</button>
+    </form>
+  </div>
+  <button mat-raised-button color="primary" matTooltip="Change password">
+    <mat-icon>update</mat-icon>
+    Change password
+  </button>
+
+    <button mat-raised-button color="warn" matTooltip="Delete profile">
+      <mat-icon>delete</mat-icon>
+      Delete profile
+    </button>
+</div>
