@@ -21,14 +21,14 @@ export class AxiosService {
     } else {
       window.localStorage.removeItem("auth_token");
     }
-}
+  }
 
 
   request(method: string, url: string, data: any): Promise<any> {
     let headers = {}
 
     if(this.getAuthToken() !== null) {
-      headers = {"Authorization": "Bearer" + this.getAuthToken()}
+      headers = {"Authorization": "Bearer " + this.getAuthToken()}
     }
 
     return  axios({

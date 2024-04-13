@@ -19,10 +19,11 @@ export class LoginPageComponent {
     this.axiosService.request(
       "POST",
       "/api/users/login",
-      {email: input.email,
+      {username: input.username,
       password: input.password}
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
+      window.localStorage.setItem("username", input.username);
       this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/profile']);
       });

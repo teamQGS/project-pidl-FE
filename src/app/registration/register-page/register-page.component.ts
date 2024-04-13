@@ -29,6 +29,7 @@ export class RegisterPageComponent {
       }
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
+      window.localStorage.setItem("username", input.username);
       this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/profile']);
       });
