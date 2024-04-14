@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserDTO} from "../../model/model";
+import {UserDTO} from "../../model/user";
 import {catchError, Observable, throwError} from "rxjs";
 
 @Injectable({

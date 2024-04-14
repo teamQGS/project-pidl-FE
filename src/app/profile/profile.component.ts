@@ -35,10 +35,26 @@ export class ProfileComponent {
       {}
     ).then(response => {
       window.localStorage.removeItem("auth_token");
+      window.localStorage.removeItem("auth_token_expiration");
       window.localStorage.removeItem("username");
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/');
     }).catch(error => {
       console.log('Error during logout:', error);
+    });
+  }
+
+  onDelete() {
+    this.axiosService.request(
+      'DELETE',
+      `/api/users/delete/${(this.username)}`,
+      {}
+    ).then(response => {
+      window.localStorage.removeItem("auth_token");
+      window.localStorage.removeItem("auth_token_expiration");
+      window.localStorage.removeItem("username");
+      this.router.navigateByUrl('/')
+    }).catch(error => {
+      console.log('Error with deleting:', error);
     });
   }
 }

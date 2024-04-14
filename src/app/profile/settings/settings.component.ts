@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
@@ -6,6 +6,8 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {NgIf} from "@angular/common";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
+import {AxiosService} from "../../services/axios/axios.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
@@ -26,7 +28,10 @@ import {MatInput} from "@angular/material/input";
 export class SettingsComponent{
   showUpdateForm: boolean = false;
 
-  constructor(private fb: FormBuilder) { }
+  @Output() updateUserEvent = new EventEmitter();
+
+  constructor(private fb: FormBuilder, private axiosService: AxiosService,
+              private router: Router) { }
 
   updateForm = this.fb.group({
     username: ['', Validators.required],
@@ -37,8 +42,32 @@ export class SettingsComponent{
     phoneNumber: ['']
   });
 
-  onSubmitUpdate(): void {
-    // @ts-ignore
-    console.log(this.updateForm.value);
+  updateUser(): void {
+    this.axiosService.request(
+      'PUT', `/api/users/update/{this.username}`,
+      {
+        username: this.updateForm.value.username,
+        firstName: this.updateForm.value.firstName,
+        lastName: this.updateForm.value.lastName,
+        email: this.updateForm.value.email,
+        address: this.updateForm.value.address,
+        phoneNumber: this.updateForm.value.phoneNumber
+      }
+    ).then(response => {
+      this.router.navigate(['/profile']);
+    }).catch(error => {
+      console.log('Error during update:', error);
+    })
+  }
+
+  onSubmitUpdate(){
+    this.updateUserEvent.emit({
+      'username': this.updateForm.value.username,
+      'firstName': this.updateForm.value.firstName,
+      'lastName': this.updateForm.value.lastName,
+      'email': this.updateForm.value.email,
+      'address': this.updateForm.value.address,
+      'phoneNumber': this.updateForm.value.phoneNumber
+    });
   }
 }

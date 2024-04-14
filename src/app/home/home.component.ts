@@ -23,14 +23,11 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      if(params['searchTerm'])
-        this.products = this.productsService.getAll().filter(products =>
-          products.name.toLowerCase().includes(params['searchTerm'].toLowerCase()));
-      else
-        this.products = this.productsService.getAll()
+    this.productsService.getAll().then(products => {
+      this.products = products;
+    }).catch(error => {
+      console.error('Error while fetching products:', error);
     });
-
   }
 
 }

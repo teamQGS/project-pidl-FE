@@ -1,44 +1,26 @@
 import { Injectable } from '@angular/core';
 import {ProductsDTO} from "../../model/products";
+import {AxiosService} from "../axios/axios.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor() { }
+  constructor(private axiosService: AxiosService) {
+  }
 
-  getAll() :ProductsDTO[]{
-    return [
-      {
-        id:"first",
-        name: "Fast Food",
-        description: "The best chicken in the world!",
-        price: 20,
-        illustrationUrl: "../assets/images/fast_food.jpg"
-      },
-      {
-        id:"second",
-        name: "Cart",
-        description: "The best chicken in the world!",
-        price: 20,
-        illustrationUrl: "../assets/images/cart.jpg"
-      },
-      {
-        id:"third",
-        name: "Kebab",
-        description: "The best chicken in the world!",
-        price: 20,
-        illustrationUrl: "../assets/images/kebab.jpg"
-      },
-      {
-        id:"fourth",
-        name: "Sandwich",
-        description: "The best chicken in the world!",
-        price: 20,
-        illustrationUrl: "../assets/images/sandwich.jpg"
-      },
-
-    ]
-}
+  getAll(): Promise<ProductsDTO[]> {
+    return this.axiosService.request(
+      'GET',
+      '/api/products',
+      {}
+    ).then(response => {
+      console.log(response.data)
+      return response.data;
+    }).catch(error => {
+      console.error('Error while fetching products:', error);
+      return [];
+    });
+  }
 }
