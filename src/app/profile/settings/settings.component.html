@@ -6,7 +6,7 @@
 
   <div class="update-section" *ngIf="showUpdateForm">
     <h1>Update profile info</h1>
-    <form [formGroup]="updateForm" (ngSubmit)="onSubmitUpdate()" class="update-form">
+    <form [formGroup]="updateForm" class="update-form" (submit)="updateUser()">
       <div class="form-group">
         <mat-form-field class="example-full-width">
           <mat-label>Username</mat-label>

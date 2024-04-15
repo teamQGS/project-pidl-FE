@@ -26,20 +26,35 @@ export class ProfileComponent {
 
   @Output() logoutEvent = new EventEmitter;
 
-  username: string = "user"
+  username = window.localStorage.getItem("username");
 
   onLogout() {
     this.axiosService.request(
       'POST',
-      '/api/users/logout', // Это эндпоинт для выхода из системы
+      '/api/users/logout',
       {}
     ).then(response => {
-      // Удалить токен из localStorage или другого места, где он хранится
-      window.localStorage.removeItem("auth_token"); // Пример удаления токена из localStorage
-      // Перенаправить пользователя на страницу входа или на другую страницу, если необходимо
-      this.router.navigateByUrl('/login');
+      window.localStorage.removeItem("auth_token");
+      window.localStorage.removeItem("auth_token_expiration");
+      window.localStorage.removeItem("username");
+      this.router.navigateByUrl('/');
     }).catch(error => {
       console.log('Error during logout:', error);
+    });
+  }
+
+  onDelete() {
+    this.axiosService.request(
+      'DELETE',
+      `/api/users/delete/${(this.username)}`,
+      {}
+    ).then(response => {
+      window.localStorage.removeItem("auth_token");
+      window.localStorage.removeItem("auth_token_expiration");
+      window.localStorage.removeItem("username");
+      this.router.navigateByUrl('/')
+    }).catch(error => {
+      console.log('Error with deleting:', error);
     });
   }
 }

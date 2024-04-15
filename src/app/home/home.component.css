@@ -5,10 +5,11 @@ ul{
   flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
+
 }
 
 ul li a{
-  height: 20rem;
+  height: 15rem;
   width: 20rem;
   border: 1px solid whitesmoke;
   border-radius: 1rem;
@@ -31,5 +32,9 @@ li a:hover{
 .price{
   color: slategray;
   margin-top: .7rem;
+}
+
+.image{
+  text-align: center;
 }
 

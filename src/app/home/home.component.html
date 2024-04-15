@@ -1,17 +1,19 @@
 <app-search></app-search>
 <ul>
-  <li *ngFor="let products of products">
+  <li *ngFor="let product of products">
     <a>
-      <img src="{{products.illustrationUrl}}" alt="">
       <div class="content">
         <div class="name">
-          {{products.name}}
+          {{ product.name }}
         </div>
         <div class="description">
-          {{products.description}}
+          {{ product.description }}
         </div>
         <div class="price">
-          {{products.price}}$
+          {{ product.price }}$
+        </div>
+        <div class="image">
+          <img [src]="product.illustration" alt="" height="128px" width="128px">
         </div>
       </div>
     </a>

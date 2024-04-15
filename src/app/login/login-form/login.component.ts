@@ -31,13 +31,13 @@ export class LoginComponent {
 
 
   loginFormular = this.formBuilder.group({
-    email: ['', Validators.required],
+    username: ['', Validators.required],
     password: ['', Validators.required]
   });
 
   onSubmitLogin() {
     this.onSubmitLoginEvent.emit({
-      'email': this.loginFormular.value.email,
+      'username': this.loginFormular.value.username,
       'password': this.loginFormular.value.password
     });
   }
