@@ -8,6 +8,8 @@ import {RegisterPageComponent} from "./registration/register-page/register-page.
 import {ProfileComponent} from "./profile/profile.component";
 import {SettingsComponent} from "./profile/settings/settings.component";
 import {NgModule} from "@angular/core";
+import {UserDeshboardComponent} from "./user-dashboard/user-deshboard.component";
+import {AdminDeshboardComponent} from "./admin-dashboard/admin-deshboard.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [WithoutTokenGuardService] },
@@ -15,7 +17,9 @@ export const routes: Routes = [
   { path: 'signup', component: RegisterPageComponent, canActivate: [WithoutTokenGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [WithTokenGuardService] },
   { path: 'search/:searchTerm', component: HomeComponent, canActivate: [WithTokenGuardService] },
-  { path: 'profile/settings', component: SettingsComponent, canActivate: [WithTokenGuardService] }
+  { path: 'profile/settings', component: SettingsComponent, canActivate: [WithTokenGuardService] },
+  { path: 'user-dashboard', component: UserDeshboardComponent, canActivate: [WithTokenGuardService] },
+  { path: 'admin-dashboard', component: AdminDeshboardComponent, canActivate: [WithTokenGuardService] }
 ];
 
 @NgModule({

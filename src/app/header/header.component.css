@@ -4,6 +4,14 @@
   color: white;
   padding: 10px 30px;
 
+  #dashboards{
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    max-width: 50%;
+    margin: auto;
+  }
   #links{
     flex-grow: 1;
     display: flex;
@@ -12,6 +20,7 @@
     max-width: 50%;
     margin: auto;
   }
+
   .link{
     cursor: pointer;
     list-style-type: none;
