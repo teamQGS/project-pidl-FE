@@ -4,6 +4,7 @@ import {AngularToastifyModule} from "angular-toastify";
 import {MatButtonToggle, MatButtonToggleGroup} from "@angular/material/button-toggle";
 import {HeaderComponent} from "./header/header.component";
 import {FormsModule} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -15,4 +16,5 @@ import {FormsModule} from "@angular/forms";
 })
 export class AppComponent {
   title = 'Project Pidl';
+
 }

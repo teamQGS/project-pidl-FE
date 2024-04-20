@@ -7,6 +7,7 @@ import {UserService} from "../services/user/user.service";
 import {Router, RouterLink} from "@angular/router";
 import {ToastService} from "angular-toastify";
 import {AxiosService} from "../services/axios/axios.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +23,7 @@ import {AxiosService} from "../services/axios/axios.service";
 })
 export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, private demoService: UserService, private router:Router,
-              private toastService: ToastService, private axiosService: AxiosService) {}
+              private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar) {}
 
   @Output() logoutEvent = new EventEmitter;
 
@@ -38,6 +39,9 @@ export class ProfileComponent {
       window.localStorage.removeItem("auth_token_expiration");
       window.localStorage.removeItem("username");
       this.router.navigateByUrl('/');
+      this.snackBar.open("Logged out successfully", '', {
+        duration: 3000
+      })
     }).catch(error => {
       console.log('Error during logout:', error);
     });
@@ -53,6 +57,9 @@ export class ProfileComponent {
       window.localStorage.removeItem("auth_token_expiration");
       window.localStorage.removeItem("username");
       this.router.navigateByUrl('/')
+      this.snackBar.open("Account was deleted successfully", '', {
+        duration: 3000
+      })
     }).catch(error => {
       console.log('Error with deleting:', error);
     });

@@ -11,6 +11,7 @@ import {NgModule} from "@angular/core";
 import {UserDeshboardComponent} from "./user-dashboard/user-deshboard.component";
 import {AdminDeshboardComponent} from "./admin-dashboard/admin-deshboard.component";
 import {ManagerDashboardComponent} from "./manager-dashboard/manager-dashboard.component";
+import {AddProductPageComponent} from "./manager-dashboard/add-product-page/add-product-page.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [WithoutTokenGuardService] },
@@ -21,7 +22,8 @@ export const routes: Routes = [
   { path: 'profile/settings', component: SettingsComponent, canActivate: [WithTokenGuardService] },
   { path: 'user-dashboard', component: UserDeshboardComponent, canActivate: [WithTokenGuardService] },
   { path: 'admin-dashboard', component: AdminDeshboardComponent, canActivate: [WithTokenGuardService] },
-  { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [WithTokenGuardService] }
+  { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [WithTokenGuardService] },
+  { path: 'add-product', component: AddProductPageComponent, canActivate: [WithTokenGuardService] }
 ];
 
 @NgModule({
