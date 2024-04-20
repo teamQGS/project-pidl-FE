@@ -1,0 +1,16 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+#add_button{
+  background: rgba(96, 136, 120, 0.7);
+}
+.container{
+  margin-top: 2%;
+}

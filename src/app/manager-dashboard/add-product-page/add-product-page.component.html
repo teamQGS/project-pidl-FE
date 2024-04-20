@@ -1,4 +1,21 @@
 <div class="container">
-  <form [formGroup]="addProductForm">
+  <form [formGroup]="addProductForm" class="mat-form-field">
+    <mat-form-field class="example-full-width">
+      <mat-label>Favorite food</mat-label>
+      <input matInput placeholder="" formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Price</mat-label>
+      <input matInput placeholder="" formControlName="price">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
+
   </form>
 </div>
