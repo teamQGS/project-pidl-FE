@@ -1,0 +1,26 @@
+<!--<h1>This page only for managers</h1>-->
+<div class="container">
+  <button (click)="navigateToAddPage()" id="add_button" mat-raised-button color="accent" matTooltip="Add new product">
+     Add new product
+  </button>
+</div>
+<ul>
+  <li *ngFor="let product of products">
+    <a>
+      <div class="content">
+        <div class="name">
+          {{ product.name }}
+        </div>
+        <div class="description">
+          {{ product.description }}
+        </div>
+        <div class="price">
+          {{ product.price }}$
+        </div>
+        <div class="image">
+          <img [src]="product.illustration" alt="{{product.name}}" height="128px" width="128px">
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>

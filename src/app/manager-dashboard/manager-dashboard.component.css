@@ -1,0 +1,55 @@
+/*h1{*/
+/*  display: flex;*/
+/*  position: absolute;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  text-align: center;*/
+/*  margin-top: 20%;*/
+/*  margin-left: 30%;*/
+/*}*/
+.container{
+  margin: 1%;
+  width: auto;
+  justify-content: right;
+  height: 20px;
+}
+ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+
+}
+
+ul li a{
+  height: 15rem;
+  width: 20rem;
+  border: 1px solid whitesmoke;
+  border-radius: 1rem;
+  display: flex;
+  margin: 0.5rem;
+  flex-direction: column;
+  overflow: hidden;
+  color: black;
+}
+
+li a:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
+.content{
+  padding: .5rem 1rem;
+  position: relative;
+}
+
+.price{
+  color: slategray;
+  margin-top: .7rem;
+}
+
+.image{
+  text-align: center;
+}
+
