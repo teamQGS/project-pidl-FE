@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AxiosService {
 
-  constructor() {
+  constructor(private router: Router, private snackBar: MatSnackBar) {
     axios.defaults.baseURL = 'http://localhost:8080';
     axios.defaults.headers.post["Content-Type"] = 'application/json';
   }
@@ -18,7 +20,7 @@ export class AxiosService {
   setAuthToken(token: string | null) {
     if (token != null) {
       window.localStorage.setItem("auth_token", token);
-      const expirationTime = new Date().getTime() + 3600000;
+      const expirationTime = new Date().getTime() + 360000;
       window.localStorage.setItem("auth_token_expiration", expirationTime.toString());
     } else {
       window.localStorage.removeItem("auth_token");
@@ -35,6 +37,11 @@ export class AxiosService {
         window.localStorage.removeItem("auth_token");
         window.localStorage.removeItem("auth_token_expiration");
         window.localStorage.removeItem("username");
+        window.localStorage.removeItem("role");
+        this.router.navigate(['/login']).then(r => this.snackBar.open("The Token has expired", '', {
+          duration: 3000
+        }));
+
       }
     }
   }

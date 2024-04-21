@@ -25,6 +25,8 @@ export class LoginPageComponent {
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
       window.localStorage.setItem("username", input.username);
+      var rolesArray = response.data.roles.map((role: { roleName: any; }) => role.roleName);
+      window.localStorage.setItem("role", JSON.stringify(rolesArray));
       this.snackBar.open("Login successfully", '', {
         duration: 3000
       })

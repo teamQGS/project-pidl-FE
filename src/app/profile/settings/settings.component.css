@@ -1,14 +1,13 @@
 .settings {
+  margin: 0;
+  padding: 25px 0 25px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
-.update-section {
-  margin-top: 20px;
-}
-
-.form-row {
-  margin-bottom: 20px;
+.settings button {
+  margin-top: 10px;
 }
 
 .delete-profile {

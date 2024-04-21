@@ -3,13 +3,13 @@
     <img [src]="logoPath" alt="logo" height="64" width="64">
   </div>
   <ul id="dashboards">
-    <li class="link" routerLink="user-dashboard">
+    <li class="link" *ngIf="window.localStorage.getItem('role')?.includes('CUSTOMER')" routerLink="user-dashboard">
       User Dashboard
     </li>
-    <li class="link" routerLink="manager-dashboard">
+    <li class="link" *ngIf="window.localStorage.getItem('role')?.includes('MANAGER')" routerLink="manager-dashboard">
       Manager Dashboard
     </li>
-    <li class="link" routerLink="admin-dashboard">
+    <li class="link" *ngIf="window.localStorage.getItem('role')?.includes('ADMIN')" routerLink="admin-dashboard">
       Admin Dashboard
     </li>
   </ul>

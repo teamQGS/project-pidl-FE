@@ -10,17 +10,18 @@ export class ProductsService {
   constructor(private axiosService: AxiosService) {
   }
 
-  getAll(): Promise<ProductsDTO[]> {
-    return this.axiosService.request(
-      'GET',
-      '/api/products',
-      {}
-    ).then(response => {
-      console.log(response.data)
+  async getAll(): Promise<ProductsDTO[]> {
+    try {
+      const response = await this.axiosService.request(
+        'GET',
+        '/api/products',
+        {}
+      );
+      console.log(response.data);
       return response.data;
-    }).catch(error => {
+    } catch (error) {
       console.error('Error while fetching products:', error);
       return [];
-    });
+    }
   }
 }

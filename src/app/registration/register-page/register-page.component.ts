@@ -30,6 +30,8 @@ export class RegisterPageComponent {
       }
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
+      var rolesArray = response.data.roles.map((role: { roleName: any; }) => role.roleName);
+      window.localStorage.setItem("role", JSON.stringify(rolesArray));
       window.localStorage.setItem("username", input.username);
       this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/profile']);

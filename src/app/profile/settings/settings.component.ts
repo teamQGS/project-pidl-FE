@@ -7,7 +7,10 @@ import {NgIf} from "@angular/common";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {AxiosService} from "../../services/axios/axios.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {UserService} from "../../services/user/user.service";
+import {ToastService} from "angular-toastify";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-settings',
@@ -20,54 +23,32 @@ import {Router} from "@angular/router";
     NgIf,
     MatFormField,
     MatInput,
-    MatLabel
+    MatLabel,
+    RouterLink
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
 export class SettingsComponent{
-  showUpdateForm: boolean = false;
-
-  @Output() updateUserEvent = new EventEmitter();
-
-  constructor(private fb: FormBuilder, private axiosService: AxiosService,
-              private router: Router) { }
-
-  updateForm = this.fb.group({
-    username: ['', Validators.required],
-    firstName: [''],
-    lastName: [''],
-    email: [''],
-    address: [''],
-    phoneNumber: ['']
-  });
-
-  updateUser(): void {
+  constructor(private formBuilder: FormBuilder, private demoService: UserService, private router:Router,
+              private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar) {}
+  username = window.localStorage.getItem("username");
+  onDelete() {
     this.axiosService.request(
-      'PUT', `/api/users/update/{this.username}`,
-      {
-        username: this.updateForm.value.username,
-        firstName: this.updateForm.value.firstName,
-        lastName: this.updateForm.value.lastName,
-        email: this.updateForm.value.email,
-        address: this.updateForm.value.address,
-        phoneNumber: this.updateForm.value.phoneNumber
-      }
+      'DELETE',
+      `/api/users/delete/${(this.username)}`,
+      {}
     ).then(response => {
-      this.router.navigate(['/profile']);
+      window.localStorage.removeItem("auth_token");
+      window.localStorage.removeItem("auth_token_expiration");
+      window.localStorage.removeItem("username");
+      window.localStorage.removeItem("role");
+      this.router.navigateByUrl('/')
+      this.snackBar.open("Account was deleted successfully", '', {
+        duration: 3000
+      })
     }).catch(error => {
-      console.log('Error during update:', error);
-    })
-  }
-
-  onSubmitUpdate(){
-    this.updateUserEvent.emit({
-      'username': this.updateForm.value.username,
-      'firstName': this.updateForm.value.firstName,
-      'lastName': this.updateForm.value.lastName,
-      'email': this.updateForm.value.email,
-      'address': this.updateForm.value.address,
-      'phoneNumber': this.updateForm.value.phoneNumber
+      console.log('Error with deleting:', error);
     });
   }
 }

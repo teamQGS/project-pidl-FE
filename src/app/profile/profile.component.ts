@@ -38,6 +38,7 @@ export class ProfileComponent {
       window.localStorage.removeItem("auth_token");
       window.localStorage.removeItem("auth_token_expiration");
       window.localStorage.removeItem("username");
+      window.localStorage.removeItem("role");
       this.router.navigateByUrl('/');
       this.snackBar.open("Logged out successfully", '', {
         duration: 3000
@@ -47,21 +48,4 @@ export class ProfileComponent {
     });
   }
 
-  onDelete() {
-    this.axiosService.request(
-      'DELETE',
-      `/api/users/delete/${(this.username)}`,
-      {}
-    ).then(response => {
-      window.localStorage.removeItem("auth_token");
-      window.localStorage.removeItem("auth_token_expiration");
-      window.localStorage.removeItem("username");
-      this.router.navigateByUrl('/')
-      this.snackBar.open("Account was deleted successfully", '', {
-        duration: 3000
-      })
-    }).catch(error => {
-      console.log('Error with deleting:', error);
-    });
-  }
 }
