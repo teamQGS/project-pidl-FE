@@ -38,7 +38,7 @@ export class AxiosService {
         window.localStorage.removeItem("auth_token_expiration");
         window.localStorage.removeItem("username");
         window.localStorage.removeItem("role");
-        this.router.navigate(['/login']).then(r => this.snackBar.open("The Token has expired", '', {
+        this.router.navigate(['/login']).then(r => this.snackBar.open("The Token has expired, log in again please", '', {
           duration: 3000
         }));
 

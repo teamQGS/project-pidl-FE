@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="addProductForm" class="mat-form-field">
+  <form [formGroup]="addProductForm" class="mat-form-field" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width">
       <mat-label>Favorite food</mat-label>
       <input matInput placeholder="" formControlName="name">
@@ -16,6 +16,5 @@
     </mat-form-field>
     <br>
     <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
-
   </form>
 </div>
