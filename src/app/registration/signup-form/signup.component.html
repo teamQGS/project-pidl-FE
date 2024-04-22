@@ -4,18 +4,18 @@
     <form [formGroup]="registerFormular" (ngSubmit)="onSubmitRegister()">
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="email" value="" formControlName="email">
+        <input matInput placeholder="Ex: example@example.example" value="" formControlName="email">
       </mat-form-field>
       <br>
       <mat-form-field class="example-full-width">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="username" value="" formControlName="username">
+        <input matInput placeholder="Ex: example_username" value="" formControlName="username">
       </mat-form-field>
 
       <br>
       <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="password" value="" formControlName="password">
+        <input type="password" matInput placeholder="Ex: Hard password" value="" formControlName="password">
       </mat-form-field>
 
       <br>

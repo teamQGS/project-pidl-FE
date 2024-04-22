@@ -10,9 +10,8 @@
   <br>
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
-    <input matInput placeholder="Best password" value="" formControlName="password">
+    <input type="password" matInput placeholder="Best password" value="" formControlName="password">
   </mat-form-field>
-
   <br>
   <button mat-raised-button color="basic" matTooltip="Log in" type="submit" [disabled]="!loginFormular.valid">LOG IN</button>
 </form>
