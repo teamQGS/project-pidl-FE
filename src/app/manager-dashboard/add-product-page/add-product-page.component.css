@@ -14,3 +14,12 @@
 .container{
   margin-top: 2%;
 }
+
+.head {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 40%;
+  margin-top: 2%;
+}
