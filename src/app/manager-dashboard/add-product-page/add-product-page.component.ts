@@ -47,7 +47,7 @@ export class AddProductPageComponent {
         this.snackBar.open("Product was added successfully", '', {
           duration: 3000
         });
-        this.router.navigateByUrl('/add-product');
+        this.router.navigateByUrl('/manager-dashboard');
       }).catch(error => {
         console.log('error', error);
         this.snackBar.open("Error occurred while adding product", '', {
