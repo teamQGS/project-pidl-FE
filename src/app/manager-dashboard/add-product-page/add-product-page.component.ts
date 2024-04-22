@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, input} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
@@ -30,11 +30,15 @@ export class AddProductPageComponent {
     private snackBar: MatSnackBar
   ) {}
 
+
+
   addProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
-    price: ['', Validators.required]
+    price: [ '', Validators.required]
   });
+
+
 
   onSubmit(){
     if (this.addProductForm.valid) {
@@ -42,7 +46,11 @@ export class AddProductPageComponent {
       this.axiosService.request(
         "POST",
         "/api/products/add",
-        formData,
+        {
+          name: this.addProductForm.value.name,
+          description: this.addProductForm.value.description,
+          price: parseFloat(<string>this.addProductForm.value.price)
+        }
       ).then(response => {
         this.snackBar.open("Product was added successfully", '', {
           duration: 3000
