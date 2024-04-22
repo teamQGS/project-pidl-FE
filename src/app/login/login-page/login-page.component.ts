@@ -35,6 +35,10 @@ export class LoginPageComponent {
       });
     }).catch(error => {
       console.log('error');
+      this.snackBar.open("This user doesn't exists", '', {
+        duration: 3000
+      })
+
     });
   }
 }
