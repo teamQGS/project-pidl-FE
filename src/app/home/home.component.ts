@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductsService} from "../services/products/products.service";
 import {NgForOf, NgOptimizedImage} from "@angular/common";
 import {ProductsDTO} from "../model/products";
 import {ActivatedRoute} from "@angular/router";
 import {SearchComponent} from "../search/search.component";
+import {MatIcon} from "@angular/material/icon";
+import {MatFabButton, MatMiniFabButton} from "@angular/material/button";
+import {CartService} from "../services/cart/cart.service";
 
 @Component({
   selector: 'app-home',
@@ -11,15 +14,19 @@ import {SearchComponent} from "../search/search.component";
   imports: [
     NgForOf,
     NgOptimizedImage,
-    SearchComponent
+    SearchComponent,
+    MatIcon,
+    MatFabButton,
+    MatMiniFabButton
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
   products: ProductsDTO[] = [];
-  constructor(private productsService: ProductsService, private route: ActivatedRoute) {
+  constructor(private productsService: ProductsService, private route: ActivatedRoute,
+              private cartService: CartService) {
   }
 
   ngOnInit(): void {
@@ -30,4 +37,7 @@ export class HomeComponent {
     });
   }
 
+  addToCart(product: ProductsDTO) {
+    this.cartService.addToCart(product);
+  }
 }

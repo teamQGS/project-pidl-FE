@@ -8,7 +8,6 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {AxiosService} from "../../services/axios/axios.service";
 import {Router, RouterLink} from "@angular/router";
-import {UserService} from "../../services/user/user.service";
 import {ToastService} from "angular-toastify";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -30,7 +29,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrl: './settings.component.css'
 })
 export class SettingsComponent{
-  constructor(private formBuilder: FormBuilder, private demoService: UserService, private router:Router,
+  constructor(private formBuilder: FormBuilder, private router:Router,
               private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar) {}
   username = window.localStorage.getItem("username");
   onDelete() {

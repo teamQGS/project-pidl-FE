@@ -3,10 +3,13 @@ import {NgForOf} from "@angular/common";
 import {ProductsDTO} from "../model/products";
 import {ProductsService} from "../services/products/products.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Router} from "@angular/router";
+import {AxiosService} from "../services/axios/axios.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ObjectId} from "bson";
 
 @Component({
   selector: 'app-manager-dashboard',
@@ -16,7 +19,8 @@ import {Router} from "@angular/router";
     MatButton,
     MatIcon,
     MatTooltip,
-    RouterLink
+    RouterLink,
+    MatFabButton
   ],
   templateUrl: './manager-dashboard.component.html',
   styleUrl: './manager-dashboard.component.css'
@@ -24,7 +28,9 @@ import {Router} from "@angular/router";
 export class ManagerDashboardComponent {
 
   products: ProductsDTO[] = [];
-  constructor(private productsService: ProductsService, private route: Router) {
+
+  constructor(private productsService: ProductsService, private route: Router,
+              private axiosService: AxiosService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -38,4 +44,20 @@ export class ManagerDashboardComponent {
   navigateToAddPage(): void {
     this.route.navigate(['add-product'])
   }
+  deleteProduct(product: ProductsDTO) {
+    console.log(product.id)
+    this.axiosService.request(
+      'DELETE',
+      `api/products/delete/${product.id}`,
+      {}
+    ).then(response => {
+      this.snackBar.open("Product deleted", '', {
+        duration: 3000
+      })
+    }).catch(error => {
+      console.log(product)
+      console.log('Error during delete:', error);
+    });
+  }
+
 }

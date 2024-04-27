@@ -1,1 +1,38 @@
-<p>TODO cart</p>
+<div class="cart">
+<ul>
+  <h1 *ngIf="!cartItems || !cartItems.length">Empty cart</h1>
+  <li *ngFor="let product of cartItems">
+    <div class="content">
+      <div class="remove-from-cart-div">
+        <button mat-fab color="primary" class="btn-clr" (click)="removeFromCart(product)">
+          Delete from cart
+        </button>
+      </div>
+      <a>
+        <div class="name">
+          {{ product.name }}
+        </div>
+        <div class="description">
+          {{ product.description }}
+        </div>
+        <div class="price">
+          {{ product.price }}$
+        </div>
+        <div class="image">
+          <img [src]="product.illustration" alt="{{product.name}}" height="128px" width="128px">
+        </div>
+      </a>
+    </div>
+  </li>
+</ul>
+  <div class="clear-cart-div">
+    <button *ngIf="cartItems.length > 0" mat-raised-button color="warn" (click)="clearCart()">
+      Clear cart
+    </button>
+  </div>
+  <div class="create-order">
+    <button *ngIf="cartItems.length > 0" mat-raised-button color="primary" (click)="createOrder(cartItems)">
+      Create Order
+    </button>
+  </div>
+</div>

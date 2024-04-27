@@ -34,10 +34,7 @@ export class AxiosService {
       const currentTime = new Date().getTime();
       if (parseInt(expirationTime) < currentTime) {
         console.log("The Token has expired")
-        window.localStorage.removeItem("auth_token");
-        window.localStorage.removeItem("auth_token_expiration");
-        window.localStorage.removeItem("username");
-        window.localStorage.removeItem("role");
+        window.localStorage.clear();
         this.router.navigate(['/login']).then(r => this.snackBar.open("The Token has expired, log in again please", '', {
           duration: 3000
         }));

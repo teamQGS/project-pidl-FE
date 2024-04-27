@@ -6,8 +6,13 @@
 </div>
 <ul>
   <li *ngFor="let product of products">
-    <a>
-      <div class="content">
+    <div class="content">
+      <div class="add-to-cart-div">
+        <button mat-fab color="primary" class="btn-clr" (click)="deleteProduct(product)">
+          Delete product
+        </button>
+      </div>
+      <a>
         <div class="name">
           {{ product.name }}
         </div>
@@ -20,7 +25,7 @@
         <div class="image">
           <img [src]="product.illustration" alt="{{product.name}}" height="128px" width="128px">
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </li>
 </ul>

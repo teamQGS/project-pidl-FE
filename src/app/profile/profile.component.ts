@@ -3,7 +3,6 @@ import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
 import { MatIconModule } from '@angular/material/icon';
 import {FormBuilder} from "@angular/forms";
-import {UserService} from "../services/user/user.service";
 import {Router, RouterLink} from "@angular/router";
 import {ToastService} from "angular-toastify";
 import {AxiosService} from "../services/axios/axios.service";
@@ -22,7 +21,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  constructor(private formBuilder: FormBuilder, private demoService: UserService, private router:Router,
+  constructor(private formBuilder: FormBuilder, private router:Router,
               private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar) {}
 
   @Output() logoutEvent = new EventEmitter;
@@ -35,10 +34,7 @@ export class ProfileComponent {
       '/api/users/logout',
       {}
     ).then(response => {
-      window.localStorage.removeItem("auth_token");
-      window.localStorage.removeItem("auth_token_expiration");
-      window.localStorage.removeItem("username");
-      window.localStorage.removeItem("role");
+      window.localStorage.clear();
       this.router.navigateByUrl('/');
       this.snackBar.open("Logged out successfully", '', {
         duration: 3000
