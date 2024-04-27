@@ -27,9 +27,9 @@ ul li a{
   height: 15rem;
   width: 20rem;
   border: 1px solid whitesmoke;
-  border-radius: 1rem;
   display: flex;
   margin: 0.5rem;
+  padding: 0.5rem;
   flex-direction: column;
   overflow: hidden;
   color: black;
@@ -40,7 +40,6 @@ li a:hover{
   cursor: pointer;
 }
 .content{
-  padding: .5rem 1rem;
   position: relative;
 }
 
@@ -55,3 +54,13 @@ li a:hover{
   height: 9rem;
 }
 
+.delete-product-div{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.add-button{
+  margin-top: 10px;
+  text-align: center;
+}

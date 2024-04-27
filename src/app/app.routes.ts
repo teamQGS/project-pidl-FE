@@ -16,6 +16,7 @@ import {AdminGuardService} from "./services/Guard/admin-guard.service";
 import {ManagerGuardService} from "./services/Guard/manager-guard.service";
 import {CustomerGuardService} from "./services/Guard/customer-guard.service";
 import {UpdateUserFormComponent} from "./profile/update-user-form/update-user-form.component";
+import {SearchComponent} from "./search/search.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [WithoutTokenGuardService] },
@@ -28,7 +29,7 @@ export const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDeshboardComponent, canActivate: [AdminGuardService] },
   { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [ManagerGuardService] },
   { path: 'add-product', component: AddProductPageComponent, canActivate: [WithTokenGuardService] },
-  { path: 'search/:searchTerm', component: HomeComponent, canActivate: [WithoutTokenGuardService] },
+  { path: 'search/:searchTerm', component: SearchComponent, canActivate: [WithoutTokenGuardService] },
 ];
 
 @NgModule({

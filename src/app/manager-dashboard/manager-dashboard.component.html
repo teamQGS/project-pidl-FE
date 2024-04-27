@@ -1,13 +1,13 @@
 <!--<h1>This page only for managers</h1>-->
-<div class="container">
-  <button (click)="navigateToAddPage()" id="add_button" mat-raised-button color="accent" matTooltip="Add new product">
+<div class="add-button">
+  <button (click)="navigateToAddPage()" class="add-button" mat-raised-button color="accent" matTooltip="Add new product">
      Add new product
   </button>
 </div>
 <ul>
   <li *ngFor="let product of products">
     <div class="content">
-      <div class="add-to-cart-div">
+      <div class="delete-product-div">
         <button mat-fab color="primary" class="btn-clr" (click)="deleteProduct(product)">
           Delete product
         </button>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {ProductsDTO} from "../model/products";
 import {ProductsService} from "../services/products/products.service";
@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 import {AxiosService} from "../services/axios/axios.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ObjectId} from "bson";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-manager-dashboard',
@@ -25,12 +27,12 @@ import {ObjectId} from "bson";
   templateUrl: './manager-dashboard.component.html',
   styleUrl: './manager-dashboard.component.css'
 })
-export class ManagerDashboardComponent {
+export class ManagerDashboardComponent implements OnInit{
 
   products: ProductsDTO[] = [];
 
-  constructor(private productsService: ProductsService, private route: Router,
-              private axiosService: AxiosService, private snackBar: MatSnackBar) {
+  constructor(private productsService: ProductsService, private router: Router,
+              private axiosService: AxiosService, private snackBar: MatSnackBar){
   }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class ManagerDashboardComponent {
   }
 
   navigateToAddPage(): void {
-    this.route.navigate(['add-product'])
+    this.router.navigate(['add-product'])
   }
   deleteProduct(product: ProductsDTO) {
     console.log(product.id)
@@ -54,6 +56,7 @@ export class ManagerDashboardComponent {
       this.snackBar.open("Product deleted", '', {
         duration: 3000
       })
+      this.products = this.products.filter(p => p.id !== product.id);
     }).catch(error => {
       console.log(product)
       console.log('Error during delete:', error);

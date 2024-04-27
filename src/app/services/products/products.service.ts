@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {ProductsDTO} from "../../model/products";
 import {AxiosService} from "../axios/axios.service";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private axiosService: AxiosService) {
+  constructor(private axiosService: AxiosService, private http: HttpClient) {
   }
 
   async getAll(): Promise<ProductsDTO[]> {

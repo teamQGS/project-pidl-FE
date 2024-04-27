@@ -1,7 +1,6 @@
-import { ObjectId } from "bson";
 
 export class ProductsDTO{
-    id!: ObjectId;
+    id!: String;
     name!: String;
     description!: String;
     price!: number;
