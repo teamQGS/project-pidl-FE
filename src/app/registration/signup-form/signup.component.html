@@ -24,3 +24,8 @@
     <br>
   </div>
 </div>
+<div class="mat-errors">
+  <mat-error *ngIf="registerFormular.get('password')?.hasError('required')">Password is required</mat-error>
+  <mat-error *ngIf="registerFormular.get('password')?.hasError('minlength')">Password has to contain minimal 5 characters</mat-error>
+  <mat-error *ngIf="registerFormular.get('password')?.hasError('pattern')">Password has to at least one uppercase letter</mat-error>
+</div>

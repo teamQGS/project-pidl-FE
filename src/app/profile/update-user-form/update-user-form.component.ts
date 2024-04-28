@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SettingsComponent} from "../settings/settings.component";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -26,11 +26,30 @@ import {NgIf} from "@angular/common";
   templateUrl: './update-user-form.component.html',
   styleUrl: './update-user-form.component.css'
 })
-export class UpdateUserFormComponent {
+export class UpdateUserFormComponent implements OnInit{
   constructor(private fb: FormBuilder, private axiosService: AxiosService,
               private router: Router) { }
 
   username = window.localStorage.getItem("username");
+
+  ngOnInit(): void {
+    this.axiosService.request(
+      "GET",
+      `/api/users/find/${this.username}`,
+    {}
+    ).then(response => {
+      const userData = response.data;
+      this.updateForm.patchValue({
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
+        address: userData.address,
+        phoneNumber: userData.phoneNumber
+      });
+    }).catch(error => {
+      console.log('Error fetching user data:', error);
+    });
+  }
 
   updateForm = this.fb.group({
     firstName: [''],

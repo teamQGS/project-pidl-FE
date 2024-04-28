@@ -17,6 +17,7 @@ import {ManagerGuardService} from "./services/Guard/manager-guard.service";
 import {CustomerGuardService} from "./services/Guard/customer-guard.service";
 import {UpdateUserFormComponent} from "./profile/update-user-form/update-user-form.component";
 import {SearchComponent} from "./search/search.component";
+import {ChangePasswordFormComponent} from "./profile/change-password-form/change-password-form.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [WithoutTokenGuardService] },
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [WithTokenGuardService] },
   { path: 'profile/settings', component: SettingsComponent, canActivate: [WithTokenGuardService] },
   { path: 'profile/settings/update', component: UpdateUserFormComponent, canActivate: [WithTokenGuardService] },
+  { path: 'profile/settings/changePassword', component: ChangePasswordFormComponent, canActivate: [WithTokenGuardService] },
   { path: 'user-dashboard', component: UserDeshboardComponent, canActivate: [CustomerGuardService] },
   { path: 'admin-dashboard', component: AdminDeshboardComponent, canActivate: [AdminGuardService] },
   { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [ManagerGuardService] },
