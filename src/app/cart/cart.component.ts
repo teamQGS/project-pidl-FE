@@ -3,6 +3,7 @@ import {CartService} from "../services/cart/cart.service";
 import {ProductsDTO} from "../model/products";
 import {NgForOf, NgIf} from "@angular/common";
 import {MatButton, MatFabButton} from "@angular/material/button";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,7 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 export class CartComponent implements OnInit {
   cartItems: ProductsDTO[] = [];
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -28,11 +29,17 @@ export class CartComponent implements OnInit {
   removeFromCart(product: ProductsDTO) {
     this.cartService.removeFromCart(product);
     this.cartItems = this.cartService.getCartItems();
+    this.snackBar.open("Product was deleted from cart", '', {
+      duration: 3000
+    })
   }
 
   clearCart() {
     this.cartService.clearCart();
     this.cartItems = [];
+    this.snackBar.open("Cart was cleaned", '', {
+      duration: 3000
+    })
   }
 
   createOrder(cartItems: ProductsDTO[]) {

@@ -7,6 +7,7 @@ import {SearchComponent} from "../search/search.component";
 import {MatIcon} from "@angular/material/icon";
 import {MatFabButton, MatMiniFabButton} from "@angular/material/button";
 import {CartService} from "../services/cart/cart.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit{
 
   products: ProductsDTO[] = [];
   constructor(private productsService: ProductsService, private route: ActivatedRoute,
-              private cartService: CartService) {
+              private cartService: CartService, private snackBar: MatSnackBar ) {
   }
 
   ngOnInit(): void {
@@ -39,5 +40,8 @@ export class HomeComponent implements OnInit{
 
   addToCart(product: ProductsDTO) {
     this.cartService.addToCart(product);
+    this.snackBar.open("Product was added to cart", '', {
+      duration: 3000
+    })
   }
 }
