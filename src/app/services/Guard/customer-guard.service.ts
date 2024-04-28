@@ -10,7 +10,7 @@ export class CustomerGuardService implements CanActivate {
 
   canActivate(): boolean {
     const roles = window.localStorage.getItem('role');
-    if (roles && roles.includes('CUSTOMER')) {
+    if (roles && (roles.includes('CUSTOMER') || roles.includes('ADMIN') || roles.includes('MANAGER'))) {
       return true;
     } else {
       this.router.navigate(['/']);

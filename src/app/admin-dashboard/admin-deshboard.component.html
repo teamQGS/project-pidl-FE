@@ -1,1 +1,19 @@
-<h1>This page only for admins</h1>
+<ul>
+  <li *ngFor="let users of users">
+    <div class="content">
+      <div class="add-to-cart-div">
+        <button mat-fab color="primary" class="btn-clr">
+          Delete User
+        </button>
+      </div>
+      <a>
+        <div class="name">
+          {{ users.id }}
+        </div>
+        <div class="description">
+          {{ users.username }}
+        </div>
+      </a>
+    </div>
+  </li>
+</ul>

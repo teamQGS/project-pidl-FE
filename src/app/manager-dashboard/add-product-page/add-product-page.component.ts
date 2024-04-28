@@ -35,7 +35,8 @@ export class AddProductPageComponent {
   addProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
-    price: [ '', Validators.required]
+    price: [ '', Validators.required],
+    count: [ '', Validators.required]
   });
 
 
@@ -49,7 +50,8 @@ export class AddProductPageComponent {
         {
           name: this.addProductForm.value.name,
           description: this.addProductForm.value.description,
-          price: parseFloat(<string>this.addProductForm.value.price)
+          price: parseFloat(<string>this.addProductForm.value.price),
+          count: parseInt(<string>this.addProductForm.value.count)
         }
       ).then(response => {
         this.snackBar.open("Product was added successfully", '', {

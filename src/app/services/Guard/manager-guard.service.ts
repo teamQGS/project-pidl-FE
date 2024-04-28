@@ -10,7 +10,7 @@ export class ManagerGuardService implements CanActivate {
 
   canActivate(): boolean {
     const roles = window.localStorage.getItem('role');
-    if (roles && roles.includes('MANAGER')) {
+    if ((roles && roles == 'ADMIN') || (roles && roles == 'MANAGER')) {
       return true;
     } else {
       this.router.navigate(['/']);
