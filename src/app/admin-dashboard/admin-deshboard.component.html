@@ -1,17 +1,29 @@
 <ul>
-  <li *ngFor="let users of users">
+  <li *ngFor="let user of users">
     <div class="content">
+      <div class="roles">
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select [(value)]="selectedRole">
+            <mat-option value="ADMIN">ADMIN</mat-option>
+            <mat-option value="MANAGER">MANAGER</mat-option>
+            <mat-option value="CUSTOMER">CUSTOMER</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-flat-button class="button-assign" color="primary" (click)="assignRole(user)">Assign Role</button>
+      </div>
       <div class="add-to-cart-div">
-        <button mat-fab color="primary" class="btn-clr">
-          Delete User
-        </button>
+        <button mat-flat-button class="button-delete" color="warn">Delete User</button>
       </div>
       <a>
-        <div class="name">
-          {{ users.id }}
+        <div class="id">
+          User Id: {{ user.id }}
         </div>
-        <div class="description">
-          {{ users.username }}
+        <div class="username">
+          Username: {{ user.username }}
+        </div>
+        <div class="role">
+          Role: {{ user.role }}
         </div>
       </a>
     </div>

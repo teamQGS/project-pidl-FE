@@ -14,7 +14,7 @@ export class UsersService {
     try {
       const response = await this.axiosService.request(
         'GET',
-        '/api/users',
+        'http://localhost:8080/api/admin',
         {}
       );
       console.log(response.data);
