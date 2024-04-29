@@ -1,23 +1,39 @@
 <div id="login-component">
   <div id="login-form">
-    <h1>Login to your account</h1>
-<form [formGroup]="loginFormular" (ngSubmit)="onSubmitLogin()">
-  <mat-form-field class="example-full-width">
-    <mat-label>Username</mat-label>
-    <input matInput placeholder="Username" value="" formControlName="username">
-  </mat-form-field>
+    
 
-  <br>
-  <mat-form-field class="example-full-width">
-    <mat-label>Password</mat-label>
-    <input type="password" matInput placeholder="Best password" value="" formControlName="password">
-  </mat-form-field>
-  <br>
-  <button mat-raised-button color="basic" matTooltip="Log in" type="submit" [disabled]="!loginFormular.valid">LOG IN</button>
-</form>
-  <br>
-    <div id="signup-link">
-  <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+    <!-- Форма логина -->
+    <div class="qform">
+      <form [formGroup]="loginFormular" (ngSubmit)="onSubmitLogin()">
+        <h1>Sign in</h1>
+
+        <label for="username">Username</label>
+        <mat-form-field class="example-full-width">
+          <input matInput id="username" placeholder="Enter your username" formControlName="username">
+        </mat-form-field>
+        <br>
+
+        <label for="password">Password</label>
+        <mat-form-field class="example-full-width">
+          <input type="password" matInput id="password" placeholder="Enter your password" formControlName="password">
+        </mat-form-field>
+        <br>
+
+        <button class="qsubmit" mat-raised-button color="basic" matTooltip="Log in" type="submit" [disabled]="!loginFormular.valid">LOG IN</button>
+      </form>
+      <br>
+
+      <!-- Ссылка на регистрацию -->
+      <div id="signup-link">
+        <p>Don't have an account? </p>
+        <a routerLink="/signup">Sign up</a>
+      </div>
     </div>
-</div>
+
+    <!-- Логотип и промо-текст -->
+    <div class="qlogo">
+      <img src="assets/logo/logo-black.svg" alt="logo">
+      <p>The grocery shop you deserve.</p>
+    </div>
+  </div>
 </div>
