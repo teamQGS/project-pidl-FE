@@ -48,10 +48,30 @@ export class AdminDeshboardComponent implements OnInit {
       this.userService.getAll().then(users => {
         this.users = users;
       }).catch(error => {
-        console.error('Error while fetching products:', error);
+        console.error('Error while fetching users:', error);
       });
     }).catch(error => {
       this.snackBar.open('Error while assigning role', '', {
+        duration: 3000
+      });
+    });
+  }
+  deleteUser(user: UsersDTO): void {
+    this.axiosService.request(
+      'DELETE',
+      `/api/admin/delete/${user.id}`,
+      this.users
+    ).then(response => {
+      this.snackBar.open('User was deleted successfully:', '', {
+        duration: 3000
+      });
+      this.userService.getAll().then(users => {
+        this.users = users;
+      }).catch(error => {
+        console.error('Error while fetching users:', error);
+      });
+    }).catch(error => {
+      this.snackBar.open('Error while deleting user', '', {
         duration: 3000
       });
     });
