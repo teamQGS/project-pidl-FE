@@ -26,28 +26,54 @@ import { NgIf } from "@angular/common";
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-
   @Output() newUserEvent = new EventEmitter();
 
   registerFormular: FormGroup;
+  passwordRequirements = {
+    minLength: false,
+    uppercase: false,
+    specialChar: false,
+    number: false,
+    matching: false
+  };
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.registerFormular = this.formBuilder.group({
       email: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.pattern('(?=.*[A-Z]).*')
-      ]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required]
-    }, { validator: this.checkPasswords });
+    }, { validator: this.checkPasswords }); // Добавляем валидатор здесь
+
+    // Watch for changes on the password fields
+    this.registerFormular.get('password')?.valueChanges.subscribe(value => {
+      this.updatePasswordRequirements(value);
+    });
+
+  this.registerFormular.get('confirmPassword')?.valueChanges.subscribe(() => {
+      this.checkPasswordsMatch();
+  });
+
+  }
+
+  updatePasswordRequirements(value: string) {
+    this.passwordRequirements.minLength = value.length >= 5;
+    this.passwordRequirements.uppercase = /[A-Z]/.test(value);
+    this.passwordRequirements.number = /\d/.test(value);
+    this.passwordRequirements.specialChar = /[!@#$%^&*_-]/.test(value);
   }
 
   checkPasswords(group: FormGroup) {
-    let pass = group.get('password')?.value;
-    let confirmPass = group.get('confirmPassword')?.value;
+    const pass = group.get('password')?.value;
+    const confirmPass = group.get('confirmPassword')?.value;
     return pass === confirmPass ? null : { notSame: true };
+  }  
+  
+
+  checkPasswordsMatch() {
+    const password = this.registerFormular.get('password')?.value;
+    const confirmPassword = this.registerFormular.get('confirmPassword')?.value;
+    this.passwordRequirements.matching = password === confirmPassword;
   }
 
   onSubmitRegister() {
@@ -57,10 +83,7 @@ export class SignupComponent {
         'username': this.registerFormular.value.username,
         'password': this.registerFormular.value.password
       });
-      this.router.navigate(['/success']); // Example redirect, adapt as needed
-    } else {
-      // Handle form errors
-      // Optionally use angular-toastify to show errors or other info
+      this.router.navigate(['/success']);
     }
   }
 }

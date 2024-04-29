@@ -33,34 +33,56 @@
           <input type="password" matInput id="confirmPassword" placeholder="Confirm your password" formControlName="confirmPassword">
         </mat-form-field>
         <br>
+
+        <div class="requirements">
+          <ul>
+            <li class="password-length" [class.completed]="passwordRequirements.minLength">
+              <span class="marker" [class.completed]="passwordRequirements.minLength"></span>
+              <span [class.bold]="passwordRequirements.minLength">Contains at least 5 characters</span>
+            </li>
+            <li class="uppercase-letter" [class.completed]="passwordRequirements.uppercase">
+              <span class="marker" [class.completed]="passwordRequirements.uppercase"></span>
+              <span [class.bold]="passwordRequirements.uppercase">Contains at least one uppercase letter</span>
+            </li>
+            <li class="special-character" [class.completed]="passwordRequirements.specialChar">
+              <span class="marker" [class.completed]="passwordRequirements.specialChar"></span>
+              <span [class.bold]="passwordRequirements.specialChar">Contains at least one special character</span>
+            </li>
+            <li class="number" [class.completed]="passwordRequirements.number">
+              <span class="marker" [class.completed]="passwordRequirements.number"></span>
+              <span [class.bold]="passwordRequirements.number">Contains at least one number</span>
+            </li>
+            <li class="matching" [class.completed]="passwordRequirements.matching">
+              <span class="marker" [class.completed]="passwordRequirements.matching"></span>
+              <span [class.bold]="passwordRequirements.matching">Passwords are matching</span>
+            </li>
+          </ul>
+        </div>
+        
     
         <button class="qsubmit" mat-raised-button color="basic" matTooltip="Sign up" type="submit" [disabled]="!registerFormular.valid">SIGN UP</button>
       </form>
       <br>
+
+      
+      
+      
+      
+      
+
+      <div class="sign-in-container">
+        <p>Already have an account?</p>
+        <a routerLink="/login" class="sign-in-link">Sign in</a> <!-- Angular routerLink directive for navigation -->
+      </div>
     </div>
     
     
-
+    
 
   </div>
 
   
 
 </div>
-<mat-error *ngIf="registerFormular.get('password')?.touched && registerFormular.get('password')?.hasError('required')">
-  Password is required
-</mat-error>
-<mat-error *ngIf="registerFormular.get('password')?.touched && registerFormular.get('password')?.hasError('minlength')">
-  Password must contain at least 5 characters
-</mat-error>
-<mat-error *ngIf="registerFormular.get('password')?.touched && registerFormular.get('password')?.hasError('pattern')">
-  Password must contain at least one uppercase letter
-</mat-error>
 
-<mat-error *ngIf="registerFormular.get('confirmPassword')?.touched && registerFormular.get('confirmPassword')?.hasError('required')">
-  Confirmation of password is required
-</mat-error>
-<mat-error *ngIf="registerFormular.hasError('notSame') && (registerFormular.get('confirmPassword')?.touched || registerFormular.get('password')?.touched)">
-  Passwords do not match
-</mat-error>
  

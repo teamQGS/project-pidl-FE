@@ -30,9 +30,33 @@ label {
 }
 
 input.mat-input-element {
-  padding-left: 10px;
-  padding-right: 10px;
   border-radius: 10px;
+  height: 45px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-text-field-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Подгонка высоты, если требуется */
+}
+
+input.mat-mdc-input-element {
+  height: 100%;
+  align-self: center;
 }
 
 .qsubmit {
@@ -82,6 +106,60 @@ input.mat-input-element {
   border: none;
 }
 
+.requirements {
+  margin-top: 0;
+  color: #F2E5D7;
+  font-size: 14px;
+  /* font-weight: 700; After checking */
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.requirements ul {
+  list-style-type: none; /* Скрыть стандартные маркеры */
+  text-decoration: none;
+  padding-left: 0; /* Убрать отступ слева */
+}
+
+.marker {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 1px solid #ccc; /* Цвет рамки маркера */
+}
+
+.marker.completed {
+  background-color: #F2E5D7; /* Цвет закрашенного маркера, если требование выполнено */
+  font-weight: 700;
+}
+
+/* Псевдоэлемент для создания маркера */
+.requirements li::before {
+  display: none;
+  content: "\2022"; /* Код символа маркера */
+  margin-right: 10px;
+  color: #ccc; /* Цвет маркера */
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-underline {
+  background-color: transparent; /* Убираем красный цвет */
+}
+
+
+.sign-in-container, a {
+  text-align: center;
+  width: 100%; /* Занимает всю ширину своего контейнера */
+  margin-top: 20px; /* Добавляем отступ сверху для визуальной разделения */
+  color: #F2E5D7;
+  font-size: 16px;
+  font-weight: 600;
+}
 
 
 #login-form input::placeholder {

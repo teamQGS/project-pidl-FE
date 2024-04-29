@@ -16,7 +16,7 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
 export class HeaderComponent {
 
   cartPath = 'assets/images/shopping-cart.svg';
-  logoPath = 'assets/images/colorkit.svg';
+  logoPath = 'assets/logo/logo-sized.svg';
   userPath = 'assets/images/user.svg'
 
   protected readonly window = window;
