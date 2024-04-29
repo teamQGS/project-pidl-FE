@@ -1,31 +1,66 @@
 <div id="login-component">
+
   <div id="login-form">
-    <h1>Create account</h1>
-    <form [formGroup]="registerFormular" (ngSubmit)="onSubmitRegister()">
-      <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Ex: example@example.example" value="" formControlName="email">
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="Ex: example_username" value="" formControlName="username">
-      </mat-form-field>
+    <div class="qlogo">
+      <img src="assets/logo/logo-black.svg" alt="logo">
+      <p>The grocery shop you deserve.</p>
+    </div>
 
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label>
-        <input type="password" matInput placeholder="Ex: Hard password" value="" formControlName="password">
-      </mat-form-field>
+    <div class="qform">
+      <form [formGroup]="registerFormular" (ngSubmit)="onSubmitRegister()">
+        <h1>Create account</h1>
+    
+        <label for="email">Email</label>
+        <mat-form-field class="example-full-width no-padding-input">
+          <input matInput id="email" placeholder="email@example.com" formControlName="email">
+        </mat-form-field>
+        <br>
+    
+        <label for="username">Username</label>
+        <mat-form-field class="example-full-width">
+          <input matInput id="username" placeholder="Enter your username" formControlName="username">
+        </mat-form-field>
+        <br>
+    
+        <label for="password">Password</label>
+        <mat-form-field class="example-full-width">
+          <input type="password" matInput id="password" placeholder="Enter your password" formControlName="password">
+        </mat-form-field>
+        <br>
 
+        <label for="confirmPassword">Confirm Password</label>
+        <mat-form-field class="example-full-width">
+          <input type="password" matInput id="confirmPassword" placeholder="Confirm your password" formControlName="confirmPassword">
+        </mat-form-field>
+        <br>
+    
+        <button class="qsubmit" mat-raised-button color="basic" matTooltip="Sign up" type="submit" [disabled]="!registerFormular.valid">SIGN UP</button>
+      </form>
       <br>
-      <button mat-raised-button color="basic" matTooltip="Sign up" type="submit" [disabled]="!registerFormular.valid">SIGN UP</button>
-    </form>
-    <br>
+    </div>
+    
+    
+
+
   </div>
+
+  
+
 </div>
-<div class="mat-errors">
-  <mat-error *ngIf="registerFormular.get('password')?.hasError('required')">Password is required</mat-error>
-  <mat-error *ngIf="registerFormular.get('password')?.hasError('minlength')">Password has to contain minimal 5 characters</mat-error>
-  <mat-error *ngIf="registerFormular.get('password')?.hasError('pattern')">Password has to at least one uppercase letter</mat-error>
-</div>
+<mat-error *ngIf="registerFormular.get('password')?.touched && registerFormular.get('password')?.hasError('required')">
+  Password is required
+</mat-error>
+<mat-error *ngIf="registerFormular.get('password')?.touched && registerFormular.get('password')?.hasError('minlength')">
+  Password must contain at least 5 characters
+</mat-error>
+<mat-error *ngIf="registerFormular.get('password')?.touched && registerFormular.get('password')?.hasError('pattern')">
+  Password must contain at least one uppercase letter
+</mat-error>
+
+<mat-error *ngIf="registerFormular.get('confirmPassword')?.touched && registerFormular.get('confirmPassword')?.hasError('required')">
+  Confirmation of password is required
+</mat-error>
+<mat-error *ngIf="registerFormular.hasError('notSame') && (registerFormular.get('confirmPassword')?.touched || registerFormular.get('password')?.touched)">
+  Passwords do not match
+</mat-error>
+ 
