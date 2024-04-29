@@ -20,7 +20,7 @@ export class AxiosService {
   setAuthToken(token: string | null) {
     if (token != null) {
       window.localStorage.setItem("auth_token", token);
-      const expirationTime = new Date().getTime() + 360000;
+      const expirationTime = new Date().getTime() + 36000000;
       window.localStorage.setItem("auth_token_expiration", expirationTime.toString());
     } else {
       window.localStorage.removeItem("auth_token");

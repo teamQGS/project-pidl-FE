@@ -25,27 +25,28 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class AdminDeshboardComponent implements OnInit {
   users: UsersDTO[] = [];
-  selectedRole: String | undefined;
+  selectedRole = []
 
   constructor(private userService: UsersService, private axiosService: AxiosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.userService.getAll().then(users => {
       this.users = users;
+      // @ts-ignore
+      this.selectedRole = this.users.map(user => user.role);
     }).catch(error => {
       console.error('Error while fetching products:', error);
     });
   }
-  assignRole(user: UsersDTO): void {
+  assignRole(user: UsersDTO, selectedRole: string): void {
 
     this.axiosService.request(
       'PUT',
       `/api/admin/changeRole/${user.username}`,
-      this.selectedRole
-    ).then(response => {
+      selectedRole
+  ).then(response => {
       this.snackBar.open('Role assigned successfully:', '', {
         duration: 3000
       });
-      // Получить обновленный список пользователей
       this.userService.getAll().then(users => {
         this.users = users;
       }).catch(error => {
@@ -61,8 +62,8 @@ export class AdminDeshboardComponent implements OnInit {
     this.axiosService.request(
       'DELETE',
       `/api/admin/delete/${user.id}`,
-      this.users
-    ).then(response => {
+    this.users
+  ).then(response => {
       this.snackBar.open('User was deleted successfully:', '', {
         duration: 3000
       });
