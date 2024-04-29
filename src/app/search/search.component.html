@@ -2,3 +2,15 @@
   <input type="text" placeholder="Search for products!" [(ngModel)]="searchTerm" (change)="search()">
   <button (click)="search()">Search</button>
 </div>
+
+<div *ngIf="products.length > 0">
+  <ul>
+    <li *ngFor="let product of products">
+      {{ product.name }} - {{ product.price }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="products.length === 0 && searchTerm">
+  No products found for "{{ searchTerm }}".
+</div>

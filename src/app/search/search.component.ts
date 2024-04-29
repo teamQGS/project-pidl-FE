@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {ProductsDTO} from "../model/products";
 
 @Component({
   selector: 'app-search',
@@ -13,6 +14,8 @@ import {FormsModule} from "@angular/forms";
 })
 export class SearchComponent {
   searchTerm: String = "";
+  products: ProductsDTO[] = [];
+
   constructor(private route: ActivatedRoute, private router: Router) {
   }
 

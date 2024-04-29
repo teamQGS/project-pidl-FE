@@ -36,6 +36,7 @@ export class AdminDeshboardComponent implements OnInit {
     });
   }
   assignRole(user: UsersDTO): void {
+
     this.axiosService.request(
       'PUT',
       `/api/admin/changeRole/${user.username}`,
@@ -48,7 +49,7 @@ export class AdminDeshboardComponent implements OnInit {
       this.userService.getAll().then(users => {
         this.users = users;
       }).catch(error => {
-        console.error('Error while fetching users:', error);
+        console.error('User already has this role!', error);
       });
     }).catch(error => {
       this.snackBar.open('Error while assigning role', '', {
