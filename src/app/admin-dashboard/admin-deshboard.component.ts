@@ -49,10 +49,10 @@ export class AdminDeshboardComponent implements OnInit {
       this.userService.getAll().then(users => {
         this.users = users;
       }).catch(error => {
-        console.error('User already has this role!', error);
+        console.error('Error while fetching users', error);
       });
     }).catch(error => {
-      this.snackBar.open('Error while assigning role', '', {
+      this.snackBar.open('User already has this role ', '', {
         duration: 3000
       });
     });
