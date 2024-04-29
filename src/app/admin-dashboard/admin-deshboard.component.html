@@ -1,16 +1,17 @@
 <ul>
-  <li *ngFor="let user of users">
+  <li *ngFor="let user of users; let i = index">
     <div class="content">
       <div class="roles">
         <mat-form-field>
           <mat-label>Role</mat-label>
-          <mat-select [(value)]="selectedRole">
+          <mat-select [(value)]="selectedRole[i]">
             <mat-option value="ADMIN">ADMIN</mat-option>
             <mat-option value="MANAGER">MANAGER</mat-option>
             <mat-option value="CUSTOMER">CUSTOMER</mat-option>
           </mat-select>
         </mat-form-field>
-        <button mat-flat-button class="button-assign" color="primary" (click)="assignRole(user)">Assign Role</button>
+        <button mat-flat-button class="button-assign" color="primary" (click)="assignRole(user, selectedRole[i])">Assign Role</button>
+
       </div>
       <div class="add-to-cart-div">
         <button mat-flat-button class="button-delete" (click)="deleteUser(user)" color="warn">Delete User</button>
