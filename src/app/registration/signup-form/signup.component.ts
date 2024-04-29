@@ -43,7 +43,7 @@ export class SignupComponent {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required]
-    }, { validator: this.checkPasswords }); // Добавляем валидатор здесь
+    }, { validator: this.checkPasswords });
 
     // Watch for changes on the password fields
     this.registerFormular.get('password')?.valueChanges.subscribe(value => {

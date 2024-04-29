@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* Занимает всю высоту экрана */
 }
 
 #login-form {
@@ -53,7 +52,6 @@ input.mat-input-element {
   align-items: center;
   justify-content: center;
   height: 100%;
-  /* Подгонка высоты, если требуется */
 }
 
 input.mat-mdc-input-element {
@@ -119,10 +117,8 @@ input.mat-mdc-input-element {
 
 .requirements ul {
   list-style-type: none;
-  /* Скрыть стандартные маркеры */
   text-decoration: none;
   padding-left: 0;
-  /* Убрать отступ слева */
 }
 
 .marker {
@@ -132,16 +128,13 @@ input.mat-mdc-input-element {
   border-radius: 50%;
   margin-right: 10px;
   border: 1px solid #ccc;
-  /* Цвет рамки маркера */
 }
 
 .marker.completed {
   background-color: #F2E5D7;
-  /* Цвет закрашенного маркера, если требование выполнено */
   font-weight: 700;
 }
 
-/* Псевдоэлемент для создания маркера */
 .requirements li::before {
   display: none;
   content: "\2022";
@@ -165,9 +158,7 @@ input.mat-mdc-input-element {
 a {
   text-align: center;
   width: 100%;
-  /* Занимает всю ширину своего контейнера */
   margin-top: 20px;
-  /* Добавляем отступ сверху для визуальной разделения */
   color: #F2E5D7;
   font-size: 16px;
   font-weight: 600;
