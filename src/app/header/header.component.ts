@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import { RouterLink } from "@angular/router";
+import { NgIf, NgOptimizedImage } from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -11,14 +11,24 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
     NgIf
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
 
-  cartPath = 'assets/images/shopping-cart.svg';
   logoPath = 'assets/logo/logo-sized.svg';
-  userPath = 'assets/images/user.svg'
-
+  dashboardListPath = 'assets/icons/dashboard-list.svg';
+  shoppingCartPath = 'assets/icons/shopping-cart.svg';
+  userPath = 'assets/icons/user.svg';
   protected readonly window = window;
 
+  showDashboardList = false;
+
+  constructor() {
+    // Установка изначального значения в false
+    this.showDashboardList = false;
+  }
+
+  toggleDashboardList() {
+    this.showDashboardList = !this.showDashboardList;
+  }
 }

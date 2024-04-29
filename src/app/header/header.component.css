@@ -1,0 +1,101 @@
+#container-header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #5C8083;
+    margin-bottom: 4%;
+    position: relative;
+}
+
+#logo {
+    margin-left: 12px;
+}
+
+#dashboards,
+#links {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    list-style-type: none;
+    margin-right: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+#links img {
+    width: 24px;
+    height: 24px;
+}
+
+#dashboards ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+#dashboards li:last-child,
+#links li:last-child {
+    margin-right: 0;
+}
+
+.dashboard-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    /* Отступ от текста до иконки */
+
+    margin-right: 10px;
+    /* Отступ от иконки до текста */
+    cursor: pointer;
+}
+
+.dashboard-popup {
+    position: absolute;
+    display: flex;
+    flex-direction: column; /* Ставим элементы списка вертикально */
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* Сдвигает popup обратно на половину его ширины для центрирования */
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc; 
+    border-radius: 30px;
+    z-index: 100;
+    width: 305px; /* Ширина окна */
+    height: auto; /* Автоматическая высота в зависимости от содержимого */
+    padding: 10px; /* Добавим немного внутреннего отступа */
+    overflow-y: auto; /* Включает прокрутку, если элементов слишком много */
+}
+
+
+
+.dashboard-popup ul {
+    list-style: none; /* Убираем маркеры списка */
+    margin: 0; /* Убираем внешний отступ */
+    padding: 0; /* Убираем внутренний отступ */
+    flex-direction: column; /* Ставим элементы списка вертикально */
+}
+.dashboard-icon-wrapper {
+    position: relative; /* Определяет контейнер для позиционирования popup */
+    display: inline-block; /* Делает контейнер встроенным блоком, соответствующим ширине содержимого */
+  }
+
+  .dashboard-popup li {
+    width: 100% !important; /* Занимает всю ширину контейнера */
+    padding: 8px; /* Добавляет внутренний отступ */
+    cursor: pointer; /* Указывает на возможность клика */
+    border-bottom: 1px solid #eee; /* Добавляет линию между элементами */
+}
+
+.dashboard-popup li:last-child {
+    border-bottom: none; /* Убирает линию у последнего элемента */
+}
+
+.dashboard-icon-container {
+    display: flex;
+    align-items: center;
+}

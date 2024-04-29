@@ -2,20 +2,36 @@
   <div id="logo" routerLink="/">
     <img [src]="logoPath" alt="logo" height="64" width="64">
   </div>
-  <ul id="dashboards">
-    <li class="link" *ngIf="window.localStorage.getItem('role') == 'CUSTOMER' || window.localStorage.getItem('role')  == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'" routerLink="user-dashboard">
-      User Dashboard
-    </li>
-    <li class="link" *ngIf="window.localStorage.getItem('role')  == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'" routerLink="manager-dashboard">
-      Manager Dashboard
-    </li>
-    <li class="link" *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard">
-      Admin Dashboard
-    </li>
-  </ul>
+  <div id="dashboards">
+    <ul>
+      <li class="link" *ngIf="window.localStorage.getItem('role') == 'CUSTOMER' 
+    || window.localStorage.getItem('role')  == 'MANAGER' 
+    || window.localStorage.getItem('role') == 'ADMIN'" routerLink="user-dashboard">
+        User Dashboard
+      </li>
+      <ng-container *ngIf="window.localStorage.getItem('role') == 'MANAGER' 
+|| window.localStorage.getItem('role') == 'ADMIN'">
+        <div class="dashboard-icon-wrapper" (click)="toggleDashboardList()">
+          <img [src]="dashboardListPath" alt="Dashboard List" class="dashboad-icon">
+          <div id="dashboardList" class="dashboard-popup" *ngIf="showDashboardList">
+            <ul>
+              <li
+                *ngIf="window.localStorage.getItem('role') == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'"
+                routerLink="manager-dashboard">Manager Dashboard</li>
+              <li *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard">Admin Dashboard
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+
+    </ul>
+  </div>
+
+
   <ul id="links">
     <li class="link" routerLink="cart">
-      <img [src]="cartPath" alt="Cart">
+      <img [src]="shoppingCartPath" alt="Cart">
     </li>
     <li class="link" routerLink="login">
       <img [src]="userPath" alt="Login">

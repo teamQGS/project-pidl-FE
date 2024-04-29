@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Занимает всю высоту экрана */
+  height: 100vh;
+  /* Занимает всю высоту экрана */
 }
 
 #login-form {
@@ -51,7 +52,8 @@ input.mat-input-element {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Подгонка высоты, если требуется */
+  height: 100%;
+  /* Подгонка высоты, если требуется */
 }
 
 input.mat-mdc-input-element {
@@ -116,9 +118,11 @@ input.mat-mdc-input-element {
 }
 
 .requirements ul {
-  list-style-type: none; /* Скрыть стандартные маркеры */
+  list-style-type: none;
+  /* Скрыть стандартные маркеры */
   text-decoration: none;
-  padding-left: 0; /* Убрать отступ слева */
+  padding-left: 0;
+  /* Убрать отступ слева */
 }
 
 .marker {
@@ -127,20 +131,24 @@ input.mat-mdc-input-element {
   height: 12px;
   border-radius: 50%;
   margin-right: 10px;
-  border: 1px solid #ccc; /* Цвет рамки маркера */
+  border: 1px solid #ccc;
+  /* Цвет рамки маркера */
 }
 
 .marker.completed {
-  background-color: #F2E5D7; /* Цвет закрашенного маркера, если требование выполнено */
+  background-color: #F2E5D7;
+  /* Цвет закрашенного маркера, если требование выполнено */
   font-weight: 700;
 }
 
 /* Псевдоэлемент для создания маркера */
 .requirements li::before {
   display: none;
-  content: "\2022"; /* Код символа маркера */
+  content: "\2022";
+  /* Код символа маркера */
   margin-right: 10px;
-  color: #ccc; /* Цвет маркера */
+  color: #ccc;
+  /* Цвет маркера */
 }
 
 .bold {
@@ -148,14 +156,18 @@ input.mat-mdc-input-element {
 }
 
 .mat-form-field.mat-form-field-invalid .mat-form-field-underline {
-  background-color: transparent; /* Убираем красный цвет */
+  background-color: transparent;
+  /* Убираем красный цвет */
 }
 
 
-.sign-in-container, a {
+.sign-in-container,
+a {
   text-align: center;
-  width: 100%; /* Занимает всю ширину своего контейнера */
-  margin-top: 20px; /* Добавляем отступ сверху для визуальной разделения */
+  width: 100%;
+  /* Занимает всю ширину своего контейнера */
+  margin-top: 20px;
+  /* Добавляем отступ сверху для визуальной разделения */
   color: #F2E5D7;
   font-size: 16px;
   font-weight: 600;
@@ -163,7 +175,8 @@ input.mat-mdc-input-element {
 
 
 #login-form input::placeholder {
-  color: rgba(0, 0, 0, 0.5); /* Черный текст с 50% прозрачности */
+  color: rgba(0, 0, 0, 0.5);
+  /* Черный текст с 50% прозрачности */
 }
 
 @media (min-width: 1920px) {
@@ -171,6 +184,7 @@ input.mat-mdc-input-element {
     width: 100%;
     height: 100%;
   }
+
   #login-form {
     max-width: 1110px;
     height: 750px;
