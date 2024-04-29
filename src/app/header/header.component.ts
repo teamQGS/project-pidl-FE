@@ -15,10 +15,16 @@ import { NgIf, NgOptimizedImage } from "@angular/common";
 })
 export class HeaderComponent {
 
+  // New icons
   logoPath = 'assets/logo/logo-sized.svg';
   dashboardListPath = 'assets/icons/dashboard-list.svg';
   shoppingCartPath = 'assets/icons/shopping-cart.svg';
+  managerIconPath = 'assets/icons/manager-icon.svg';
+  adminIconPath = 'assets/icons/admin-icon.svg';
+
+  // Old icons
   userPath = 'assets/icons/user.svg';
+
   protected readonly window = window;
 
   showDashboardList = false;

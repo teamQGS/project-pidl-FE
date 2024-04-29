@@ -20,10 +20,16 @@
             <ul>
               <li
                 *ngIf="window.localStorage.getItem('role') == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'"
-                routerLink="manager-dashboard">Manager Dashboard</li>
-              <li *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard">Admin Dashboard
+                routerLink="manager-dashboard">
+                <img [src]="managerIconPath" alt="Manager Dashboard Icon" style="width: 30px; height: 30px;">
+                Manager Dashboard
+              </li>
+              <li *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard">
+                <img [src]="adminIconPath" alt="Admin Dashboard Icon" style="width: 30px; height: 30px;">
+                Admin Dashboard
               </li>
             </ul>
+
           </div>
         </div>
       </ng-container>
