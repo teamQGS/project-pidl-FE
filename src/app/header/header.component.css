@@ -7,13 +7,16 @@
     background-color: #5C8083;
     margin-bottom: 4%;
     position: relative;
+    color: #F2E5D7;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 #logo {
     margin-left: 12px;
 }
 
-#dashboards,
+#nav-panel,
 #links {
     display: flex;
     align-items: center;
@@ -31,13 +34,13 @@
     height: 24px;
 }
 
-#dashboards ul {
+#nav-panel ul {
     display: flex;
     list-style-type: none;
     padding: 0;
 }
 
-#dashboards li:last-child,
+#nav-panel li:last-child,
 #links li:last-child {
     margin-right: 0;
 }
@@ -54,13 +57,14 @@
 }
 
 .dashboard-popup {
+    color: #000000;
     position: absolute;
     display: flex;
     flex-direction: column; /* Ставим элементы списка вертикально */
     top: 100%;
     left: 50%;
     transform: translateX(-50%); /* Сдвигает popup обратно на половину его ширины для центрирования */
-    background-color: #f8f9fa;
+    background-color: #FFFFFF;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc; 
     border-radius: 30px;

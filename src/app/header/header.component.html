@@ -2,8 +2,11 @@
   <div id="logo" routerLink="/">
     <img [src]="logoPath" alt="logo" height="64" width="64">
   </div>
-  <div id="dashboards">
+  <div id="nav-panel">
     <ul>
+      <li class="link" routerLink="/">Products</li>
+      <li class="link" routerLink="/">Contact us</li>
+
       <li class="link" *ngIf="window.localStorage.getItem('role') == 'CUSTOMER' 
     || window.localStorage.getItem('role')  == 'MANAGER' 
     || window.localStorage.getItem('role') == 'ADMIN'" routerLink="user-dashboard">
@@ -12,7 +15,7 @@
       <ng-container *ngIf="window.localStorage.getItem('role') == 'MANAGER' 
 || window.localStorage.getItem('role') == 'ADMIN'">
         <div class="dashboard-icon-wrapper" (click)="toggleDashboardList()">
-          <img [src]="dashboardListPath" alt="Dashboard List" class="dashboad-icon">
+          <img [src]="dashboardListPath" alt="Dashboard List" class="dashboad-icon" height="18" width="18">
           <div id="dashboardList" class="dashboard-popup" *ngIf="showDashboardList">
             <ul>
               <li
