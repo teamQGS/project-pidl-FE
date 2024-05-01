@@ -1,49 +1,83 @@
-<div id="container-header">
-  <div id="logo" routerLink="/">
-    <img [src]="logoPath" alt="logo" height="64" width="64">
-  </div>
-  <div id="nav-panel">
-    <ul>
-      <li class="link" routerLink="/">Products</li>
-      <li class="link" routerLink="/">Contact us</li>
+<header>
+  <div id="container-header">
+    <div id="logo" routerLink="/">
+      <img [src]="logoPath" alt="logo" height="64" width="64" />
+    </div>
+    <div id="nav-panel">
+      <ul>
+        <li class="link" routerLink="/">Products</li>
+        <li class="link" routerLink="/">Contact us</li>
 
-      <li class="link" *ngIf="window.localStorage.getItem('role') == 'CUSTOMER' 
-    || window.localStorage.getItem('role')  == 'MANAGER' 
-    || window.localStorage.getItem('role') == 'ADMIN'" routerLink="user-dashboard">
-        User Dashboard
-      </li>
-      <ng-container *ngIf="window.localStorage.getItem('role') == 'MANAGER' 
-|| window.localStorage.getItem('role') == 'ADMIN'">
-        <div class="dashboard-icon-wrapper" (click)="toggleDashboardList()">
-          <img [src]="dashboardListPath" alt="Dashboard List" class="dashboad-icon" height="18" width="18">
-          <div id="dashboardList" class="dashboard-popup" *ngIf="showDashboardList">
-            <ul>
-              <li
-                *ngIf="window.localStorage.getItem('role') == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'"
-                routerLink="manager-dashboard">
-                <img [src]="managerIconPath" alt="Manager Dashboard Icon" style="width: 30px; height: 30px;">
-                Manager Dashboard
-              </li>
-              <li *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard">
-                <img [src]="adminIconPath" alt="Admin Dashboard Icon" style="width: 30px; height: 30px;">
-                Admin Dashboard
-              </li>
-            </ul>
-
+        <li
+          class="link"
+          *ngIf="
+            window.localStorage.getItem('role') == 'CUSTOMER' ||
+            window.localStorage.getItem('role') == 'MANAGER' ||
+            window.localStorage.getItem('role') == 'ADMIN'
+          "
+          routerLink="user-dashboard"
+        >
+          User Dashboard
+        </li>
+        <ng-container
+          *ngIf="
+            window.localStorage.getItem('role') == 'MANAGER' ||
+            window.localStorage.getItem('role') == 'ADMIN'
+          "
+        >
+          <div class="dashboard-icon-wrapper" (click)="toggleDashboardList()">
+            <img
+              [src]="dashboardListPath"
+              alt="Dashboard List"
+              class="dashboad-icon"
+              height="18"
+              width="18"
+            />
+            <div
+              id="dashboardList"
+              class="dashboard-popup"
+              *ngIf="showDashboardList"
+            >
+              <ul>
+                <li
+                  *ngIf="
+                    window.localStorage.getItem('role') == 'MANAGER' ||
+                    window.localStorage.getItem('role') == 'ADMIN'
+                  "
+                  routerLink="manager-dashboard"
+                >
+                  <img
+                    [src]="managerIconPath"
+                    alt="Manager Dashboard Icon"
+                    style="width: 30px; height: 30px"
+                  />
+                  Manager Dashboard
+                </li>
+                <li
+                  *ngIf="window.localStorage.getItem('role') == 'ADMIN'"
+                  routerLink="admin-dashboard"
+                >
+                  <img
+                    [src]="adminIconPath"
+                    alt="Admin Dashboard Icon"
+                    style="width: 30px; height: 30px"
+                  />
+                  Admin Dashboard
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
+      </ul>
+    </div>
 
+    <ul id="links">
+      <li class="link" routerLink="cart">
+        <img [src]="shoppingCartPath" alt="Cart" />
+      </li>
+      <li class="link" routerLink="signup">
+        <img [src]="userPath" alt="signup" />
+      </li>
     </ul>
   </div>
-
-
-  <ul id="links">
-    <li class="link" routerLink="cart">
-      <img [src]="shoppingCartPath" alt="Cart">
-    </li>
-    <li class="link" routerLink="signup">
-      <img [src]="userPath" alt="signup">
-    </li>
-  </ul>
-</div>
+</header>
