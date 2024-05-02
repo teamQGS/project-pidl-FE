@@ -7,18 +7,22 @@ import {MatButton} from "@angular/material/button";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {AxiosService} from "../../services/axios/axios.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatOption} from "@angular/material/autocomplete";
+import {MatSelect} from "@angular/material/select";
 
 @Component({
   selector: 'app-add-product-page',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    MatButton,
-    MatProgressSpinner
-  ],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        MatButton,
+        MatProgressSpinner,
+        MatOption,
+        MatSelect
+    ],
   templateUrl: './add-product-page.component.html',
   styleUrl: './add-product-page.component.css'
 })
@@ -29,14 +33,12 @@ export class AddProductPageComponent {
     private axiosService: AxiosService,
     private snackBar: MatSnackBar
   ) {}
-
-
-
+  selectedCategory: String | undefined;
   addProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
     price: [ '', Validators.required],
-    count: [ '', Validators.required]
+    count: [ '', Validators.required],
   });
 
 
@@ -51,7 +53,8 @@ export class AddProductPageComponent {
           name: this.addProductForm.value.name,
           description: this.addProductForm.value.description,
           price: parseFloat(<string>this.addProductForm.value.price),
-          count: parseInt(<string>this.addProductForm.value.count)
+          count: parseInt(<string>this.addProductForm.value.count),
+          productCategory: this.selectedCategory
         }
       ).then(response => {
         this.snackBar.open("Product was added successfully", '', {
