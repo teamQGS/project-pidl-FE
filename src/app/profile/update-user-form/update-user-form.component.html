@@ -1,34 +1,47 @@
-<div id="update-section">
-  <div id="update-form">
-  <h1>Update {{ username }}'s profile info</h1>
-
-  <form [formGroup]="updateForm" class="update-form" (submit)="updateUser()">
-      <mat-form-field class="example-full-width">
-        <mat-label>First name</mat-label>
-        <input matInput placeholder="First name" formControlName="firstName">
-      </mat-form-field>
-    <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Last name</mat-label>
-        <input matInput placeholder="Last name" formControlName="lastName">
-      </mat-form-field>
-    <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email">
-      </mat-form-field>
-    <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Address" formControlName="address">
-      </mat-form-field>
-    <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Phone number</mat-label>
-        <input matInput placeholder="Phone number" formControlName="phoneNumber">
-      </mat-form-field>
-    <br>
-    <button mat-raised-button color="basic" matTooltip="Update" type="submit">Update</button>
-  </form>
+<link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center justify-center h-screen bg-custom-black">
+  <!-- Контейнер с формой для правки профильных данных -->
+  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
+    <!-- Меню навигации -->
+    <div class="w-full text-center rounded-t-3xl bg-custom-white">
+      <h1 class="text-2xl font-semibold w-full text-center">
+        Update {{ username }}'s profile info
+      </h1>
+    </div>
+    <!-- Форма обновления данных пользователя -->
+    <div class="w-3/5 md:w-2/6 my-16 mx-4">
+      <form [formGroup]="updateForm" class="w-full flex flex-col items-center" (submit)="updateUser()">
+        <label class="block mb-0 text-base" for="firstName">First name</label>
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="First name" formControlName="firstName" />
+        </mat-form-field>
+        <br />
+        <label class="block mb-0 text-base" for="lastName">Last name</label>
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Last name" formControlName="lastName" />
+        </mat-form-field>
+        <br />
+        <label class="block mb-0 text-base" for="email">Email</label>
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Email" formControlName="email" />
+        </mat-form-field>
+        <br />
+        <label class="block mb-0 text-base" for="address">Address</label>
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Address" formControlName="address" />
+        </mat-form-field>
+        <br />
+        <label class="block mb-0 text-base" for="phoneNumber">Phone number</label>
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Phone number" formControlName="phoneNumber" />
+        </mat-form-field>
+        <br />
+        <!-- Кнопка обновления -->
+        <button mat-raised-button color="basic" matTooltip="Update" type="submit">
+          Update
+        </button>
+      </form>
+    </div>
   </div>
 </div>
