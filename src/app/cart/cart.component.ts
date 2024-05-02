@@ -19,6 +19,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class CartComponent implements OnInit {
   cartItems: ProductsDTO[] = [];
+  count: number = 0;
 
   constructor(private cartService: CartService, private snackBar: MatSnackBar) { }
 

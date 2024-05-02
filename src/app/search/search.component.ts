@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {ProductsDTO} from "../model/products";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-search',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    NgIf,
+    NgForOf
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'

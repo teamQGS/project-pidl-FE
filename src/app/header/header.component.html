@@ -1,7 +1,6 @@
 <link href="../../tailwind.css" rel="stylesheet">
-    <div
-      class="w-full h-20 flex flex-row items-center justify-between bg-slate-500 mb-1/12 relative text-orange-100 font-semibold text-base p-4">
-      <div class="logo" routerLink="/">
+    <div class="w-full h-20 flex flex-row items-center justify-between bg-slate-500 mb-1/12 relative text-orange-100 font-semibold text-base p-4">
+      <div class="logo cursor-pointer" routerLink="/">
         <img [src]="logoPath" alt="logo" height="64" width="64" />
       </div>
       <div class="nav-panel">
@@ -9,7 +8,7 @@
           <li class="list-none mr-5 relative cursor-pointer"
             routerLink="/">Products</li>
           <li class="list-none mr-5 relative cursor-pointer"
-            routerLink="/">Contact us</li>
+            routerLink="/contact-us">Contact us</li>
           <li class="list-none mr-5 relative cursor-pointer" *ngIf="
             window.localStorage.getItem('role') == 'CUSTOMER' ||
             window.localStorage.getItem('role') == 'MANAGER' ||
@@ -25,8 +24,7 @@
               (click)="toggleDashboardList($event)">
               <img [src]="dashboardListPath" alt="Dashboard List"
                 class="dashboad-icon" height="18" width="18" />
-              <div class="dashboardList"
-                class="text-gray-600 absolute flex flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
+              <div class="dashboardList text-gray-600 absolute flex flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
                 *ngIf="showDashboardList">
                 <ul class="w-full">
                   <li *ngIf="

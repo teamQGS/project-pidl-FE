@@ -18,6 +18,7 @@ import {CustomerGuardService} from "./services/Guard/customer-guard.service";
 import {UpdateUserFormComponent} from "./profile/update-user-form/update-user-form.component";
 import {SearchComponent} from "./search/search.component";
 import {ChangePasswordFormComponent} from "./profile/change-password-form/change-password-form.component";
+import {ContactUsComponent} from "./header/contact-us/contact-us.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [WithoutTokenGuardService] },
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [ManagerGuardService] },
   { path: 'add-product', component: AddProductPageComponent, canActivate: [WithTokenGuardService] },
   { path: 'search/:searchTerm', component: SearchComponent, canActivate: [WithoutTokenGuardService] },
+  { path: 'contact-us', component: ContactUsComponent}
 ];
 
 @NgModule({

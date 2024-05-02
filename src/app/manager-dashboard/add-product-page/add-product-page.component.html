@@ -21,6 +21,20 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
+      <mat-label>Category</mat-label>
+      <mat-select [(value)]="selectedCategory">
+        <mat-option value="MEET">MEET</mat-option>
+        <mat-option value="HOME">HOME</mat-option>
+        <mat-option value="KITCHENWARE">KITCHENWARE</mat-option>
+        <mat-option value="ADULTS">ADULTS</mat-option>
+        <mat-option value="FRUITS">FRUITS</mat-option>
+        <mat-option value="VEGETABLES">VEGETABLES</mat-option>
+        <mat-option value="DRINKS">DRINKS</mat-option>
+        <mat-option value="FROZEN_FOODS">FROZEN_FOODS</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
       <mat-label>Quantity of the product</mat-label>
       <input matInput placeholder="Quantity" formControlName="count">
     </mat-form-field>
