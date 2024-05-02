@@ -1,39 +1,41 @@
-<div id="login-component">
-  <div id="login-form">
-    
-
-    <!-- Форма логина -->
-    <div class="qform">
-      <form [formGroup]="loginFormular" (ngSubmit)="onSubmitLogin()">
-        <h1>Sign in</h1>
-
-        <label for="username">Username</label>
-        <mat-form-field class="example-full-width">
-          <input matInput id="username" placeholder="Enter your username" formControlName="username">
+<link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col justify-center items-center h-screen bg-custom-black">
+  <!-- Контейнер (окно) авторизации -->
+  <div class="w-full flex flex-row items-center max-w-6xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
+    <!-- Форма авторизации -->
+    <div class="w-full md:w-3/5 p-5 box-border flex items-center justify-center flex-col">
+      <form [formGroup]="loginFormular" (ngSubmit)="onSubmitLogin()" class="w-3/5">
+        <h1 class="text-2xl font-semibold w-full text-center mb-5">
+          Authorization
+        </h1>
+        <label class="block mb-0 text-base" for="username">Username</label>
+        <mat-form-field class="w-full mb-2 example-full-width">
+          <input matInput id="username" placeholder="Enter your username" formControlName="username" />
         </mat-form-field>
-        <br>
-
-        <label for="password">Password</label>
-        <mat-form-field class="example-full-width">
-          <input type="password" matInput id="password" placeholder="Enter your password" formControlName="password">
+        <br />
+        <label class="block mb-0 text-base" for="password">Password</label>
+        <mat-form-field class="w-full mb-2 example-full-width">
+          <input type="password" matInput id="password" placeholder="Enter your password" formControlName="password" />
         </mat-form-field>
-        <br>
-
-        <button class="qsubmit" mat-raised-button color="basic" matTooltip="Log in" type="submit" [disabled]="!loginFormular.valid">LOG IN</button>
+        <br />
+        <!-- Кнопка авторизации -->
+        <button mat-raised-button matTooltip="Log in" type="submit" [disabled]="!loginFormular.valid"
+          class="w-full rounded-xl h-10 mb-5 enabled:bg-custom-button enabled:text-custom-white">
+          LOG IN
+        </button>
       </form>
-      <br>
-
+      <br />
       <!-- Ссылка на регистрацию -->
-      <div id="signup-link">
-        <p>Don't have an account? </p>
-        <a routerLink="/signup">Sign up</a>
+      <div id="signup-link" class="text-center text-custom-white font-semibold">
+        <p>Don't have an account?</p>
+        <a routerLink="/signup" class="underline">Sign up</a>
       </div>
     </div>
-
     <!-- Логотип и промо-текст -->
-    <div class="qlogo">
-      <img src="assets/logo/logo-black.svg" alt="logo">
-      <p>The grocery shop you deserve.</p>
+    <div class="hidden md:flex w-2/5 h-full flex-col items-center justify-center bg-custom-white rounded-3xl">
+      <img class="w-96 h-96 -mb-14" src="assets/logo/logo-black.svg" alt="logo" />
+      <p class="font-semibold text-xl mb-28">The grocery shop you deserve.</p>
     </div>
   </div>
 </div>

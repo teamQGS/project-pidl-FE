@@ -1,88 +1,73 @@
-<div id="login-component">
-
-  <div id="login-form">
-    <div class="qlogo">
-      <img src="assets/logo/logo-black.svg" alt="logo">
-      <p>The grocery shop you deserve.</p>
+<link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col justify-center items-center h-screen bg-custom-black">
+  <!-- Контейнер (окно) регистрации -->
+  <div class="w-full flex flex-row items-center max-w-5xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
+    <!-- Логотип и промо-текст -->
+    <div class="hidden md:flex w-2/5 h-full flex-col items-center justify-center bg-custom-white rounded-3xl">
+      <img class="w-96 h-96 -mb-14" src="assets/logo/logo-black.svg" alt="logo">
+      <p class="font-semibold text-xl mb-28">The grocery shop you deserve.</p>
     </div>
-
-    <div class="qform">
-      <form [formGroup]="registerFormular" (ngSubmit)="onSubmitRegister()">
-        <h1>Create account</h1>
-    
-        <label for="email">Email</label>
-        <mat-form-field class="example-full-width no-padding-input">
-          <input matInput id="email" placeholder="email@example.com" formControlName="email">
+    <!-- Форма регистрации -->
+    <div class="w-full md:w-3/5 p-5 box-border flex items-center justify-center flex-col">
+      <form [formGroup]="registerFormular" (ngSubmit)="onSubmitRegister()" class="w-3/5">
+        <h1 class="text-2xl font-semibold w-full text-center mb-5">Create account</h1>
+        <label class="block mb-0 text-base" for="email">Email</label>
+        <mat-form-field class="w-full mb-2 example-full-width">
+          <input matInput id="email" placeholder="email@example.com" formControlName="email" />
         </mat-form-field>
-        <br>
-    
-        <label for="username">Username</label>
-        <mat-form-field class="example-full-width">
+        <br />
+        <label class="block mb-0 text-base" for="username">Username</label>
+        <mat-form-field class="w-full mb-2 example-full-width">
           <input matInput id="username" placeholder="Enter your username" formControlName="username">
         </mat-form-field>
-        <br>
-    
-        <label for="password">Password</label>
-        <mat-form-field class="example-full-width">
+        <br />
+        <label class="block mb-0 text-base" for="password">Password</label>
+        <mat-form-field class="w-full mb-2 example-full-width">
           <input type="password" matInput id="password" placeholder="Enter your password" formControlName="password">
         </mat-form-field>
         <br>
-
-        <label for="confirmPassword">Confirm Password</label>
-        <mat-form-field class="example-full-width">
-          <input type="password" matInput id="confirmPassword" placeholder="Confirm your password" formControlName="confirmPassword">
+        <label class="block mb-0 text-base" for="confirmPassword">Confirm Password</label>
+        <mat-form-field class="w-full mb-2 example-full-width">
+          <input type="password" matInput id="confirmPassword" placeholder="Confirm your password"
+            formControlName="confirmPassword">
         </mat-form-field>
         <br>
-
-        <div class="requirements">
+        <!-- Требования к паролю (динамические) -->
+        <div class="text-custom-white text-sm p-2 -mt-4 mb-2">
           <ul>
             <li class="password-length" [class.completed]="passwordRequirements.minLength">
-              <span class="marker" [class.completed]="passwordRequirements.minLength"></span>
-              <span [class.bold]="passwordRequirements.minLength">Contains at least 5 characters</span>
+              <span class="marker inline-block w-2.5 h-2.5 mr-2.5 rounded-full border" [class.bg-completed]="passwordRequirements.minLength"></span>
+              <span [class.font-bold]="passwordRequirements.minLength">Contains at least 5 characters</span>
             </li>
             <li class="uppercase-letter" [class.completed]="passwordRequirements.uppercase">
-              <span class="marker" [class.completed]="passwordRequirements.uppercase"></span>
-              <span [class.bold]="passwordRequirements.uppercase">Contains at least one uppercase letter</span>
+              <span class="marker inline-block w-2.5 h-2.5 mr-2.5 rounded-full border" [class.bg-completed]="passwordRequirements.uppercase"></span>
+              <span [class.font-bold]="passwordRequirements.uppercase">Contains at least one uppercase letter</span>
             </li>
             <li class="special-character" [class.completed]="passwordRequirements.specialChar">
-              <span class="marker" [class.completed]="passwordRequirements.specialChar"></span>
-              <span [class.bold]="passwordRequirements.specialChar">Contains at least one special character</span>
+              <span class="marker inline-block w-2.5 h-2.5 mr-2.5 rounded-full border" [class.bg-completed]="passwordRequirements.specialChar"></span>
+              <span [class.font-bold]="passwordRequirements.specialChar">Contains at least one special character</span>
             </li>
             <li class="number" [class.completed]="passwordRequirements.number">
-              <span class="marker" [class.completed]="passwordRequirements.number"></span>
-              <span [class.bold]="passwordRequirements.number">Contains at least one number</span>
+              <span class="marker inline-block w-2.5 h-2.5 mr-2.5 rounded-full border" [class.bg-completed]="passwordRequirements.number"></span>
+              <span [class.font-bold]="passwordRequirements.number">Contains at least one number</span>
             </li>
             <li class="matching" [class.completed]="passwordRequirements.matching">
-              <span class="marker" [class.completed]="passwordRequirements.matching"></span>
-              <span [class.bold]="passwordRequirements.matching">Passwords are matching</span>
+              <span class="marker inline-block w-2.5 h-2.5 mr-2.5 rounded-full border" [class.bg-completed]="passwordRequirements.matching"></span>
+              <span [class.font-bold]="passwordRequirements.matching">Passwords are matching</span>
             </li>
           </ul>
         </div>
-        
-    
-        <button class="qsubmit" mat-raised-button color="basic" matTooltip="Sign up" type="submit" [disabled]="!registerFormular.valid">SIGN UP</button>
+        <!-- Кнопка регистрации -->
+        <button class="w-full rounded-xl h-10 mb-5 enabled:bg-custom-button enabled:text-custom-white" mat-raised-button matTooltip="Sign up" type="submit"
+          [disabled]="!registerFormular.valid || !allRequirementsMet()">SIGN UP</button>
       </form>
       <br>
-
-      
-      
-      
-      
-      
-
-      <div class="sign-in-container">
+      <!-- Ссылка на авторизацию, возможны дополнения -->
+      <div class="text-center text-custom-white font-semibold">
         <p>Already have an account?</p>
-        <a routerLink="/login" class="sign-in-link">Sign in</a>
+        <a routerLink="/login" class="underline">Sign in</a>
       </div>
     </div>
-    
-    
-    
-
   </div>
-
-  
-
 </div>
-
- 

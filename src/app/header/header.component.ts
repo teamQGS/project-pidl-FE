@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { NgIf, NgOptimizedImage } from "@angular/common";
 
@@ -29,12 +29,18 @@ export class HeaderComponent {
 
   showDashboardList = false;
 
-  constructor() {
-    // Установка изначального значения в false
-    this.showDashboardList = false;
+  toggleDashboardList(event: MouseEvent): void {
+    event.stopPropagation();
+    this.showDashboardList = !this.showDashboardList;
   }
 
-  toggleDashboardList() {
-    this.showDashboardList = !this.showDashboardList;
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedInside = event
+    .composedPath()
+    .some(el => (el as HTMLElement).classList?.contains('dashboard-list'));
+    if (!clickedInside) {
+      this.showDashboardList = false;
+    }
   }
 }

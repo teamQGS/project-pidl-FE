@@ -54,8 +54,17 @@ export class SignupComponent {
       this.checkPasswordsMatch();
   });
 
+  
+
   }
 
+  allRequirementsMet(): boolean {
+    return this.passwordRequirements.minLength &&
+           this.passwordRequirements.uppercase &&
+           this.passwordRequirements.specialChar &&
+           this.passwordRequirements.number &&
+           this.passwordRequirements.matching;
+  }
   updatePasswordRequirements(value: string) {
     this.passwordRequirements.minLength = value.length >= 5;
     this.passwordRequirements.uppercase = /[A-Z]/.test(value);
@@ -77,7 +86,7 @@ export class SignupComponent {
   }
 
   onSubmitRegister() {
-    if (this.registerFormular.valid) {
+    if (this.registerFormular.valid && this.allRequirementsMet()) {
       this.newUserEvent.emit({
         'email': this.registerFormular.value.email,
         'username': this.registerFormular.value.username,

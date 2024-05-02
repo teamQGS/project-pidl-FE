@@ -1,83 +1,65 @@
-<header>
-  <div id="container-header">
-    <div id="logo" routerLink="/">
-      <img [src]="logoPath" alt="logo" height="64" width="64" />
-    </div>
-    <div id="nav-panel">
-      <ul>
-        <li class="link" routerLink="/">Products</li>
-        <li class="link" routerLink="/">Contact us</li>
-
-        <li
-          class="link"
-          *ngIf="
+<link href="../../tailwind.css" rel="stylesheet">
+    <div
+      class="w-full h-20 flex flex-row items-center justify-between bg-slate-500 mb-1/12 relative text-orange-100 font-semibold text-base p-4">
+      <div class="logo" routerLink="/">
+        <img [src]="logoPath" alt="logo" height="64" width="64" />
+      </div>
+      <div class="nav-panel">
+        <ul class="flex flex-row">
+          <li class="list-none mr-5 relative cursor-pointer"
+            routerLink="/">Products</li>
+          <li class="list-none mr-5 relative cursor-pointer"
+            routerLink="/">Contact us</li>
+          <li class="list-none mr-5 relative cursor-pointer" *ngIf="
             window.localStorage.getItem('role') == 'CUSTOMER' ||
             window.localStorage.getItem('role') == 'MANAGER' ||
             window.localStorage.getItem('role') == 'ADMIN'
-          "
-          routerLink="user-dashboard"
-        >
-          User Dashboard
-        </li>
-        <ng-container
-          *ngIf="
+          " routerLink="user-dashboard">
+            User Dashboard
+          </li>
+          <ng-container *ngIf="
             window.localStorage.getItem('role') == 'MANAGER' ||
             window.localStorage.getItem('role') == 'ADMIN'
-          "
-        >
-          <div class="dashboard-icon-wrapper" (click)="toggleDashboardList()">
-            <img
-              [src]="dashboardListPath"
-              alt="Dashboard List"
-              class="dashboad-icon"
-              height="18"
-              width="18"
-            />
-            <div
-              id="dashboardList"
-              class="dashboard-popup"
-              *ngIf="showDashboardList"
-            >
-              <ul>
-                <li
-                  *ngIf="
+          ">
+            <div class="w-4 h-5 mt-1.5 cursor-pointer-wrapper relative"
+              (click)="toggleDashboardList($event)">
+              <img [src]="dashboardListPath" alt="Dashboard List"
+                class="dashboad-icon" height="18" width="18" />
+              <div class="dashboardList"
+                class="text-gray-600 absolute flex flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
+                *ngIf="showDashboardList">
+                <ul class="w-full">
+                  <li *ngIf="
                     window.localStorage.getItem('role') == 'MANAGER' ||
                     window.localStorage.getItem('role') == 'ADMIN'
-                  "
-                  routerLink="manager-dashboard"
-                >
-                  <img
-                    [src]="managerIconPath"
-                    alt="Manager Dashboard Icon"
-                    style="width: 30px; height: 30px"
-                  />
-                  Manager Dashboard
-                </li>
-                <li
-                  *ngIf="window.localStorage.getItem('role') == 'ADMIN'"
-                  routerLink="admin-dashboard"
-                >
-                  <img
-                    [src]="adminIconPath"
-                    alt="Admin Dashboard Icon"
-                    style="width: 30px; height: 30px"
-                  />
-                  Admin Dashboard
-                </li>
-              </ul>
+                  " routerLink="manager-dashboard" class="flex p-2 cursor-pointer w-full gap-2 items-center border-b border-gray-200">
+                    <img [src]="managerIconPath"
+                      alt="Manager Dashboard Icon"
+                      style="width: 30px; height: 30px" />
+                    Manager Dashboard
+                  </li>
+                  <li
+                    *ngIf="window.localStorage.getItem('role') == 'ADMIN'"
+                    routerLink="admin-dashboard" class="flex p-2 cursor-pointer w-full gap-2 items-center border-gray-200">
+                    <img [src]="adminIconPath"
+                      alt="Admin Dashboard Icon"
+                      style="width: 30px; height: 30px" />
+                    Admin Dashboard
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </ul>
+      </div>
+      <ul class="links flex flex-row">
+        <li class="list-none mr-5 relative cursor-pointer size-6"
+          routerLink="cart">
+          <img [src]="shoppingCartPath" alt="Cart" />
+        </li>
+        <li class="list-none mr-5 relative cursor-pointer size-6"
+          routerLink="signup">
+          <img [src]="userPath" alt="signup" />
+        </li>
       </ul>
     </div>
-
-    <ul id="links">
-      <li class="link" routerLink="cart">
-        <img [src]="shoppingCartPath" alt="Cart" />
-      </li>
-      <li class="link" routerLink="signup">
-        <img [src]="userPath" alt="signup" />
-      </li>
-    </ul>
-  </div>
-</header>

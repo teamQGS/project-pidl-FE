@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+
+
 :root {
   --mat-form-field-container-height: auto;
 }
@@ -10,30 +11,21 @@
   font-family: 'Albert Sans', sans-serif;
 }
 
-/* Background */
-body {
-  background-color: #4B5966;
-}
-
 /* Удаление отступов и изменение цвета фона для заполненных текстовых полей */
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  padding: 0 !important; /* Убираем внутренние отступы */
-  background-color: #F2E5D7 !important; /* Устанавливаем нужный цвет фона */
-  border-radius: 6px;
-  height: 45px;
+  background-color: #F2E5D7 !important;
+  padding: 0 !important;
+  border-radius: 6px; 
+  height: 2.8rem;
 }
 
-/* Применяем стиль к элементу ввода внутри поля */
-.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
-  padding: 0 !important; /* Убираем внутренние отступы */
-}
-
+/* Хуйня для полей ввода. Изменять запрещено */
 .mat-mdc-form-field-infix {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  width: 20vw !important;
+  padding: 1rem;
+  
   background-color: #F2E5D7 !important;
-  height: 45px !important;
+  height: 2.8rem !important;
 }
