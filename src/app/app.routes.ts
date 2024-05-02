@@ -33,7 +33,7 @@ export const routes: Routes = [
   { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [ManagerGuardService] },
   { path: 'add-product', component: AddProductPageComponent, canActivate: [WithTokenGuardService] },
   { path: 'search/:searchTerm', component: SearchComponent, canActivate: [WithoutTokenGuardService] },
-  { path: 'contact-us', component: ContactUsComponent, canActivate: [WithoutTokenGuardService]},
+  { path: 'contact-us', component: ContactUsComponent}
 ];
 
 @NgModule({
