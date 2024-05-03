@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {jwtDecode, JwtPayload} from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,11 @@ export class AxiosService {
   setAuthToken(token: string | null) {
     if (token != null) {
       window.localStorage.setItem("auth_token", token);
-      const expirationTime = new Date().getTime() + 36000000;
-      window.localStorage.setItem("auth_token_expiration", expirationTime.toString());
+      const decodedToken: JwtPayload | undefined = jwtDecode(token);
+      // @ts-ignore
+      const tokenExpirationDate = new Date(decodedToken.exp * 1000);
+      window.localStorage.setItem("auth_token_expiration", tokenExpirationDate.toString());
+      //console.log("Token expiration: " + tokenExpirationDate);
     } else {
       window.localStorage.removeItem("auth_token");
       window.localStorage.removeItem("auth_token_expiration");

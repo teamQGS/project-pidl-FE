@@ -13,15 +13,13 @@
             window.localStorage.getItem('role') == 'CUSTOMER' ||
             window.localStorage.getItem('role') == 'MANAGER' ||
             window.localStorage.getItem('role') == 'ADMIN'
-          " routerLink="user-dashboard">
-            User Dashboard
+          " routerLink="user-dashboard" [value]="dashboardValue">
           </li>
           <ng-container *ngIf="
             window.localStorage.getItem('role') == 'MANAGER' ||
             window.localStorage.getItem('role') == 'ADMIN'
           ">
-            <div class="w-4 h-5 mt-1.5 cursor-pointer relative"
-              (click)="toggleDashboardList($event)">
+            <div class="w-4 h-5 mt-1.5 cursor-pointer relative" (click)="toggleDashboardList($event)">
               <img [src]="dashboardListPath" alt="Dashboard List"
                 class="cursor-pointer" height="18" width="18" />
               <div class="dashboardList text-gray-600 absolute flex flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
@@ -31,8 +29,7 @@
                     window.localStorage.getItem('role') == 'MANAGER' ||
                     window.localStorage.getItem('role') == 'ADMIN'
                   " routerLink="manager-dashboard" class="flex p-2 cursor-pointer w-full gap-2 items-center border-b border-gray-200">
-                    <img [src]="managerIconPath"
-                      alt="Manager Dashboard Icon"
+                    <img [src]="managerIconPath" alt="Manager Dashboard Icon"
                       style="width: 30px; height: 30px" />
                     Manager Dashboard
                   </li>

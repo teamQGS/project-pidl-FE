@@ -24,7 +24,7 @@ export class HeaderComponent {
 
   // Old icons
   userPath = 'assets/icons/user.svg';
-
+  dashboardValue: String[] = ["User Dashboard", "Admin Dashboard", "Manager Dashboard"];
   protected readonly window = window;
 
   showDashboardList = false;
