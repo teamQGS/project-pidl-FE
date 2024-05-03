@@ -12,6 +12,7 @@ module.exports = { // Конфигурация tailwindcss
         'custom-black': '#4B5966',
         'custom-button': '#425157',
         'custom-blue': '#64748B',
+        'custom-grey': '#DACEC1',
       },
       // Дополнительный размер для высоты
       maxHeight: {

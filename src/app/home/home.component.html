@@ -15,18 +15,22 @@
     <div class="flex flex-wrap w-full my-4 p-4 mx-4 box-border text-center justify-center gap-4">
 
       <!-- Контейнер продукта -->
-      <div *ngFor="let product of products" class="my-4">
+      <div *ngFor="let product of products" class="my-4 rounded-xl text-white">
         <!-- Иллюстрация продукта -->
         <div class="image" (click)="selectProduct(product)">
-          <img [src]="product.illustration" alt="{{ product.name }}" height="256px" width="256px" class="rounded-xl" />
+          <img [src]="product.illustration" alt="{{ product.name }}" class="rounded-xl w-52 h-52" />
         </div>
-        <!-- Название продукта -->
+        <!-- Информация к продукту -->
+        <div class="flex flex-col text-left my-1">
+          <!-- Название продукта -->
         <div class="name">{{ product.name }}</div>
         <!-- Цена продукта -->
-        <div class="price">{{ product.price }}$</div>
+        <div class="price text-red-900 font-semibold">{{ product.price }} EUR</div>
+        </div>
+        
         <!-- Кнопка добавления в корзину -->
-        <div class="add-to-cart-div">
-          <button mat-fab color="primary" class="btn-clr" (click)="addToCart(product); $event.stopPropagation()">
+        <div class="bg-custom-black rounded-xl text-custom-white font-semibold">
+          <button class="" (click)="addToCart(product); $event.stopPropagation()">
             Add to cart
           </button>
         </div>
