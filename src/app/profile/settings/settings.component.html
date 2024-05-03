@@ -27,15 +27,15 @@
     <!-- Контейнер кнопок / самих настроек -->
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex flex-col justify-center">
       <!-- Кнопка обновления информации -->
-      <button mat-raised-button matTooltip="Personal information" routerLink="/profile/settings/update" class="mb-4">
+      <button mat-raised-button routerLink="/profile/settings/update" class="mb-4">
         Personal information
       </button>
       <!-- Кнопка смены пароля -->
-      <button mat-raised-button matTooltip="Change password" routerLink="/profile/settings/changePassword" class="mb-4">
+      <button mat-raised-button routerLink="/profile/settings/changePassword" class="mb-4">
         Change password
       </button>
       <!-- Кнопка удаления профиля -->
-      <button mat-raised-button matTooltip="Delete profile" (click)="onDelete()" class="mb-4">
+      <button mat-raised-button (click)="onDelete()" class="mb-4">
         Delete profile
       </button>
     </div>
