@@ -23,7 +23,7 @@ export class AxiosService {
       window.localStorage.setItem("auth_token", token);
       const decodedToken: JwtPayload | undefined = jwtDecode(token);
       // @ts-ignore
-      const tokenExpirationDate = new Date(decodedToken.exp * 1000);
+      const tokenExpirationDate = new Date(decodedToken.exp * 1000).getTime();
       window.localStorage.setItem("auth_token_expiration", tokenExpirationDate.toString());
       //console.log("Token expiration: " + tokenExpirationDate);
     } else {
@@ -36,6 +36,8 @@ export class AxiosService {
     const expirationTime = window.localStorage.getItem("auth_token_expiration");
     if (expirationTime !== null) {
       const currentTime = new Date().getTime();
+      console.log(parseInt(expirationTime));
+      console.log(currentTime);
       if (parseInt(expirationTime) < currentTime) {
         console.log("The Token has expired")
         window.localStorage.clear();

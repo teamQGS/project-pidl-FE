@@ -32,7 +32,7 @@ export const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDeshboardComponent, canActivate: [AdminGuardService] },
   { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [ManagerGuardService] },
   { path: 'add-product', component: AddProductPageComponent, canActivate: [WithTokenGuardService] },
-  { path: 'search/:searchTerm', component: SearchComponent, canActivate: [WithoutTokenGuardService] },
+  { path: 'search/:searchTerm', component: SearchComponent},
   { path: 'contact-us', component: ContactUsComponent}
 ];
 
