@@ -8,6 +8,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatFabButton, MatMiniFabButton} from "@angular/material/button";
 import {CartService} from "../services/cart/cart.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +19,19 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     SearchComponent,
     MatIcon,
     MatFabButton,
-    MatMiniFabButton
+    MatMiniFabButton,
+    ProductDetailsComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
+  selectedProduct: ProductsDTO | null = null; // По умолчанию ничего не выбрано
+  
+  selectProduct(product: ProductsDTO) {
+    this.selectedProduct = product;
+  }
+  
 
   products: ProductsDTO[] = [];
   constructor(private productsService: ProductsService, private route: ActivatedRoute,

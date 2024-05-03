@@ -1,26 +1,19 @@
 <app-search></app-search>
+<app-product-details [product]="selectedProduct"></app-product-details>
 <ul>
-  <li *ngFor="let product of products">
-      <div class="content">
-        <div class="add-to-cart-div">
-          <button mat-fab color="primary" class="btn-clr" (click)="addToCart(product)">
-            Add to cart
-          </button>
-        </div>
-        <a>
-        <div class="name">
-          {{ product.name }}
-        </div>
-        <div class="description">
-          {{ product.description }}
-        </div>
-        <div class="price">
-          {{ product.price }}$
-        </div>
-        <div class="image">
-          <img [src]="product.illustration" alt="{{product.name}}" height="128px" width="128px">
-        </div>
-        </a>
+  <li *ngFor="let product of products" (click)="selectProduct(product)">
+    <div class="content">
+      <div class="add-to-cart-div">
+        <button mat-fab color="primary" class="btn-clr" (click)="addToCart(product); $event.stopPropagation()">
+          Add to cart
+        </button>
       </div>
+      <div class="name">{{ product.name }}</div>
+      <div class="description">{{ product.description }}</div>
+      <div class="price">{{ product.price }}$</div>
+      <div class="image">
+        <img [src]="product.illustration" alt="{{product.name}}" height="190px" width="150px">
+      </div>
+    </div>
   </li>
 </ul>
