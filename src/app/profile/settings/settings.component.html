@@ -1,14 +1,43 @@
-<div class="settings">
-  <h1>Settings</h1>
-
-  <button mat-raised-button color="primary" matTooltip="Update info" routerLink="/profile/settings/update">
-    Update info
-  </button>
-
-  <button mat-raised-button color="accent" matTooltip="Change password" routerLink="/profile/settings/changePassword">
-    Change password
-  </button>
-  <button mat-raised-button color="warn" matTooltip="DELETE" (click)="onDelete()">
-    Delete profile
-  </button>
+<link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center justify-center h-screen bg-custom-black">
+  <!-- Контейнер настроек -->
+  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
+    <!-- Меню навигации -->
+    <div class="flex items-center w-full rounded-t-3xl bg-custom-blue p-5">
+      <!-- Левая колонка для кнопки "Назад" -->
+      <div class="flex-1">
+        <div class="font-semibold text-custom-white">
+          <a routerLink="/profile" class="cursor-pointer">
+            Back
+          </a>
+        </div>
+      </div>
+      <!-- Центральная колонка для текста навигации -->
+      <div class="flex-1 text-center">
+        <p class="text-base font-semibold text-custom-white">
+          Settings
+        </p>
+      </div>
+      <!-- Правая колонка, пустая, для баланса -->
+      <div class="flex-1 invisible">
+        <span class="text-base font-semibold">Back</span> <!-- Невидимый элемент, который занимает место -->
+      </div>
+    </div>
+    <!-- Контейнер кнопок / самих настроек -->
+    <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex flex-col justify-center">
+      <!-- Кнопка обновления информации -->
+      <button mat-raised-button matTooltip="Personal information" routerLink="/profile/settings/update" class="mb-4">
+        Personal information
+      </button>
+      <!-- Кнопка смены пароля -->
+      <button mat-raised-button matTooltip="Change password" routerLink="/profile/settings/changePassword" class="mb-4">
+        Change password
+      </button>
+      <!-- Кнопка удаления профиля -->
+      <button mat-raised-button matTooltip="Delete profile" (click)="onDelete()" class="mb-4">
+        Delete profile
+      </button>
+    </div>
+  </div>
 </div>

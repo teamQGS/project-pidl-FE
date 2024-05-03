@@ -1,15 +1,11 @@
-.settings {
-  margin: 0;
-  padding: 25px 0 25px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+input {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
-.settings button {
-  margin-top: 10px;
-}
-
-.delete-profile {
-  margin-top: 20px;
+input:focus {
+  outline: none;
+  border: none;
 }

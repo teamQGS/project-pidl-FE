@@ -4,6 +4,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AxiosService} from "../../services/axios/axios.service";
 import {Router} from "@angular/router";
+import { RouterLink } from '@angular/router';
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
@@ -21,7 +22,8 @@ import {NgIf} from "@angular/common";
     NgIf,
     MatFormField,
     MatInput,
-    MatLabel
+    MatLabel,
+    RouterLink
   ],
   templateUrl: './update-user-form.component.html',
   styleUrl: './update-user-form.component.css'

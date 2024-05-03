@@ -7,6 +7,7 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {AxiosService} from "../../services/axios/axios.service";
 import {Router} from "@angular/router";
 import {NgIf} from "@angular/common";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-change-password-form',
@@ -20,7 +21,8 @@ import {NgIf} from "@angular/common";
     MatTooltip,
     MatError,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './change-password-form.component.html',
   styleUrl: './change-password-form.component.css'

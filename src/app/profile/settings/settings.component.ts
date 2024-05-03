@@ -34,7 +34,7 @@ export class SettingsComponent{
   username = window.localStorage.getItem("username");
   onDelete() {
     this.axiosService.request(
-      'DELETE',
+      'Delete profile',
       `/api/users/delete/${(this.username)}`,
       {}
     ).then(response => {
