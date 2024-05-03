@@ -21,7 +21,7 @@ import {CartDTO} from "../model/cart";
 export class CartComponent implements OnInit {
   cartItems: ProductsDTO[] = [];
   cart: CartDTO = new CartDTO();
-  count: number = 0;
+  totalPrice: number = 0;
 
   constructor(private cartService: CartService, private snackBar: MatSnackBar) { }
 
@@ -29,6 +29,7 @@ export class CartComponent implements OnInit {
     this.cart = await this.cartService.loadCart();
     console.log(this.cart);
     this.cartItems = this.cart.products;
+    this.calculateTotalPrice();
   }
 
 
@@ -36,6 +37,7 @@ export class CartComponent implements OnInit {
     this.cartService.removeFromCart(productId)
       .then(() => {
         this.cartItems = this.cartItems.filter(product => product.id !== productId);
+        this.calculateTotalPrice();
         this.snackBar.open("Product removed from cart", '', {
           duration: 3000
         });
@@ -50,6 +52,7 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.cartService.clearCart();
     this.cartItems = [];
+    this.calculateTotalPrice();
     this.snackBar.open("The cart has been emptied", '', {
       duration: 3000
     });
@@ -57,5 +60,15 @@ export class CartComponent implements OnInit {
 
   createOrder(cartItems: ProductsDTO[]) {
     //TODO create order
+  }
+
+  calculateTotalPrice() {
+    this.totalPrice = 0;
+    let price;
+    for (let i = 0; i < this.cartItems.length; i++) {
+      // @ts-ignore
+      price = this.cartItems[i].price * this.cartItems[i].count;
+      this.totalPrice += price;
+    }
   }
 }

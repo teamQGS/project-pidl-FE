@@ -5,22 +5,21 @@
     <div class="content">
       <div class="remove-from-cart-div">
         <button mat-fab color="primary" class="btn-clr" (click)="removeFromCart(product.id)">
-          Delete from cart
+          Remove from cart
         </button>
       </div>
       <a>
         <div class="name">
           {{ product.name }}
         </div>
-        <div class="description">
-          {{ product.description }}
+        <div class="count">
+          <h2>{{ product.count }} piece(s)</h2>
         </div>
         <div class="price">
-          {{ product.price }}$
+          <h3>Total: {{ (+product.price) * (+product.count) }} EUR</h3>
         </div>
-        <div class="count">
-          {{ count }}$
-        </div>
+
+
         <div class="image">
           <img [src]="product.illustration" alt="{{product.name}}" height="128px" width="128px">
         </div>
@@ -35,7 +34,7 @@
   </div>
   <div class="create-order">
     <button *ngIf="cartItems.length > 0" mat-raised-button color="primary" (click)="createOrder(cartItems)">
-      Create Order
+      Create Order (Total price: {{ totalPrice }} EUR)
     </button>
   </div>
 </div>

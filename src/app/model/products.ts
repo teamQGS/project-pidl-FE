@@ -4,6 +4,7 @@ export class ProductsDTO{
     name!: string;
     description!: string;
     price!: number;
+    count!: string;
     illustration!: string;
     category!: string;
 }

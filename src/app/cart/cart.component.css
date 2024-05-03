@@ -32,11 +32,6 @@ li a:hover{
   position: relative;
 }
 
-.price{
-  color: slategray;
-  margin-top: .7rem;
-}
-
 .image{
   text-align: center;
 }
@@ -56,4 +51,8 @@ li a:hover{
   text-align: center;
 }
 
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
 
