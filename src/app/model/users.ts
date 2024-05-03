@@ -1,6 +1,6 @@
 
 export class UsersDTO{
-  id!: String;
-  username!: String;
-  role!: String;
+  id!: string;
+  username!: string;
+  role!: string;
 }

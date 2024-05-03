@@ -27,11 +27,11 @@ import {ProductDetailsComponent } from '../product-details/product-details.compo
 })
 export class HomeComponent implements OnInit{
   selectedProduct: ProductsDTO | null = null; // По умолчанию ничего не выбрано
-  
+
   selectProduct(product: ProductsDTO) {
     this.selectedProduct = product;
   }
-  
+
 
   products: ProductsDTO[] = [];
   constructor(private productsService: ProductsService, private route: ActivatedRoute,
@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  addToCart(product: ProductsDTO) {
-    this.cartService.addToCart(product);
+  addToCart(productId: string) {
+    this.cartService.addToCart(productId);
     this.snackBar.open("Product was added to cart", '', {
       duration: 3000
     })

@@ -36,8 +36,8 @@ export class AxiosService {
     const expirationTime = window.localStorage.getItem("auth_token_expiration");
     if (expirationTime !== null) {
       const currentTime = new Date().getTime();
-      console.log(parseInt(expirationTime));
-      console.log(currentTime);
+      // console.log(parseInt(expirationTime));
+      // console.log(currentTime);
       if (parseInt(expirationTime) < currentTime) {
         console.log("The Token has expired")
         window.localStorage.clear();

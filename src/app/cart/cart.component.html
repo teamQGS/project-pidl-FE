@@ -4,7 +4,7 @@
   <li *ngFor="let product of cartItems">
     <div class="content">
       <div class="remove-from-cart-div">
-        <button mat-fab color="primary" class="btn-clr" (click)="removeFromCart(product)">
+        <button mat-fab color="primary" class="btn-clr" (click)="removeFromCart(product.id)">
           Delete from cart
         </button>
       </div>

@@ -1,9 +1,9 @@
 
 export class ProductsDTO{
-    id!: String;
-    name!: String;
-    description!: String;
+    id!: string;
+    name!: string;
+    description!: string;
     price!: number;
-    illustration!: String;
-    category!: String;
+    illustration!: string;
+    category!: string;
 }

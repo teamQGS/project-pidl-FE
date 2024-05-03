@@ -2,40 +2,75 @@ import { Injectable } from '@angular/core';
 import {ProductsDTO} from "../../model/products";
 import {CartDTO} from "../../model/cart";
 import {AxiosService} from "../axios/axios.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private username = window.localStorage.getItem('username')
+
   private cart: CartDTO = new CartDTO();
 
-  constructor(private axiosService: AxiosService) {
+  constructor(private axiosService: AxiosService, private snackBar: MatSnackBar) {
   }
 
   async loadCart() {
-    const username = window.localStorage.getItem('username');
-      this.axiosService.request(
+    try {
+      const response = await this.axiosService.request(
         'GET',
-        `/api/cart/${username}`,
+        `/api/cart/${this.username}`,
         {}
-      ).then(response => {
-        this.cart = response.data;
+      );
+      this.cart = response.data;
+      return this.cart;
+    } catch (error) {
+      console.error('Error loading cart:', error);
+      throw error;
+    }
+  }
+
+
+  addToCart(productId: string) {
+    this.axiosService.request(
+      'PUT',
+      `/api/cart/${this.username}/add`,
+      productId
+    ).then(response => {
+      this.cart.products = response.data;
+    }).catch(error => {
+      this.snackBar.open("Some error", '', {
+        duration: 3000
       });
+    })
   }
 
-  addToCart(product: ProductsDTO) {
-
+  async removeFromCart(productId: string): Promise<any> {
+    try {
+      const response = await this.axiosService.request(
+        'PUT',
+        `/api/cart/${this.username}/remove`,
+        productId
+      );
+      this.cart.products = response.data;
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  removeFromCart(product: ProductsDTO) {
-
-  }
-
-  getCartItems() {
-
-  }
 
   clearCart() {
-
+    this.axiosService.request(
+      'PUT',
+      `/api/cart/${this.username}/clear`,
+      {}
+    ).then(response => {
+      this.cart.products = response.data;
+    }).catch(error => {
+      this.snackBar.open("Some error", '', {
+        duration: 3000
+      });
+    })
   }
 }

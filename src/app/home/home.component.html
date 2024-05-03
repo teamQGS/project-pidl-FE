@@ -27,10 +27,10 @@
         <!-- Цена продукта -->
         <div class="price text-red-900 font-semibold">{{ product.price }} EUR</div>
         </div>
-        
+
         <!-- Кнопка добавления в корзину -->
         <div class="bg-custom-black rounded-xl text-custom-white font-semibold">
-          <button class="" (click)="addToCart(product); $event.stopPropagation()">
+          <button class="" (click)="addToCart(product.id); $event.stopPropagation()">
             Add to cart
           </button>
         </div>
