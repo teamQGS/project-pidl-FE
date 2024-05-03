@@ -14,7 +14,9 @@
             window.localStorage.getItem('role') == 'MANAGER' ||
             window.localStorage.getItem('role') == 'ADMIN'
           " routerLink="user-dashboard" [value]="dashboardValue">
+          User Dashboard
           </li>
+          
           <ng-container *ngIf="
             window.localStorage.getItem('role') == 'MANAGER' ||
             window.localStorage.getItem('role') == 'ADMIN'
