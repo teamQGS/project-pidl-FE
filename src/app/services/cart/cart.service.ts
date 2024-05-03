@@ -1,42 +1,41 @@
 import { Injectable } from '@angular/core';
 import {ProductsDTO} from "../../model/products";
+import {CartDTO} from "../../model/cart";
+import {AxiosService} from "../axios/axios.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: ProductsDTO[] = [];
+  private cart: CartDTO = new CartDTO();
 
-  constructor() {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      this.cartItems = JSON.parse(storedCart);
-    }
+  constructor(private axiosService: AxiosService) {
+  }
+
+  async loadCart() {
+    const username = window.localStorage.getItem('username');
+      this.axiosService.request(
+        'GET',
+        `/api/cart/${username}`,
+        {}
+      ).then(response => {
+        this.cart = response.data;
+      });
   }
 
   addToCart(product: ProductsDTO) {
-    this.cartItems.push(product);
-    this.updateLocalStorage();
+
   }
 
   removeFromCart(product: ProductsDTO) {
-    const index = this.cartItems.indexOf(product);
-    if (index !== -1) {
-      this.cartItems.splice(index, 1);
-      this.updateLocalStorage();
-    }
+
   }
 
   getCartItems() {
-    return this.cartItems;
-  }
 
-  private updateLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 
   clearCart() {
-    this.cartItems = [];
-    localStorage.removeItem('cart');
+
   }
 }
