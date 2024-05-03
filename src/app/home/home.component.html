@@ -1,19 +1,38 @@
-<app-search></app-search>
-<app-product-details [product]="selectedProduct"></app-product-details>
-<ul>
-  <li *ngFor="let product of products" (click)="selectProduct(product)">
-    <div class="content">
-      <div class="add-to-cart-div">
-        <button mat-fab color="primary" class="btn-clr" (click)="addToCart(product); $event.stopPropagation()">
-          Add to cart
-        </button>
-      </div>
-      <div class="name">{{ product.name }}</div>
-      <div class="description">{{ product.description }}</div>
-      <div class="price">{{ product.price }}$</div>
-      <div class="image">
-        <img [src]="product.illustration" alt="{{product.name}}" height="190px" width="150px">
-      </div>
+<link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center justify-center min-h-screen bg-custom-black">
+  <!-- Описание продуктов. Pop-up при нажатии на продукт -->
+  <app-product-details [product]="selectedProduct"></app-product-details>
+  <!-- Контейнер с продуктами -->
+  <div class="w-11/12 flex flex-wrap items-center max-w-6xl bg-custom-green rounded-3xl my-8">
+    <!-- Строка поиска -->
+    <app-search></app-search>
+    <div>
+      <h1>Products</h1>
+      <p>Click on a product to see details</p>
     </div>
-  </li>
-</ul>
+    <!-- Список продуктов -->
+    <div class="flex flex-wrap w-full my-4 p-4 mx-4 box-border text-center justify-between">
+
+      <!-- Контейнер продукта -->
+      <div *ngFor="let product of products" class="my-4">
+        <!-- Иллюстрация продукта -->
+        <div class="image" (click)="selectProduct(product)">
+          <img [src]="product.illustration" alt="{{ product.name }}" height="256px" width="256px" class="rounded-xl" />
+        </div>
+        <!-- Название продукта -->
+        <div class="name">{{ product.name }}</div>
+        <!-- Цена продукта -->
+        <div class="price">{{ product.price }}$</div>
+        <!-- Кнопка добавления в корзину -->
+        <div class="add-to-cart-div">
+          <button mat-fab color="primary" class="btn-clr" (click)="addToCart(product); $event.stopPropagation()">
+            Add to cart
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
