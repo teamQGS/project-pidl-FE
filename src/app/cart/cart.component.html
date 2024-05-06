@@ -1,40 +1,54 @@
-<div class="cart">
-<ul>
-  <h1 *ngIf="!cartItems || !cartItems.length">Empty cart</h1>
-  <li *ngFor="let product of cartItems">
-    <div class="content">
-      <div class="remove-from-cart-div">
-        <button mat-fab color="primary" class="btn-clr" (click)="removeFromCart(product.id)">
-          Remove from cart
-        </button>
-      </div>
-      <a>
-        <div class="name">
-          {{ product.name }}
-        </div>
-        <div class="count">
-          <h2>{{ product.count }} piece(s)</h2>
-        </div>
-        <div class="price">
-          <h3>Total: {{ (+product.price) * (+product.count) }} EUR</h3>
-        </div>
-
-
-        <div class="image">
-          <img [src]="product.illustration" alt="{{product.name}}" height="128px" width="128px">
-        </div>
-      </a>
+<link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center min-h-screen bg-custom-black justify-center">
+  <!-- Контейнер корзины -->
+  <div class="w-11/12 flex flex-col items-center max-w-6xl bg-custom-green rounded-3xl my-8">
+    <!-- Заголовок корзины -->
+    <div class="flex flex-row w-full justify-between m-4 px-8">
+      <h1>Cart</h1>
+      <h2>{{ cartItems.length }} item(s) in cart</h2>
     </div>
-  </li>
-</ul>
-  <div class="clear-cart-div">
-    <button *ngIf="cartItems.length > 0" mat-raised-button color="warn" (click)="clearCart()">
-      Clear cart
-    </button>
+    <!-- Содержание корзины -->
+    <div class="flex flex-col w-full my-4 p-4 mx-4 box-border">
+      <!-- Пустая корзина -->
+      <div *ngIf="!cartItems || !cartItems.length" class="justify-center text-center font-bold">
+        <p>Your cart is empty</p>
+      </div>
+      <!-- Контейнер продукта -->
+      <div *ngFor="let product of cartItems" class="my-4 mx-4 rounded-xl text-white flex items-center justify-between">
+        <!-- Правая часть: иллюстрация, название, описание -->
+        <div class="flex flex-row">
+          <!-- Иллюстрация продукта -->
+          <div>
+            <img [src]="product.illustration" alt="{{ product.name }}" class="rounded-xl w-24 h-24 mr-4" />
+          </div>
+          <!-- Информация к продукту -->
+          <div class="flex flex-col justify-center">
+            {{ product.name }}. {{ product.description }}
+          </div>
+        </div>
+        <!-- Левая часть: количество продукта и кнопки -->
+        <div>
+          <div class="text-red-900 font-semibold">
+            {{ product.count }} piece(s). Total: {{ (+product.price) * (+product.count) }} EUR
+          </div>
+          <button (click)="removeFromCart(product.id)">
+            Remove from cart
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="clear-cart-div">
+      <button *ngIf="cartItems.length > 0" (click)="clearCart()">
+        Clear cart
+      </button>
+    </div>
+    <div class="create-order">
+      <button *ngIf="cartItems.length > 0" (click)="createOrder(cartItems)">
+        Create Order (Total price: {{ totalPrice }} EUR)
+      </button>
+    </div>
   </div>
-  <div class="create-order">
-    <button *ngIf="cartItems.length > 0" mat-raised-button color="primary" (click)="createOrder(cartItems)">
-      Create Order (Total price: {{ totalPrice }} EUR)
-    </button>
-  </div>
-</div>
