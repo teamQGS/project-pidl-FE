@@ -75,4 +75,34 @@ export class CartService {
       });
     })
   }
+
+  decreaseCount(productId: string) {
+    let username = window.localStorage.getItem('username')
+    this.axiosService.request(
+      'PUT',
+      `/api/cart/${username}/decrease`,
+      productId
+    ).then(response => {
+      this.cart.products = response.data;
+    }).catch(error => {
+      this.snackBar.open("Some error", '', {
+        duration: 3000
+      });
+    })
+  }
+
+  increaseCount(productId: string) {
+    let username = window.localStorage.getItem('username')
+    this.axiosService.request(
+      'PUT',
+      `/api/cart/${username}/increase`,
+      productId
+    ).then(response => {
+      this.cart.products = response.data;
+    }).catch(error => {
+      this.snackBar.open("Some error", '', {
+        duration: 3000
+      });
+    })
+  }
 }
