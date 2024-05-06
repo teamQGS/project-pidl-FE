@@ -15,8 +15,9 @@
         <div>
           <p class="font-bold text-xl my-3">There are no items in your cart</p>
           <p>
-            <span routerLink="/" class="text-custom-white cursor-pointer">Go to the main page</span> 
-            or use the search to find the product you are looking for</p>
+            <span routerLink="/" class="text-custom-white cursor-pointer">Go to the main page</span>
+            or use the search to find the product you are looking for
+          </p>
           <button routerLink="/" class="bg-custom-white rounded-xl py-2 px-6 my-6 text-l">
             Start shopping
           </button>
@@ -25,47 +26,60 @@
       </div>
       <!-- Контейнер продукта -->
       <div *ngFor="let product of cartItems"
-        class="my-2 mx-4 bg-custom-green-dark-1 rounded-xl text-custom-white flex items-center justify-between">
+        class="my-2 mx-4 bg-custom-green-dark-1 rounded-xl text-custom-white flex flex-col sm:flex-row items-center justify-between">
         <!-- Левая: иллюстрация, название, описание -->
-        <div class="flex flex-row">
+        <div class="flex flex-row items-center w-full sm:w-auto">
           <!-- Иллюстрация продукта -->
-          <div>
+          <div class="flex flex-row">
             <img [src]="product.illustration" alt="{{ product.name }}" class="rounded-xl w-24 h-24 mr-4" />
           </div>
           <!-- Информация к продукту -->
           <div class="flex flex-col justify-center">
-            {{ product.name }}. {{ product.description }}
+            <div class="flex flex-row">
+              <p>{{ product.name }}</p>
+            </div>
+            <div class="flex-row text-xs text-custom-white-dark-1 hidden lg:flex">
+              <p>{{ product.description }}</p>
+            </div>
           </div>
+
         </div>
         <!-- Правая: количество продукта и кнопки -->
-        <div class="flex flex-row mr-4 text-center items-center">
-          <div class="mx-4">
+        <div class="flex flex-col sm:flex-row mr-0 mx-0 mt-2 sm:mr-4 sm:mt-2 text-left sm:text-center sm:items-center">
+          <div class="flex flew-row sm:flex-col my-2 sm:my-auto sm:mx-4 min-w-64 justify-between items-center sm:justify-normal">
             <!-- Контейнер с количеством и полной суммой -->
-            <div class="font-semibold">
+            <div class="text-sm sm:text-base">
               {{ product.count }} piece(s). Total: {{ roundPrice(product.price * product.count) }} EUR
             </div>
             <!-- Контейнер с кнопками для увелечения или уменьшения на 1 -->
-            <div class="flex flex-col my-2">
+            <div class="my-2 sm:my-3">
               <div>
-                <button (click)="decreaseCount(product.id)" class="px-4 rounded-l-full border-r-2 border-custom-green-dark-1 bg-custom-green-dark-2">
+                <button (click)="decreaseCount(product.id)"
+                  class="px-3 py-1 sm:px-4 rounded-l-full border-r-2 border-custom-green-dark-1 bg-custom-green-dark-2">
                   -
                 </button>
-                <button (click)="increaseCount(product.id)" class="px-4 rounded-r-full bg-custom-green-dark-2">
+                <button (click)="increaseCount(product.id)" class="px-3 py-1 sm:px-4 rounded-r-full bg-custom-green-dark-2">
                   +
                 </button>
               </div>
+
             </div>
+
           </div>
-          <div class="mx-4">
-            <img [src]="removePath" (click)="removeFromCart(product.id)" class="cursor-pointer size-6"
+          <div>
+            <img [src]="removePath" (click)="removeFromCart(product.id)" class="cursor-pointer size-6 hidden sm:flex"
               alt="Remove from cart">
           </div>
+          
+        </div>
+        <div (click)="removeFromCart(product.id)" class="cursor-pointer flex flex-col text-center font-semibold text-red-900 text-base sm:hidden bg-custom-green-dark-2 w-full rounded-b-xl">
+          Remove from cart
         </div>
       </div>
       <!-- Контейнер справа под продуктами -->
       <div class="flex justify-end my-4">
         <!-- Общая сумма корзины -->
-        <div class="items-center flex mr-4" *ngIf="cartItems.length > 0">
+        <div class="font-semibold items-center flex mr-4" *ngIf="cartItems.length > 0">
           Total price: {{ totalPrice }} EUR
         </div>
         <!-- Кнопка очистки корзины -->
@@ -77,7 +91,8 @@
       </div>
       <!-- Кнопка заказа (перейти к покупке) -->
       <div class="flex justify-center">
-        <button *ngIf="cartItems.length > 0" (click)="createOrder(cartItems)" class="bg-custom-white rounded-xl px-4 py-2">
+        <button *ngIf="cartItems.length > 0" (click)="createOrder(cartItems)"
+          class="bg-custom-white rounded-xl px-4 py-2">
           Place an order
         </button>
       </div>
@@ -86,6 +101,6 @@
 
 
 
-    
+
   </div>
 </div>
