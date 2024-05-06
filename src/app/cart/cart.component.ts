@@ -84,6 +84,7 @@ export class CartComponent implements OnInit {
     let product = this.cartItems.find((product) => product.id === productId);
     if (product) {
       product.count++;
+      this.cartService.increaseCount(productId);
     }
     this.calculateTotalPrice();
   }
@@ -93,6 +94,7 @@ export class CartComponent implements OnInit {
     if (product) {
       if (product.count > 1) {
         product.count--;
+        this.cartService.decreaseCount(productId);
       } else {
         this.removeFromCart(productId);
       }
