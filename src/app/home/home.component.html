@@ -1,24 +1,25 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center justify-center min-h-screen bg-custom-black">
+<div class="flex flex-col items-center min-h-screen bg-custom-black">
+  <!-- Строка поиска -->
+  <app-search></app-search>
   <!-- Описание продуктов. Pop-up при нажатии на продукт -->
   <app-product-details [product]="selectedProduct"></app-product-details>
   <!-- Контейнер с продуктами -->
-  <div class="w-11/12 flex flex-wrap items-center max-w-6xl bg-custom-green rounded-3xl my-8">
-    <!-- Строка поиска -->
-    <app-search></app-search>
-    <div>
-      <h1>Products</h1>
+  <div class="w-11/12 flex flex-wrap items-center max-w-6xl rounded-3xl my-8"> <!-- тест: убран bg-custom-green -->
+    <!-- Заголовок продуктов -->
+    <div class="flex flex-col w-full m-4 px-8">
+      <p class="font-bold text-2xl">All products</p>
       <p>Click on a product to see details</p>
     </div>
     <!-- Список продуктов -->
-    <div class="flex flex-wrap w-full my-4 p-4 mx-4 box-border text-center justify-center gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full m-4 px-8 box-border text-center">
 
       <!-- Контейнер продукта -->
-      <div *ngFor="let product of products" class="my-4 rounded-xl text-white">
+      <div *ngFor="let product of products" class="rounded-xl text-white overflow-hidden">
         <!-- Иллюстрация продукта -->
-        <div class="image" (click)="selectProduct(product)">
-          <img [src]="product.illustration" alt="{{ product.name }}" class="rounded-xl w-52 h-52" />
+        <div class="aspect-square w-full" (click)="selectProduct(product)">
+          <img [src]="product.illustration" alt="{{ product.name }}" class="object-cover w-full h-full rounded-t-xl"/>
         </div>
         <!-- Информация к продукту -->
         <div class="flex flex-col text-left my-1">
