@@ -8,18 +8,17 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   providedIn: 'root'
 })
 export class CartService {
-  private username = window.localStorage.getItem('username')
-
   private cart: CartDTO = new CartDTO();
 
   constructor(private axiosService: AxiosService, private snackBar: MatSnackBar) {
   }
 
   async loadCart() {
+  let username = window.localStorage.getItem('username')
     try {
       const response = await this.axiosService.request(
         'GET',
-        `/api/cart/${this.username}`,
+        `/api/cart/${username}`,
         {}
       );
       this.cart = response.data;
@@ -32,9 +31,10 @@ export class CartService {
 
 
   addToCart(productId: string) {
+    let username = window.localStorage.getItem('username')
     this.axiosService.request(
       'PUT',
-      `/api/cart/${this.username}/add`,
+      `/api/cart/${username}/add`,
       productId
     ).then(response => {
       this.cart.products = response.data;
@@ -46,10 +46,11 @@ export class CartService {
   }
 
   async removeFromCart(productId: string): Promise<any> {
+    let username = window.localStorage.getItem('username')
     try {
       const response = await this.axiosService.request(
         'PUT',
-        `/api/cart/${this.username}/remove`,
+        `/api/cart/${username}/remove`,
         productId
       );
       this.cart.products = response.data;
@@ -61,9 +62,10 @@ export class CartService {
 
 
   clearCart() {
+    let username = window.localStorage.getItem('username')
     this.axiosService.request(
       'PUT',
-      `/api/cart/${this.username}/clear`,
+      `/api/cart/${username}/clear`,
       {}
     ).then(response => {
       this.cart.products = response.data;
