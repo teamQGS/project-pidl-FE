@@ -8,29 +8,29 @@
   <!-- Контейнер с продуктами -->
   <div class="w-11/12 flex flex-wrap items-center max-w-6xl rounded-3xl my-8"> <!-- тест: убран bg-custom-green -->
     <!-- Заголовок продуктов -->
-    <div class="flex flex-col w-full m-4 px-8">
+    <div class="flex flex-col w-full m-2 px-2 text-custom-white">
       <p class="font-bold text-2xl">All products</p>
       <p>Click on a product to see details</p>
     </div>
     <!-- Список продуктов -->
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full m-4 px-8 box-border text-center">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full m-2 px-2 box-border text-center">
 
       <!-- Контейнер продукта -->
-      <div *ngFor="let product of products" class="rounded-xl text-white overflow-hidden">
+      <div *ngFor="let product of products" class="rounded-xl text-white overflow-hidden bg-custom-green">
         <!-- Иллюстрация продукта -->
         <div class="aspect-square w-full" (click)="selectProduct(product)">
           <img [src]="product.illustration" alt="{{ product.name }}" class="object-cover w-full h-full rounded-t-xl"/>
         </div>
         <!-- Информация к продукту -->
-        <div class="flex flex-col text-left my-1">
+        <div class="flex flex-col text-left my-1 p-1">
           <!-- Название продукта -->
-        <div class="name">{{ product.name }}</div>
+        <div class="p-1">{{ product.name }}</div>
         <!-- Цена продукта -->
-        <div class="price text-red-900 font-semibold">{{ product.price }} EUR</div>
+        <div class="text-red-900 font-semibold p-1">{{ product.price }} EUR</div>
         </div>
 
         <!-- Кнопка добавления в корзину -->
-        <div class="bg-custom-black rounded-xl text-custom-white font-semibold">
+        <div class="bg-custom-black rounded-xl text-custom-white font-semibold m-1 py-1">
           <button class="" (click)="addToCart(product.id); $event.stopPropagation()">
             Add to cart
           </button>
