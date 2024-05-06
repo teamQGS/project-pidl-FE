@@ -14,6 +14,9 @@ import { CartDTO } from '../model/cart';
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
+  // Icons
+  removePath = 'assets/icons/remove.svg';
+
   cartItems: ProductsDTO[] = [];
   cart: CartDTO = new CartDTO();
   totalPrice: number = 0;
@@ -64,12 +67,15 @@ export class CartComponent implements OnInit {
 
   calculateTotalPrice() {
     this.totalPrice = 0;
-    let price;
-    for (let i = 0; i < this.cartItems.length; i++) {
-      // @ts-ignore
-      price = this.cartItems[i].price * this.cartItems[i].count;
+    this.cartItems.forEach(item => {
+      const price = item.price * item.count;
       this.totalPrice += price;
-    }
+    });
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2));
+  }
+
+  roundPrice(value: number): number {
+    return parseFloat(value.toFixed(2));
   }
 
   increaseCount(productId: string) {

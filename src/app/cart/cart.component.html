@@ -15,8 +15,8 @@
         <p>Your cart is empty</p>
       </div>
       <!-- Контейнер продукта -->
-      <div *ngFor="let product of cartItems" class="my-4 mx-4 rounded-xl text-white flex items-center justify-between">
-        <!-- Правая часть: иллюстрация, название, описание -->
+      <div *ngFor="let product of cartItems" class="my-2 mx-4 bg-custom-green-dark-1 rounded-xl text-custom-white flex items-center justify-between">
+        <!-- Левая: иллюстрация, название, описание -->
         <div class="flex flex-row">
           <!-- Иллюстрация продукта -->
           <div>
@@ -27,20 +27,27 @@
             {{ product.name }}. {{ product.description }}
           </div>
         </div>
-        <!-- Левая часть: количество продукта и кнопки -->
-        <div>
-          <div class="text-red-900 font-semibold">
-            {{ product.count }} piece(s). Total: {{ (+product.price) * (+product.count) }} EUR
+        <!-- Правая: количество продукта и кнопки -->
+        <div class="flex flex-row mr-4 text-center items-center">
+          <div class="mx-4">
+            <div class="font-semibold">
+              {{ product.count }} piece(s). Total: {{ roundPrice(product.price * product.count) }} EUR
+            </div>
+            <div class="flex flex-col bg-custom-green-dark-2">
+              <div>
+                <button (click)="decreaseCount(product.id)" class="px-4">
+                  -
+                </button>
+                <button (click)="increaseCount(product.id)" class="px-4">
+                  +
+                </button>
+              </div>
+            </div>
           </div>
-          <button (click)="removeFromCart(product.id)">
-            Remove from cart
-          </button>
-          <button (click)="decreaseCount(product.id)">
-            Decrease count
-          </button>
-          <button (click)="increaseCount(product.id)">
-            Increase count
-          </button>
+          <div class="mx-4">
+            <img [src]="removePath" (click)="removeFromCart(product.id)" class="cursor-pointer size-6">
+          </div>
+          
         </div>
 
 
