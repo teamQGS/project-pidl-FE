@@ -5,17 +5,19 @@ import { NgForOf, NgIf } from '@angular/common';
 import { MatButton, MatFabButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartDTO } from '../model/cart';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [NgForOf, MatFabButton, NgIf, MatButton],
+  imports: [NgForOf, MatFabButton, NgIf, MatButton, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
   // Icons
   removePath = 'assets/icons/remove.svg';
+  emptyCartPath = 'assets/icons/empty-cart.svg';
 
   cartItems: ProductsDTO[] = [];
   cart: CartDTO = new CartDTO();

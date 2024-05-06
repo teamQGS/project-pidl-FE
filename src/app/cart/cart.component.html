@@ -1,21 +1,31 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center min-h-screen bg-custom-black justify-center">
+<div class="flex flex-col items-center min-h-screen bg-custom-black"> <!-- тест: убран justify-center -->
   <!-- Контейнер корзины -->
-  <div class="w-11/12 flex flex-col items-center max-w-6xl bg-custom-green rounded-3xl my-8">
+  <div class="w-11/12 flex flex-col items-center max-w-6xl bg-custom-green rounded-3xl  my-8">
     <!-- Заголовок корзины -->
-    <div class="flex flex-row w-full justify-between m-4 px-8">
-      <h1>Cart</h1>
-      <h2>{{ cartItems.length }} item(s) in cart</h2>
+    <div class="flex flex-col w-full m-4 px-8">
+      <p class="font-bold text-2xl">Cart</p>
+      <p>{{ cartItems.length }} item(s) in cart</p>
     </div>
     <!-- Содержание корзины -->
-    <div class="flex flex-col w-full my-4 p-4 mx-4 box-border">
+    <div class="flex flex-col w-full my-6 p-4 mx-4 box-border">
       <!-- Пустая корзина -->
-      <div *ngIf="!cartItems || !cartItems.length" class="justify-center text-center font-bold">
-        <p>Your cart is empty</p>
+      <div *ngIf="!cartItems || !cartItems.length" class="justify-center text-center items-center flex flex-row">
+        <div>
+          <p class="font-bold text-xl my-3">There are no items in your cart</p>
+          <p>
+            <span routerLink="/" class="text-custom-white cursor-pointer">Go to the main page</span> 
+            or use the search to find the product you are looking for</p>
+          <button routerLink="/" class="bg-custom-white rounded-xl py-2 px-6 my-6 text-l">
+            Start shopping
+          </button>
+        </div>
+        <img [src]="emptyCartPath" alt="Sad Banana" class=" size-96">
       </div>
       <!-- Контейнер продукта -->
-      <div *ngFor="let product of cartItems" class="my-2 mx-4 bg-custom-green-dark-1 rounded-xl text-custom-white flex items-center justify-between">
+      <div *ngFor="let product of cartItems"
+        class="my-2 mx-4 bg-custom-green-dark-1 rounded-xl text-custom-white flex items-center justify-between">
         <!-- Левая: иллюстрация, название, описание -->
         <div class="flex flex-row">
           <!-- Иллюстрация продукта -->
@@ -30,38 +40,52 @@
         <!-- Правая: количество продукта и кнопки -->
         <div class="flex flex-row mr-4 text-center items-center">
           <div class="mx-4">
+            <!-- Контейнер с количеством и полной суммой -->
             <div class="font-semibold">
               {{ product.count }} piece(s). Total: {{ roundPrice(product.price * product.count) }} EUR
             </div>
-            <div class="flex flex-col bg-custom-green-dark-2">
+            <!-- Контейнер с кнопками для увелечения или уменьшения на 1 -->
+            <div class="flex flex-col my-2">
               <div>
-                <button (click)="decreaseCount(product.id)" class="px-4">
+                <button (click)="decreaseCount(product.id)" class="px-4 rounded-l-full border-r-2 border-custom-green-dark-1 bg-custom-green-dark-2">
                   -
                 </button>
-                <button (click)="increaseCount(product.id)" class="px-4">
+                <button (click)="increaseCount(product.id)" class="px-4 rounded-r-full bg-custom-green-dark-2">
                   +
                 </button>
               </div>
             </div>
           </div>
           <div class="mx-4">
-            <img [src]="removePath" (click)="removeFromCart(product.id)" class="cursor-pointer size-6">
+            <img [src]="removePath" (click)="removeFromCart(product.id)" class="cursor-pointer size-6"
+              alt="Remove from cart">
           </div>
-          
         </div>
-
-
       </div>
+      <!-- Контейнер справа под продуктами -->
+      <div class="flex justify-end my-4">
+        <!-- Общая сумма корзины -->
+        <div class="items-center flex mr-4" *ngIf="cartItems.length > 0">
+          Total price: {{ totalPrice }} EUR
+        </div>
+        <!-- Кнопка очистки корзины -->
+        <div class="items-center flex mr-4">
+          <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="bg-custom-white rounded-xl px-4 py-2">
+            Clear cart
+          </button>
+        </div>
+      </div>
+      <!-- Кнопка заказа (перейти к покупке) -->
+      <div class="flex justify-center">
+        <button *ngIf="cartItems.length > 0" (click)="createOrder(cartItems)" class="bg-custom-white rounded-xl px-4 py-2">
+          Place an order
+        </button>
+      </div>
+
     </div>
 
-    <div class="clear-cart-div">
-      <button *ngIf="cartItems.length > 0" (click)="clearCart()">
-        Clear cart
-      </button>
-    </div>
-    <div class="create-order">
-      <button *ngIf="cartItems.length > 0" (click)="createOrder(cartItems)">
-        Create Order (Total price: {{ totalPrice }} EUR)
-      </button>
-    </div>
+
+
+    
   </div>
+</div>
