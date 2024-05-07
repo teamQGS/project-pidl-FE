@@ -22,7 +22,7 @@
             Start shopping
           </button>
         </div>
-        <img [src]="emptyCartPath" alt="Sad Banana" class=" size-96">
+        <img [src]="sadBananaPath" alt="Sad Banana" class=" size-96">
       </div>
       <!-- Контейнер продукта -->
       <div *ngFor="let product of cartItems"
@@ -68,7 +68,7 @@
             </div>
           </div>
           <div>
-            <img [src]="removePath" (click)="removeFromCart(product.id)" class="cursor-pointer size-6 hidden sm:flex"
+            <img [src]="removeIconPath" (click)="removeFromCart(product.id)" class="cursor-pointer size-6 hidden sm:flex"
               alt="Remove from cart">
           </div>
           

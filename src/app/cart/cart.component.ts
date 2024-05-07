@@ -15,9 +15,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
-  // Icons
-  removePath = 'assets/icons/remove.svg';
-  emptyCartPath = 'assets/icons/empty-cart.svg';
+
+  // v1.0.0 icons
+  sadBananaPath = 'assets/illustrations/sad-banana-illustration.svg';
+  removeIconPath = 'assets/icons/remove-icon.svg';
 
   cartItems: ProductsDTO[] = [];
   cart: CartDTO = new CartDTO();

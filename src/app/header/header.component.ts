@@ -17,15 +17,15 @@ import { SearchComponent } from '../search/search.component';
 })
 export class HeaderComponent {
 
-  // New icons
-  logoPath = 'assets/logo/logo-sized.svg';
-  dashboardListPath = 'assets/icons/dashboard-list.svg';
-  shoppingCartPath = 'assets/icons/shopping-cart.svg';
+  // v1.0.0 icons
+  logoLightPath = 'assets/logo/logo-light.svg';
+  cartIconPath = 'assets/icons/cart-icon.svg';
+  employeeIconPath = 'assets/icons/employee-icon.svg';
+  customerIconPath = 'assets/icons/customer-icon.svg';
   managerIconPath = 'assets/icons/manager-icon.svg';
-  adminIconPath = 'assets/icons/admin-icon.svg';
-
-  // Old icons
-  userPath = 'assets/icons/user.svg';
+  administratorIconPath = 'assets/icons/administrator-icon.svg';
+  menuIconPath = 'assets/icons/menu-icon.svg';
+  
   dashboardValue: String[] = ["User Dashboard", "Admin Dashboard", "Manager Dashboard"];
   protected readonly window = window;
 

@@ -1,8 +1,13 @@
+<link href="../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+
 <app-header></app-header>
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center min-h-screen bg-custom-black">
 
 
-<div id="router">
-  <router-outlet />
+  <div id="router" class="w-full">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
+<app-bottom-nav></app-bottom-nav>
 <app-footer></app-footer>

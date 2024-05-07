@@ -6,7 +6,7 @@
   mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
     <!-- Логотип -->
     <div class="logo cursor-pointer" routerLink="/">
-      <img [src]="logoPath" alt="logo" height="" width="" class="flex size-16" />
+      <img [src]="logoLightPath" alt="logo" height="" width="" class="flex size-16" />
     </div>
 
     <div class="hidden sm:flex">
@@ -20,71 +20,61 @@
         <li class="list-none mr-5 relative cursor-pointer" routerLink="/contact-us">
           Contact us
         </li>
-        <!-- Дэшборд пользователя -->
-        <li class="list-none mr-5 relative cursor-pointer" *ngIf="
-          window.localStorage.getItem('role') == 'CUSTOMER' ||
-          window.localStorage.getItem('role') == 'MANAGER' ||
-          window.localStorage.getItem('role') == 'ADMIN'
-        " routerLink="user-dashboard" [value]="dashboardValue">
-          User Dashboard
-        </li>
-
-        <!-- Контейнер кнопки меню со списком дэшбордов. Недоступен для обычных пользователей -->
-        <ng-container *ngIf="
-          window.localStorage.getItem('role') == 'MANAGER' ||
-          window.localStorage.getItem('role') == 'ADMIN'
-        ">
-          <!-- Содержание контейнера кнопки меню -->
-          <div class="w-4 h-5 mt-1.5 cursor-pointer relative" (click)="toggleDashboardList($event)">
-            <!-- Иконка меню -->
-            <img [src]="dashboardListPath" alt="Dashboard List" class="cursor-pointer" height="18" width="18" />
-            <!-- Содержание меню -->
-            <div
-              class="dashboardList text-gray-600 absolute flex flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
-              *ngIf="showDashboardList">
-              <!-- Начало списка -->
-              <ul class="w-full">
-                <!-- Дэшборд менеджера -->
-                <li *ngIf="
-                  window.localStorage.getItem('role') == 'MANAGER' ||
-                  window.localStorage.getItem('role') == 'ADMIN'
-                " routerLink="manager-dashboard"
-                  class="flex p-2 cursor-pointer w-full gap-2 items-center border-b border-gray-200">
-                  <img [src]="managerIconPath" alt="Manager Dashboard Icon" style="width: 30px; height: 30px" />
-                  Manager Dashboard
-                </li>
-                <!-- Дэшборд администратора -->
-                <li *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard"
-                  class="flex p-2 cursor-pointer w-full gap-2 items-center border-gray-200">
-                  <img [src]="adminIconPath" alt="Admin Dashboard Icon" style="width: 30px; height: 30px" />
-                  Admin Dashboard
-                </li>
-              </ul>
-            </div>
-          </div>
-        </ng-container> <!-- Конец контейнера кнопки меню со списком дэшбордов -->
       </ul> <!-- Конец навигационной панели по центру -->
-    </div>
-    <div class="sm:hidden flex items-center">
-      <!-- Кнопка меню для мобильных -->
-      <button onclick="toggleMenu()">Menu</button>
     </div>
 
     <!-- Кнопки корзины и логина -->
-    <ul class="links flex-row justify-center hidden sm:flex">
-      <li class="list-none mr-5 relative cursor-pointer size-6" routerLink="cart">
-        <img [src]="shoppingCartPath" alt="Cart" />
-      </li>
-      <li class="list-none mr-5 relative cursor-pointer size-6" routerLink="login">
-        <img [src]="userPath" alt="login" />
-      </li>
-    </ul>
-  </div>
 
+    <div class="flex-row flex">
+      <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" routerLink="cart">
+        <img [src]="cartIconPath" alt="Cart" />
+      </div>
+
+      <!-- Содержание контейнера кнопки меню -->
+      <div class="hidden sm:flex list-none mr-5 relative cursor-pointer size-6" (click)="toggleDashboardList($event)" *ngIf="
+        window.localStorage.getItem('role') == 'MANAGER' ||
+        window.localStorage.getItem('role') == 'ADMIN'
+        ">
+        <!-- Иконка меню -->
+        <img [src]="employeeIconPath" alt="Dashboard List" />
+        <!-- Содержание меню -->
+        <div
+          class="hidden sm:flex text-gray-600 absolute flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
+          *ngIf="showDashboardList">
+          <!-- Начало списка -->
+          <div class="w-full">
+            <!-- Дэшборд менеджера -->
+            <div *ngIf="
+              window.localStorage.getItem('role') == 'MANAGER' ||
+              window.localStorage.getItem('role') == 'ADMIN'
+            " routerLink="manager-dashboard"
+              class="flex p-2 cursor-pointer w-full gap-2 items-center border-b border-gray-200">
+              <img [src]="managerIconPath" alt="Manager Dashboard Icon" class="size-6"/>
+              Manager Dashboard
+            </div>
+            <!-- Дэшборд администратора -->
+            <div *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard"
+              class="flex p-2 cursor-pointer w-full gap-2 items-center border-gray-200">
+              <img [src]="administratorIconPath" alt="Admin Dashboard Icon" class="size-6"/>
+              Admin Dashboard
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="login">
+        <img [src]="customerIconPath" alt="login" class="size-6"/>
+      </div>
+
+      <div class="sm:hidden flex items-center" onclick="toggleMenu()">
+        <!-- Кнопка меню для мобильных -->
+        <img [src]="menuIconPath" alt="Menu" class="size-6" />
+      </div>
+    </div>
+  </div>
   <div>
     <!-- Строка поиска -->
     <app-search></app-search>
   </div>
-  
-  
+
+
 </div>

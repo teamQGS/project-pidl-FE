@@ -26,6 +26,7 @@ import {ProductDetailsComponent } from '../product-details/product-details.compo
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
+
   selectedProduct: ProductsDTO | null = null; // По умолчанию ничего не выбрано
 
   selectProduct(product: ProductsDTO) {
