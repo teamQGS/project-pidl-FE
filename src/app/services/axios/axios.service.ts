@@ -3,51 +3,39 @@ import axios from 'axios';
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {jwtDecode, JwtPayload} from "jwt-decode";
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AxiosService {
 
-  constructor(private router: Router, private snackBar: MatSnackBar) {
+  constructor(private router: Router, private snackBar: MatSnackBar, private authService: AuthService) {
     axios.defaults.baseURL = 'http://localhost:8080';
     axios.defaults.headers.post["Content-Type"] = 'application/json';
   }
 
   getAuthToken():string | null{
-    return window.localStorage.getItem("auth_token");
+    return this.authService.getAuthToken();
   }
 
   setAuthToken(token: string | null) {
-    if (token != null) {
-      window.localStorage.setItem("auth_token", token);
-      const decodedToken: JwtPayload | undefined = jwtDecode(token);
-      // @ts-ignore
-      const tokenExpirationDate = new Date(decodedToken.exp * 1000).getTime();
-      window.localStorage.setItem("auth_token_expiration", tokenExpirationDate.toString());
-      //console.log("Token expiration: " + tokenExpirationDate);
-    } else {
-      window.localStorage.removeItem("auth_token");
-      window.localStorage.removeItem("auth_token_expiration");
-    }
+    this.authService.setAuthToken(token);
   }
 
   checkTokenExpiration() {
-    const expirationTime = window.localStorage.getItem("auth_token_expiration");
-    if (expirationTime !== null) {
-      const currentTime = new Date().getTime();
-      // console.log(parseInt(expirationTime));
-      // console.log(currentTime);
-      if (parseInt(expirationTime) < currentTime) {
-        console.log("The Token has expired")
-        window.localStorage.clear();
-        this.router.navigate(['/login']).then(r => this.snackBar.open("The Token has expired, log in again please", '', {
-          duration: 3000
-        }));
-
+    if(this.authService.isTokenExpired()) {
+      console.log("Token expired");
+      window.localStorage.clear();
+      this.router.navigate(['/login']).then(() => {
+        this.snackBar.open('Session expired, log in again please', '', {
+          duration: 3000,
+        });
+        this.authService.logoutUser();
       }
-    }
+      );
   }
+}
 
   request(method: string, url: string, data: any): Promise<any> {
     let headers = {}
