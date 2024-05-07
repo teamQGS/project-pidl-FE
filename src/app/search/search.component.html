@@ -1,16 +1,36 @@
-<div>
-  <input type="text" placeholder="Search for products!" [(ngModel)]="searchTerm" (change)="search()">
-  <button (click)="search()">Search</button>
-</div>
-
-<div *ngIf="products.length > 0">
-  <ul>
-    <li *ngFor="let product of products">
-      {{ product.name }} - {{ product.price }}
-    </li>
-  </ul>
-</div>
-
-<div *ngIf="products.length === 0 && searchTerm">
-  No products found for "{{ searchTerm }}".
+<link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<div class="bg-custom-blue w-full">
+  <div class="sticky top-16 z-10 bg-custom-blue shadow-md">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center py-4 md:py-6">
+        <input
+          type="text"
+          placeholder="Search for products!"
+          [(ngModel)]="searchTerm"
+          (change)="search()"
+          class="form-input flex-1 min-w-0 block w-full px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          aria-label="Search for products"
+        >
+        <button
+          (click)="search()"
+          class="ml-4 inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6" *ngIf="products.length > 0">
+    <ul>
+      <li *ngFor="let product of products" class="py-2">
+        {{ product.name }} - {{ product.price }}
+      </li>
+    </ul>
+  </div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6" *ngIf="products.length === 0 && searchTerm">
+    No products found for "{{ searchTerm }}".
+  </div>
+  
 </div>

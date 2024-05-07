@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { NgIf, NgOptimizedImage } from "@angular/common";
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,8 @@ import { NgIf, NgOptimizedImage } from "@angular/common";
   imports: [
     RouterLink,
     NgOptimizedImage,
-    NgIf
+    NgIf,
+    SearchComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
