@@ -47,9 +47,9 @@
         <!-- Правая: количество продукта и кнопки -->
         <div class="flex flex-col sm:flex-row mr-0 mx-0 mt-2 sm:mr-4 sm:mt-2 text-left sm:text-center sm:items-center">
           <div class="flex flew-row sm:flex-col my-2 sm:my-auto sm:mx-4 min-w-64 justify-between items-center sm:justify-normal">
-            <!-- Контейнер с полной суммой -->
+            <!-- Контейнер с суммой -->
             <div class="text-sm sm:text-base">
-              Total: {{ roundPrice(product.price * product.count) }} EUR
+              Price: {{ roundPrice(product.price * product.count) }} EUR
             </div>
             <!-- Контейнер с кнопками для увелечения или уменьшения на 1 и количество -->
             <div class="my-2 sm:my-3">

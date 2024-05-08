@@ -16,6 +16,8 @@ export class BottomNavComponent {
   cartIconPath = 'assets/icons/cart-icon.svg';
   customerIconPath = 'assets/icons/customer-icon.svg';
   loginIconPath = 'assets/icons/login-icon.svg';
+  catalogIconPath = 'assets/icons/catalog-icon.svg';
+  homeIconPath = 'assets/icons/home-icon.svg';
 
   isLoggedIn = false;
   private authSubscription: Subscription;

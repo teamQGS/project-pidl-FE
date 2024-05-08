@@ -1,16 +1,25 @@
  <link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
  <!-- Фиксированная нижняя панель для мобильных устройств -->
+ 
 <div class="fixed bottom-0 left-0 right-0 bg-custom-black text-white p-2 z-50 flex justify-around sm:hidden">
-  <div class="flex flex-col items-center" routerLink="/cart">
+  <div class="flex flex-col items-center cursor-pointer" routerLink="/">
+    <img [src]="homeIconPath" alt="Main" class="size-6" />
+    <span>Main</span>
+  </div>
+  <div class="flex flex-col items-center" routerLink="/catalog">
+    <img [src]="catalogIconPath" alt="Catalog" class="size-6" />
+    <span>Catalog</span>
+  </div>
+  <div class="flex flex-col items-center cursor-pointer" routerLink="/cart">
     <img [src]="cartIconPath" alt="Cart" class="size-6" />
     <span>Cart</span>
   </div>
-  <div *ngIf="isLoggedIn; else loginButton" class="flex flex-col items-center" routerLink="/profile">
+  <div *ngIf="isLoggedIn; else loginButton" class="flex flex-col items-center cursor-pointer" routerLink="/profile">
     <img [src]="customerIconPath" alt="Profile" class="size-6" />
     <span>Profile</span>
   </div>
   <ng-template #loginButton>
-    <div class="flex flex-col items-center" routerLink="/login">
+    <div class="flex flex-col items-center cursor-pointer" routerLink="/login">
       <img [src]="loginIconPath" alt="Login" class="size-6" />
       <span>Sign in</span>
     </div>
