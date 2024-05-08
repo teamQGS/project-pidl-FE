@@ -10,6 +10,7 @@ import {AxiosService} from "../../services/axios/axios.service";
 import {Router, RouterLink} from "@angular/router";
 import {ToastService} from "angular-toastify";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -30,7 +31,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class SettingsComponent{
   constructor(private formBuilder: FormBuilder, private router:Router,
-              private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar) {}
+              private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar, private authService: AuthService) {}
   username = window.localStorage.getItem("username");
   onDelete() {
     this.axiosService.request(
@@ -38,6 +39,7 @@ export class SettingsComponent{
       `/api/users/delete/${(this.username)}`,
       {}
     ).then(response => {
+      this.authService.logoutUser();
       window.localStorage.removeItem("auth_token");
       window.localStorage.removeItem("auth_token_expiration");
       window.localStorage.removeItem("username");
