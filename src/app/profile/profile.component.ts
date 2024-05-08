@@ -7,6 +7,7 @@ import {Router, RouterLink} from "@angular/router";
 import {ToastService} from "angular-toastify";
 import {AxiosService} from "../services/axios/axios.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +23,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, private router:Router,
-              private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar) {}
+              private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar, private authSerivce: AuthService) {}
 
   @Output() logoutEvent = new EventEmitter;
 
@@ -35,6 +36,7 @@ export class ProfileComponent {
       {}
     ).then(response => {
       window.localStorage.clear();
+      this.authSerivce.logoutUser();
       this.router.navigateByUrl('/');
       this.snackBar.open("Logged out successfully", '', {
         duration: 3000
