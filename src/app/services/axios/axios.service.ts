@@ -24,18 +24,23 @@ export class AxiosService {
   }
 
   checkTokenExpiration() {
-    if(this.authService.isTokenExpired()) {
-      console.log("Token expired");
-      window.localStorage.clear();
-      this.router.navigate(['/login']).then(() => {
-        this.snackBar.open('Session expired, log in again please', '', {
-          duration: 3000,
-        });
+    const expirationTime = window.localStorage.getItem("auth_token_expiration");
+    if (expirationTime !== null) {
+      const currentTime = new Date().getTime();
+      // console.log(parseInt(expirationTime));
+      // console.log(currentTime);
+      if (parseInt(expirationTime) < currentTime) {
+        console.log("The Token has expired")
         this.authService.logoutUser();
+        this.router.navigate(['/login']).then(r => this.snackBar.open("The Token has expired, log in again please", '', {
+          duration: 3000
+        }));
+
       }
-      );
+    }
   }
-}
+  
+  
 
   request(method: string, url: string, data: any): Promise<any> {
     let headers = {}

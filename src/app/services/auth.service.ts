@@ -8,52 +8,51 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private loggedInStatus = new BehaviorSubject<boolean>(this.checkInitialLogin());
 
-  setAuthStatus(value: boolean): void {
-    this.loggedInStatus.next(value);
-  }
-
   getAuthToken(): string | null {
-    return window.localStorage.getItem('auth_token');
+    return localStorage.getItem('auth_token');
   }
 
   setAuthToken(token: string | null): void {
     if (token) {
-      window.localStorage.setItem('auth_token', token);
-      const decodedToken: JwtPayload | undefined = jwtDecode(token);
-      // @ts-ignore
-      const tokenExpirationDate = new Date(decodedToken.exp * 1000).getTime();
-      window.localStorage.setItem('auth_token_expiration', tokenExpirationDate.toString());
-      this.loginUser(token);
+      const decodedToken = jwtDecode<JwtPayload>(token);
+      if (decodedToken.exp) {
+        const expirationDate = new Date(decodedToken.exp * 1000).getTime();
+        localStorage.setItem('auth_token', token);
+        localStorage.setItem('auth_token_expiration', expirationDate.toString());
+        this.setAuthStatus(true);
+      } else {
+        this.logoutUser();  // Logout if no expiration is present
+      }
     } else {
-      window.localStorage.removeItem('auth_token');
-      window.localStorage.removeItem('auth_token_expiration');
+      this.logoutUser();
     }
   }
 
   isTokenExpired(): boolean {
-    const expirationTime = window.localStorage.getItem('auth_token_expiration');
-    if (expirationTime) {
-      const currentTime = new Date().getTime();
-      return parseInt(expirationTime) < currentTime;
-    }
-    return true;
+    const expirationTime = localStorage.getItem('auth_token_expiration');
+    return !expirationTime || parseInt(expirationTime) < Date.now();
+  }
+
+  private checkInitialLogin(): boolean {
+    return !this.isTokenExpired() && !!this.getAuthToken();
+  }
+
+  setAuthStatus(value: boolean): void {
+    this.loggedInStatus.next(value);
+  }
+
+  loginUser(token: string): void {
+    this.setAuthToken(token); // Consolidate token handling
+  }
+
+  logoutUser(): void {
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_token_expiration');
+    localStorage.clear();
+    this.loggedInStatus.next(false);
   }
 
   get isLoggedIn() {
     return this.loggedInStatus.asObservable();
-  }
-
-  private checkInitialLogin(): boolean {
-    return !!localStorage.getItem('auth_token'); 
-  }
-
-  loginUser(token: string): void {
-    window.localStorage.setItem('auth_token', token);
-    this.loggedInStatus.next(true); 
-  }
-
-  logoutUser(): void {
-    window.localStorage.removeItem('auth_token');
-    this.loggedInStatus.next(false); 
   }
 }
