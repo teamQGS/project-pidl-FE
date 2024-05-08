@@ -29,6 +29,7 @@
       <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" routerLink="cart">
         <img [src]="cartIconPath" alt="Cart" />
       </div>
+      
 
       <!-- Содержание контейнера кнопки меню -->
       <div class="hidden sm:flex list-none mr-5 relative cursor-pointer size-6" (click)="toggleDashboardList($event)" *ngIf="
@@ -61,9 +62,14 @@
           </div>
         </div>
       </div>
-      <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="login">
-        <img [src]="customerIconPath" alt="login" class="size-6"/>
+      <div *ngIf="isLoggedIn; else loginButton" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="/profile">
+        <img [src]="customerIconPath" alt="Profile" class="size-6"/>
       </div>
+      <ng-template #loginButton>
+        <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="/login">
+          <img [src]="loginIconPath" alt="Login" class="size-6" />
+        </div>
+      </ng-template>
 
       <div class="sm:hidden flex items-center" onclick="toggleMenu()">
         <!-- Кнопка меню для мобильных -->

@@ -2,6 +2,9 @@ import { Component, HostListener } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { NgIf, NgOptimizedImage } from "@angular/common";
 import { SearchComponent } from '../search/search.component';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +28,7 @@ export class HeaderComponent {
   managerIconPath = 'assets/icons/manager-icon.svg';
   administratorIconPath = 'assets/icons/administrator-icon.svg';
   menuIconPath = 'assets/icons/menu-icon.svg';
+  loginIconPath = 'assets/icons/login-icon.svg';
   
   dashboardValue: String[] = ["User Dashboard", "Admin Dashboard", "Manager Dashboard"];
   protected readonly window = window;
@@ -44,5 +48,21 @@ export class HeaderComponent {
     if (!clickedInside) {
       this.showDashboardList = false;
     }
+  }
+
+  isLoggedIn = false;
+  private authSubscription: Subscription;
+
+  constructor(private authService: AuthService, private zone: NgZone) {
+    this.authSubscription = this.authService.isLoggedIn.subscribe(status => {
+      this.zone.run(() => { // Используйте NgZone для обновления UI
+        this.isLoggedIn = status;
+        console.log("Login status changed:", status);
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
   }
 }
