@@ -26,4 +26,20 @@ export class ProductsService {
       return [];
     }
   }
+
+  async searchProducts(searchTerm: string): Promise<ProductsDTO[]> {
+    try {
+      const response = await this.axiosService.request(
+        'GET',
+        `/api/products/search?name=${encodeURIComponent(searchTerm)}`,
+        {}
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error while searching products:', error);
+      return [];
+    }
+  }
+  
 }
