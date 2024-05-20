@@ -8,7 +8,7 @@
       <!-- Левая колонка для кнопки "Назад" -->
       <div class="flex-1">
         <div class="font-semibold text-custom-white">
-          <a routerLink="/profile/settings" class="cursor-pointer">
+          <a routerLink="/cart" class="cursor-pointer">
             Back
           </a>
         </div>
@@ -16,7 +16,7 @@
       <!-- Центральная колонка для текста навигации -->
       <div class="flex-1 text-center">
         <p class="text-base font-semibold text-custom-white">
-          Profile information <!-- {{ username }} -->
+          Address information <!-- {{ username }} -->
         </p>
       </div>
       <!-- Правая колонка, пустая, для баланса -->
@@ -26,34 +26,30 @@
     </div>
     <!-- Форма обновления данных пользователя -->
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex justify-center">
-      <form [formGroup]="updateForm" class="w-full flex flex-col" (submit)="updateUser()">
-        <label class="block mb-1 text-base" for="firstName">First name</label>
+      <form class="w-full flex flex-col">
+        <label class="block mb-1 text-base" >Country</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="First name" formControlName="firstName" />
+          <input matInput placeholder="Country" formControlName="Country" />
         </mat-form-field>
         <br />
-        <label class="block mb-1 text-base" for="lastName">Last name</label>
+        <label class="block mb-1 text-base" >City</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Last name" formControlName="lastName" />
+          <input matInput placeholder="City" formControlName="City" />
         </mat-form-field>
         <br />
-        <label class="block mb-1 text-base" for="email">Email</label>
+        <label class="block mb-1 text-base" >Address</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Email" formControlName="email" />
+          <input matInput placeholder="Address" formControlName="Address" />
         </mat-form-field>
         <br />
-        <label class="block mb-1 text-base" for="phoneNumber">Phone number</label>
+        <label class="block mb-1 text-base" >Entrance</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Phone number" formControlName="phoneNumber" />
+          <input matInput placeholder="Entrance" formControlName="Entrance" />
         </mat-form-field>
         <br />
         <!-- Кнопка редактирования -->
-        <button mat-raised-button color="basic" type="button" class="mb-4">
-          Edit
-        </button>
-        <!-- Кнопка обновления -->
-        <button mat-raised-button color="basic" type="submit" class="mb-4">
-          Update
+        <button mat-raised-button color="basic"  type="button" class="mb-4" (click)="onSubmit()">
+          Submit
         </button>
       </form>
     </div>

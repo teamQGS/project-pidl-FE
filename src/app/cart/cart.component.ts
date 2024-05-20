@@ -5,7 +5,7 @@ import { NgForOf, NgIf } from '@angular/common';
 import { MatButton, MatFabButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartDTO } from '../model/cart';
-import { RouterLink } from '@angular/router';
+import {Route, Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -26,7 +26,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -65,7 +66,7 @@ export class CartComponent implements OnInit {
   }
 
   createOrder(cartItems: ProductsDTO[]) {
-    //TODO create order
+      this.router.navigate(['order']);
   }
 
   calculateTotalPrice() {

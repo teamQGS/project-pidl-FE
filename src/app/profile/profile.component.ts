@@ -29,6 +29,10 @@ export class ProfileComponent {
 
   username = window.localStorage.getItem("username");
 
+  showOrderHistory(): void {
+    this.router.navigate(['order-history']);
+  }
+
   onLogout() {
     this.axiosService.request(
       'POST',

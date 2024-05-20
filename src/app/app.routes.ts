@@ -19,6 +19,8 @@ import {UpdateUserFormComponent} from "./profile/update-user-form/update-user-fo
 import {SearchComponent} from "./search/search.component";
 import {ChangePasswordFormComponent} from "./profile/change-password-form/change-password-form.component";
 import {ContactUsComponent} from "./header/contact-us/contact-us.component";
+import {OrderPageComponent} from "./cart/order-page/order-page.component";
+import {OrderHistoryComponent} from "./profile/order-history/order-history.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [WithoutTokenGuardService] },
@@ -33,7 +35,9 @@ export const routes: Routes = [
   { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [ManagerGuardService] },
   { path: 'add-product', component: AddProductPageComponent, canActivate: [WithTokenGuardService] },
   { path: 'search/:searchTerm', component: SearchComponent},
-  { path: 'contact-us', component: ContactUsComponent}
+  { path: 'contact-us', component: ContactUsComponent},
+  { path: 'order', component: OrderPageComponent, canActivate: [WithTokenGuardService]},
+  { path: 'order-history', component: OrderHistoryComponent, canActivate: [WithTokenGuardService]}
 ];
 
 @NgModule({
