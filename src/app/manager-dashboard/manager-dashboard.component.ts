@@ -11,6 +11,7 @@ import {AxiosService} from "../services/axios/axios.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-manager-dashboard',
@@ -21,7 +22,8 @@ import {HttpClient} from "@angular/common/http";
     MatIcon,
     MatTooltip,
     RouterLink,
-    MatFabButton
+    MatFabButton,
+    SearchComponent
   ],
   templateUrl: './manager-dashboard.component.html',
   styleUrl: './manager-dashboard.component.css'

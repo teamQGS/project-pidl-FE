@@ -1,31 +1,71 @@
-<!--<h1>This page only for managers</h1>-->
-<div class="add-button">
-  <button (click)="navigateToAddPage()" class="add-button" mat-raised-button color="accent" matTooltip="Add new product">
-     Add new product
-  </button>
+<link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<div>
+  <app-search></app-search>
 </div>
-<ul>
-  <li *ngFor="let product of products">
-    <div class="content">
-      <div class="delete-product-div">
-        <button mat-fab color="primary" class="btn-clr" (click)="deleteProduct(product)">
-          Delete product
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center min-h-screen bg-custom-black">
+  <!-- Контейнер дэшборда -->
+  <div class="w-11/12 flex flex-wrap items-center max-w-6xl rounded-3xl my-8">
+    <!-- Контейнер заголовка -->
+    <div class="flex flex-row items-center w-full">
+      <!-- Заголовок дэшборда -->
+      <div class="flex flex-col w-full m-2 px-2 text-custom-white">
+        <p class="font-bold text-2xl">Manager dashboard</p>
+        <p>Add, modify or remove products</p>
+      </div>
+      <!-- Кнопка добавления нового продукта -->
+      <div class="flex w-full justify-end px-2">
+        <button (click)="navigateToAddPage()" class="bg-custom-white rounded-xl px-8 py-2 m-2"
+          matTooltip="Add new product">
+          Add new product
         </button>
       </div>
-      <a>
-        <div class="name">
-          {{ product.name }}
-        </div>
-        <div class="description">
-          {{ product.description }}
-        </div>
-        <div class="price">
-          {{ product.price }}$
-        </div>
-        <div class="image">
-          <img [src]="product.illustration" alt="{{product.name}}" height="128px" width="128px">
-        </div>
-      </a>
     </div>
-  </li>
-</ul>
+
+    <!-- Список продуктов -->
+    <div class="grid grid-rows-1 gap-4 w-full m-2 px-2 box-border text-center">
+      <div *ngFor="let product of products"
+        class="my-2 mx-4 bg-custom-green-dark-1 rounded-xl text-custom-white flex flex-col">
+        <!-- Левая: иллюстрация, название, описание -->
+        <div class="flex flex-row items-center w-full sm:w-auto">
+          <!-- Иллюстрация продукта -->
+          <div class="flex flex-row">
+            <img [src]="product.illustration" alt="{{ product.name }}" class="rounded-xl w-24 h-24 mr-4" />
+          </div>
+          <!-- Информация к продукту -->
+          <div class="flex flex-col justify-center">
+            <div class="flex flex-row">
+              <p>{{ product.name }}</p>
+            </div>
+            <div class="flex-row text-xs text-custom-white-dark-1 hidden lg:flex">
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Правая: количество продукта и кнопки -->
+        <div class="flex flex-col sm:flex-row mr-0 mx-0 mt-2 sm:mr-4 sm:mt-2 text-left sm:text-center sm:items-center">
+          <div
+            class="flex flew-row sm:flex-col my-2 sm:my-auto sm:mx-4 min-w-64 justify-between items-center sm:justify-normal">
+            <!-- Контейнер с суммой -->
+            <div class="text-sm sm:text-base">
+              Price: {{product.price}} EUR
+            </div>
+            <!-- Контейнер с кнопками для увелечения или уменьшения на 1 и количество -->
+            <div class="my-2 sm:my-3">
+              <div class="flex flex-row">
+                <div class="px-3 py-1 sm:px-4 text-sm sm:text-base w-10 flex justify-center">
+                  Quantity: {{ product.count }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img [src]="" (click)="deleteProduct(product)" class="cursor-pointer size-6 hidden sm:flex"
+              alt="Delete product">
+          </div>
+          <div>
+            <img [src]="" class="cursor-pointer size-6 hidden sm:flex" alt="Edit product">
+          </div>
+        </div>
+      </div>
+    </div>
