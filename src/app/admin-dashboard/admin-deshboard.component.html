@@ -1,32 +1,43 @@
-<ul>
-  <li *ngFor="let user of users; let i = index">
-    <div class="content">
-      <div class="roles">
-        <mat-form-field>
-          <mat-label>Role</mat-label>
-          <mat-select [(value)]="selectedRole[i]">
-            <mat-option value="ADMIN">ADMIN</mat-option>
-            <mat-option value="MANAGER">MANAGER</mat-option>
-            <mat-option value="CUSTOMER">CUSTOMER</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-flat-button class="button-assign" color="primary" (click)="assignRole(user, selectedRole[i])">Assign Role</button>
-
-      </div>
-      <div class="add-to-cart-div">
-        <button mat-flat-button class="button-delete" (click)="deleteUser(user)" color="warn">Delete User</button>
-      </div>
-      <a>
-        <div class="id">
-          User Id: {{ user.id }}
-        </div>
-        <div class="username">
-          Username: {{ user.username }}
-        </div>
-        <div class="role">
-          Role: {{ user.role }}
-        </div>
-      </a>
+<link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center min-h-screen bg-custom-black">
+  <!-- Контейнер админ дэшборда -->
+  <div class="w-11/12 flex flex-col items-center max-w-6xl my-8">
+    <!-- Заголовок дэшборда -->
+    <div class="flex flex-col w-full m-2 px-2 text-custom-white">
+      <p class="font-bold text-2xl">Admin dashboard</p>
+      <p>Assign roles or delete users</p>
     </div>
-  </li>
-</ul>
+    <div class="flex flex-col w-full m-2 px-2 text-custom-white">
+      <p class="font-bold text-sm">USERLIST</p>
+    </div>
+    <!-- Список пользователей -->
+    <div class="w-full">
+      <ul>
+        <li *ngFor="let user of users; let i = index" class="flex flex-col bg-gray-800 p-4 m-2 rounded-lg">
+          <div class="content flex justify-between items-center">
+            <div class="mt-2">
+              <div class="">User Id: {{ user.id }}</div>
+              <div class="">Username: {{ user.username }}</div>
+              <div class="">Role: {{ user.role }}</div>
+            </div>
+            <div class="roles flex items-center">
+              <mat-form-field appearance="fill">
+                <mat-label>Role</mat-label>
+                <mat-select [(value)]="selectedRole[i]">
+                  <mat-option value="ADMIN">Admin</mat-option>
+                  <mat-option value="MANAGER">Manager</mat-option>
+                  <mat-option value="CUSTOMER">Customer</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-flat-button class="button-assign ml-4" color="primary" (click)="assignRole(user, selectedRole[i])">Assign Role</button>
+            </div>
+            
+            <button mat-flat-button class="button-delete" (click)="deleteUser(user)" color="warn">Delete User</button>
+          </div>
+          
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
