@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductsService} from "../services/products/products.service";
-import {NgForOf, NgOptimizedImage} from "@angular/common";
-import {ProductsDTO} from "../model/products";
-import {ActivatedRoute} from "@angular/router";
-import {SearchComponent} from "../search/search.component";
-import {MatIcon} from "@angular/material/icon";
-import {MatFabButton, MatMiniFabButton} from "@angular/material/button";
-import {CartService} from "../services/cart/cart.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {ProductDetailsComponent } from '../product-details/product-details.component';
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../services/products/products.service';
+import { NgForOf, NgOptimizedImage } from '@angular/common';
+import { ProductsDTO } from '../model/products';
+import { CartService } from '../services/cart/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { SearchComponent } from '../search/search.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatFabButton } from '@angular/material/button';
+import { MatMiniFabButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
@@ -23,23 +23,23 @@ import {ProductDetailsComponent } from '../product-details/product-details.compo
     ProductDetailsComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
-
+export class HomeComponent implements OnInit {
   selectedProduct: ProductsDTO | null = null; // По умолчанию ничего не выбрано
-
-  selectProduct(product: ProductsDTO) {
-    this.selectedProduct = product;
-  }
-
-
   products: ProductsDTO[] = [];
-  constructor(private productsService: ProductsService, private route: ActivatedRoute,
-              private cartService: CartService, private snackBar: MatSnackBar ) {
-  }
+
+  constructor(
+    private productsService: ProductsService,
+    private cartService: CartService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts(): void {
     this.productsService.getAll().then(products => {
       this.products = products;
     }).catch(error => {
@@ -47,10 +47,18 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  addToCart(productId: string) {
+  onSearchResults(products: ProductsDTO[]): void {
+    this.products = products;
+  }
+
+  selectProduct(product: ProductsDTO): void {
+    this.selectedProduct = product;
+  }
+
+  addToCart(productId: string): void {
     this.cartService.addToCart(productId);
-    this.snackBar.open("Product was added to cart", '', {
+    this.snackBar.open('Product was added to cart', '', {
       duration: 3000
-    })
+    });
   }
 }

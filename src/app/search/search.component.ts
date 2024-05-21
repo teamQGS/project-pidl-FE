@@ -1,46 +1,63 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormsModule} from "@angular/forms";
-import {ProductsDTO} from "../model/products";
-import {NgForOf, NgIf} from "@angular/common";
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ProductsService } from '../services/products/products.service';
-import { error } from '@angular/compiler-cli/src/transformers/util';
+import { ProductsDTO } from '../model/products';
+import { NgForOf, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
   standalone: true,
   imports: [
-    FormsModule,
+    ReactiveFormsModule,
     NgIf,
-    NgForOf,
-    ReactiveFormsModule
+    NgForOf
   ],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
   searchControl: FormControl = new FormControl();
   products: ProductsDTO[] = [];
 
-  constructor(private productService: ProductsService, private route: ActivatedRoute, private router: Router) {
+  @Output() searchResults = new EventEmitter<ProductsDTO[]>();
+
+  constructor(private productsService: ProductsService, private router: Router) {
     this.searchControl.valueChanges.pipe(
       debounceTime(400),
       distinctUntilChanged()
     ).subscribe(value => this.search(value));
   }
 
-  search(searchTerm: string): void {
+  async search(searchTerm: string): Promise<void> {
     if (searchTerm) {
-      this.productService.searchProducts(searchTerm).then(products => {
+      try {
+        const products = await this.productsService.searchProducts(searchTerm);
         this.products = products;
-      }).catch(error => {
+        this.searchResults.emit(this.products);
+      } catch (error) {
         console.error('Error while searching products:', error);
         this.products = [];
-      });
+        this.searchResults.emit(this.products);
+      }
     } else {
-      this.products = [];
+      try {
+        const products = await this.productsService.getAll();
+        this.products = products;
+        this.searchResults.emit(this.products);
+      } catch (error) {
+        console.error('Error while fetching all products:', error);
+        this.products = [];
+        this.searchResults.emit(this.products);
+      }
+    }
+  }
+
+  onSearch(): void {
+    const searchTerm = this.searchControl.value;
+    if (searchTerm) {
+      this.router.navigate(['/search', searchTerm]);
     }
   }
 }
