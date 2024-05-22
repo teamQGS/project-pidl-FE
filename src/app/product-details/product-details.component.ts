@@ -5,7 +5,8 @@ import { ProductsDTO } from '../model/products';
 import { CommonModule } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatFabButton} from "@angular/material/button";
+import { MatFabButton } from "@angular/material/button";
+
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -17,6 +18,7 @@ export class ProductDetailsComponent {
   @Input() product: ProductsDTO | null = null;
 
   constructor(private cartService: CartService, private snackBar: MatSnackBar) {}
+
   close() {
     this.product = null;
   }

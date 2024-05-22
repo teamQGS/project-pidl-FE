@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products/products.service';
 import { NgForOf, NgOptimizedImage } from '@angular/common';
 import { ProductsDTO } from '../model/products';
+import { ActivatedRoute } from '@angular/router';
+import { SearchComponent } from '../search/search.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatFabButton, MatMiniFabButton } from '@angular/material/button';
 import { CartService } from '../services/cart/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { SearchComponent } from '../search/search.component';
-import { MatIcon } from '@angular/material/icon';
-import { MatFabButton } from '@angular/material/button';
-import { MatMiniFabButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +26,7 @@ import { MatMiniFabButton } from '@angular/material/button';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  selectedProduct: ProductsDTO | null = null; // По умолчанию ничего не выбрано
+  selectedProduct: ProductsDTO | null = null;
   products: ProductsDTO[] = [];
 
   constructor(
