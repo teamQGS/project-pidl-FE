@@ -47,6 +47,7 @@ export class ManagerDashboardComponent implements OnInit{
   navigateToAddPage(): void {
     this.router.navigate(['add-product'])
   }
+  
   deleteProduct(product: ProductsDTO) {
     console.log(product.id)
     this.axiosService.request(
