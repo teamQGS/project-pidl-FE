@@ -1,22 +1,45 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <div>
-  <app-search (searchResults)="onSearchResults($event)"></app-search>
+  <app-search (searchResults)="onSearchResults($event)" (searchTermChange)="onSearchTermChange($event)" (categorySelected)="onCategorySelected($event)"></app-search>
 </div>
 <!-- Контейнер полного контента тела -->
 <div class="flex flex-col items-center min-h-screen bg-custom-black">
-  <!-- Описание продуктов. Pop-up при нажатии на продукт -->
-  <app-product-details [product]="selectedProduct"></app-product-details>
+      <!-- Описание продуктов. Pop-up при нажатии на продукт -->
+      <app-product-details [product]="selectedProduct"></app-product-details>
+  <!-- Маркетинговый контейнер -->
+  <div *ngIf="showMarketing" class="w-full max-w-6xl rounded-3xl my-8 overflow-hidden transition-all duration-300 ease-in-out">
+    <div class="relative w-full h-64 bg-gray-800 text-white">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold mb-4">Special Offers</h2>
+          <p class="text-xl">Don't miss out on our exclusive deals!</p>
+        </div>
+      </div>
+      <img [src]="currentSlideImage" alt="Marketing Image" class="w-full h-full object-cover opacity-50">
+    </div>
+    <div class="flex justify-between mt-4">
+      <button (click)="previousSlide()" class="bg-gray-600 text-white px-4 py-2 rounded">Previous</button>
+      <button (click)="nextSlide()" class="bg-gray-600 text-white px-4 py-2 rounded">Next</button>
+    </div>
+  </div>
+  <!-- Кнопка загрузки продуктов -->
+  <div *ngIf="!productsLoaded && !selectedCategory" class="my-8">
+    <button (click)="loadProducts()" class="bg-blue-500 text-white px-4 py-2 rounded">Load Products</button>
+  </div>
   <!-- Контейнер с продуктами -->
-  <div class="w-11/12 flex flex-wrap items-center max-w-6xl rounded-3xl my-8">
-    <!-- Заголовок продуктов -->
+  <div *ngIf="productsLoaded || selectedCategory" class="w-11/12 flex flex-wrap items-center max-w-6xl rounded-3xl my-8">
+    <!-- Заголовок продуктов и категории -->
     <div class="flex flex-col w-full m-2 px-2 text-custom-white">
-      <p class="font-bold text-2xl">All products</p>
-      <p>Click on a product to see details</p>
+      <p class="font-bold text-2xl">
+        All products
+        <span *ngIf="selectedCategory"> -> {{ selectedCategory }}</span>
+      </p>
+      <p *ngIf="selectedCategory" (click)="clearCategory()" class="cursor-pointer text-blue-500 hover:underline">Clear category</p>
     </div>
     <!-- Список продуктов -->
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full m-2 px-2 box-border text-center">
       <!-- Контейнер продукта -->
-      <div *ngFor="let product of products" class="rounded-xl text-white overflow-hidden bg-custom-green">
+      <div *ngFor="let product of paginatedProducts" class="rounded-xl text-white overflow-hidden bg-custom-green">
         <!-- Иллюстрация продукта -->
         <div class="aspect-square w-full" (click)="selectProduct(product)">
           <img [src]="product.illustration" alt="{{ product.name }}" class="object-cover w-full h-full rounded-t-xl"/>
@@ -35,6 +58,12 @@
           </button>
         </div>
       </div>
+    </div>
+    <!-- Пагинация -->
+    <div class="flex justify-center mt-4">
+      <button (click)="previousPage()" [disabled]="currentPage === 1" class="bg-gray-600 text-white px-4 py-2 rounded mx-2">Previous</button>
+      <span class="text-white">{{currentPage}} / {{totalPages}}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="bg-gray-600 text-white px-4 py-2 rounded mx-2">Next</button>
     </div>
   </div>
 </div>

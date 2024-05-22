@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import {ProductsDTO} from "../../model/products";
-import {AxiosService} from "../axios/axios.service";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import { ProductsDTO } from "../../model/products";
+import { AxiosService } from "../axios/axios.service";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +40,19 @@ export class ProductsService {
       return [];
     }
   }
-  
+
+  async getProductsByCategory(category: string): Promise<ProductsDTO[]> {
+    try {
+      const response = await this.axiosService.request(
+        'GET',
+        `/api/products/category/${category}`,
+        {}
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(`Error while fetching products for category ${category}:`, error);
+      return [];
+    }
+  }
 }

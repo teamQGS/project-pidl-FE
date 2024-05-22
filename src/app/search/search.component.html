@@ -1,25 +1,30 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
-<div class="relative items-center justify-betwee text-base p-4
-  mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
-  <div class="flex flex-row">
+<div class="relative items-center justify-between text-base p-4 mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
+  <div class="flex items-center border border-gray-300 rounded-md overflow-hidden transition-all duration-300 ease-in-out" [ngClass]="{'w-72': !isExpanded, 'w-full': isExpanded}">
+    <button (click)="toggleCatalog()" class="px-4 py-2 bg-gray-200 text-gray-700">Catalog</button>
     <input
-    type="text"
-    [formControl]="searchControl"
-    placeholder="Search for products"
-    class="form-input block w-full px-3 py-2 mx-2 border border-gray-300 rounded-md text-gray-900 leading-5 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-    (keyup.enter)="search(searchControl.value)"  
-  >
-  <button (click)="search(searchControl.value)" class="px-4 py-2 bg-blue-500 text-white rounded">Search</button>
+      type="text"
+      [formControl]="searchControl"
+      placeholder="Search for products"
+      class="form-input flex-grow px-3 py-2 text-gray-900 leading-5 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+      (focus)="expandInput(true)"
+      (blur)="expandInput(false)"
+    >
   </div>
-  
-  <div class="absolute w-full mt-1 rounded-md bg-white shadow-lg z-10" *ngIf="products && products.length > 0">
-    <ul class="max-h-60 overflow-auto">
-      <li *ngFor="let product of products" class="p-2 hover:bg-gray-100 cursor-pointer">
-        {{ product.name }} - ${{ product.price }}
-      </li>
-    </ul>
+
+<!-- Каталог попап -->
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20" *ngIf="showCatalog">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold">Categories</h2>
+      <button (click)="toggleCatalog()" class="text-gray-500 hover:text-gray-700">&times;</button>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div *ngFor="let category of categories" (click)="selectCategory(category.name)" class="flex items-center p-4 border rounded hover:bg-gray-100 cursor-pointer">
+        <img [src]="category.image" [alt]="category.name" class="w-16 h-16 mr-4">
+        <span>{{ category.name }}</span>
+      </div>
+    </div>
   </div>
-  <div class="absolute w-full mt-1 rounded-md bg-white shadow-lg z-10" *ngIf="products && products.length === 0 && searchControl.value">
-    <p class="p-2 text-gray-500">No products found.</p>
-  </div>
+</div>
 </div>
