@@ -22,7 +22,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       <div *ngFor="let category of categories" (click)="selectCategory(category.name)" class="flex items-center p-4 border rounded hover:bg-gray-100 cursor-pointer">
         <img [src]="category.image" [alt]="category.name" class="w-16 h-16 mr-4">
-        <span>{{ category.name }}</span>
+        <span>{{ category.description }}</span>
       </div>
     </div>
   </div>

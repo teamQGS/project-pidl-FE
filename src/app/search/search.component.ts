@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 interface Category {
   name: string;
   image: string;
+  description: string;
 }
 
 @Component({
@@ -29,22 +30,21 @@ export class SearchComponent {
   isExpanded: boolean = false;
   showCatalog: boolean = false;
   categories: Category[] = [
-    { name: 'FRUITS', image: 'path/to/fruit.jpg' },
-    { name: 'Vegetables', image: 'path/to/vegetables.jpg' },
-    { name: 'Meat', image: 'path/to/meat.jpg' },
-    { name: 'Fish and Seafood', image: 'path/to/fish.jpg' },
-    { name: 'Dairy Products', image: 'path/to/dairy.jpg' },
-    { name: 'Grains and Legumes', image: 'path/to/grains.jpg' },
-    { name: 'Bakery and Pastries', image: 'path/to/bakery.jpg' },
-    { name: 'Beverages', image: 'path/to/beverages.jpg' },
-    { name: 'Sweets', image: 'path/to/sweets.jpg' },
-    { name: 'Frozen Products', image: 'path/to/frozen.jpg' },
-    { name: 'Canned Goods', image: 'path/to/canned.jpg' },
-    { name: 'Sauces and Condiments', image: 'path/to/sauces.jpg' },
-    { name: 'Nuts and Dried Fruits', image: 'path/to/nuts.jpg' },
-    { name: 'Snacks', image: 'path/to/snacks.jpg' },
-    { name: 'Alcoholic Beverages', image: 'path/to/alcohol.jpg' },
-    { name: 'Adult Products', image: 'path/to/adult-products.jpg' }
+    { name: 'FRUITS', image: 'path/to/fruit.jpg', description: "Fruits"},
+    { name: 'VEGETABLES', image: 'path/to/vegetables.jpg', description: "Vegetables" },
+    { name: 'MEAT', image: 'path/to/meat.jpg', description: "Meat" },
+    { name: 'SEAFOOD', image: 'path/to/fish.jpg', description: "Fish and Seafood" },
+    { name: 'DAIRY', image: 'path/to/dairy.jpg', description: "Dairy Products" },
+    { name: 'CEREALS', image: 'path/to/grains.jpg', description: "Grains and Legumes" },
+    { name: 'PASTRIES', image: 'path/to/bakery.jpg', description: "Bakery and Pastries" },
+    { name: 'BEVERAGES', image: 'path/to/beverages.jpg', description: "Beverages" },
+    { name: 'SWEETS', image: 'path/to/sweets.jpg', description: "Sweets" },
+    { name: 'FROZENFOOD', image: 'path/to/frozen.jpg', description: "Frozen Products" },
+    { name: 'CANNED', image: 'path/to/canned.jpg', description: "Canned Goods" },
+    { name: 'CONDIMENTS', image: 'path/to/sauces.jpg', description: "Sauces and Condiments" },
+    { name: 'NUTS', image: 'path/to/nuts.jpg', description: "Nuts and Dried Fruits" },
+    { name: 'SNACKS', image: 'path/to/snacks.jpg', description: "Snacks" },
+    { name: 'ALCOHOL', image: 'path/to/alcohol.jpg', description: "Alcoholic Beverages" }
   ];
   @Output() searchResults = new EventEmitter<ProductsDTO[]>();
   @Output() searchTermChange = new EventEmitter<boolean>();

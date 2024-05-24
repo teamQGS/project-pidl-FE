@@ -17,7 +17,7 @@ export class OrderService {
     try {
       const response = await this.axiosService.request(
         'GET',
-        'http://localhost:8080/api/orders',
+        'http://localhost:8080/api/orders/',
         {}
       );
       console.log(response.data);
