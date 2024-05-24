@@ -12,6 +12,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import {NgIf} from "@angular/common";
 
+interface Category {
+  name: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -59,6 +64,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadProducts();
   }
+
+
 
   loadProducts(): void {
     if (this.selectedCategory) {

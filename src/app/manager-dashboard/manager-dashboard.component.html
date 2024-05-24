@@ -18,7 +18,7 @@
         <button (click)="navigateToAddPage()" class="bg-custom-white rounded-xl px-8 py-2 m-2" matTooltip="Add new product">
           Add new product
         </button>
-        <button (click)="navigateToOrderMonitoring()" class="bg-custom-white rounded-xl px-8 py-2 m-2" matTooltip="Orders monitoring">
+        <button (click)="navigateToOrderMonitoringPage()" class="bg-custom-white rounded-xl px-8 py-2 m-2">
           Orders monitoring
         </button>
       </div>
@@ -62,11 +62,14 @@
             </div>
           </div>
           <div>
-            <img [src]="" (click)="deleteProduct(product)" class="cursor-pointer size-6 hidden sm:flex"
-              alt="Delete product">
+            <button class="bg-red-500 rounded-xl px-8 py-2 m-2" (click)="deleteProduct(product)">
+              Delete product
+            </button>
           </div>
           <div>
-            <img [src]="" class="cursor-pointer size-6 hidden sm:flex" alt="Edit product">
+            <button class="bg-blue-500 rounded-xl px-8 py-2 m-2">
+              Update product
+            </button>
           </div>
         </div>
       </div>

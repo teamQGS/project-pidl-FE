@@ -47,7 +47,7 @@ export class OrderMonitoringComponent implements OnInit {
 
     this.axiosService.request(
       'PUT',
-      `/api/orders/changeStatus/${order.id}`,
+      `/api/manager/order/changeStatus/${order.id}`,
       selectedStatus
     ).then(response => {
       this.snackBar.open('Status assigned successfully:', '', {

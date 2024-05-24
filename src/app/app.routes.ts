@@ -39,7 +39,7 @@ export const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'order', component: OrderPageComponent, canActivate: [WithTokenGuardService]},
   { path: 'order-history', component: OrderHistoryComponent, canActivate: [WithTokenGuardService]},
-  { path: 'order-monitoring', component: OrderMonitoringComponent, canActivate: [WithTokenGuardService]}
+  { path: 'order-monitoring', component: OrderMonitoringComponent, canActivate: [ManagerGuardService]}
 ];
 
 @NgModule({

@@ -11,13 +11,13 @@ import {ProductsDTO} from "../../model/products";
 })
 export class OrderService {
 
-  constructor(private axiosService: AxiosService, private snackBar: MatSnackBar, private orderService: OrderService) { }
+  constructor(private axiosService: AxiosService, private snackBar: MatSnackBar) { }
 
   async getAllOrders(): Promise<any[]> {
     try {
       const response = await this.axiosService.request(
         'GET',
-        'http://localhost:8080/api/orders/',
+        'http://localhost:8080/api/manager/orders',
         {}
       );
       console.log(response.data);

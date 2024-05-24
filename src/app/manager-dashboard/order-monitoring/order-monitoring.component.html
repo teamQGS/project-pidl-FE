@@ -25,7 +25,6 @@
               <mat-form-field appearance="fill">
                 <mat-label>Status</mat-label>
                 <mat-select [(value)]="selectedStatus[i]">
-                  <mat-option value="PAID">PAID</mat-option>
                   <mat-option value="IN_PROCESS">IN_PROCESS</mat-option>
                   <mat-option value="COMPLETED">COMPLETED</mat-option>
                   <mat-option value="CANCELED">CANCELED</mat-option>
@@ -33,7 +32,6 @@
               </mat-form-field>
               <button mat-flat-button class="button-assign ml-4" color="primary" (click)="assignStatus(order, selectedStatus[i])">Assign Status</button>
             </div>
-
             <button mat-flat-button class="button-delete" color="warn">Delete order</button>
           </div>
 

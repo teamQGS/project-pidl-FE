@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { ProductsService } from '../services/products/products.service';
-import { ProductsDTO } from '../model/products';
-import { NgForOf, NgIf, NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {ProductsService} from '../services/products/products.service';
+import {ProductsDTO} from '../model/products';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {Router} from '@angular/router';
 
 interface Category {
   name: string;
@@ -63,8 +63,7 @@ export class SearchComponent {
   async search(searchTerm: string): Promise<void> {
     if (searchTerm) {
       try {
-        const products = await this.productsService.searchProducts(searchTerm);
-        this.products = products;
+        this.products = await this.productsService.searchProducts(searchTerm);
         this.searchResults.emit(this.products);
       } catch (error) {
         console.error('Error while searching products:', error);
@@ -73,8 +72,7 @@ export class SearchComponent {
       }
     } else {
       try {
-        const products = await this.productsService.getAll();
-        this.products = products;
+        this.products = await this.productsService.getAll();
         this.searchResults.emit(this.products);
       } catch (error) {
         console.error('Error while fetching all products:', error);

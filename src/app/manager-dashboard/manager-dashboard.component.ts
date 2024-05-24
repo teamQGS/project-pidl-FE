@@ -48,7 +48,7 @@ export class ManagerDashboardComponent implements OnInit {
   navigateToAddPage(): void {
     this.router.navigate(['add-product']).then(r => {});
   }
-  navigateToOrderMonitoring(): void {
+  navigateToOrderMonitoringPage(): void {
     this.router.navigate(['order-monitoring']).then(r => {});
   }
 
