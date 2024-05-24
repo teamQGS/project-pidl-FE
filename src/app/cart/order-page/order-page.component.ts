@@ -58,8 +58,8 @@ export class OrderPageComponent implements OnInit{
     this.addressService.updateAddress(address).then(() => {
       this.axiosService.request(
         'POST',
-        '/api/orders/create',
-        { username: this.username, address: address }
+        `/api/orders/create/${this.username}`,
+        address
       ).then(response => {
         const orderId = response.data.id;
         this.router.navigate(['/order', orderId]);
