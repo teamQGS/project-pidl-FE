@@ -4,13 +4,23 @@
   width: 100%;
 }
 
-.example-full-width {
+.example-full-width{
   width: 100%;
+}
+
+.image-upload{
+  text-align: center;
+  background-color: antiquewhite;
 }
 
 #add_button{
   background: rgba(96, 136, 120, 0.7);
 }
+
+.add-btn{
+  text-align: center;
+}
+
 .container{
   margin-top: 2%;
 }

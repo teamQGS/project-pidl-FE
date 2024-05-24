@@ -1,8 +1,11 @@
+import {ProductsDTO} from "./products";
+
 export class OrderDTO {
   id!: string;
   date!: Date;
-  userId!: string;
-  productIds!: [];
+  customerUsername!: string;
+  managerUsername!: string;
+  products!: ProductsDTO[];
   totalSum!: number | undefined;
   status!: string;
 }

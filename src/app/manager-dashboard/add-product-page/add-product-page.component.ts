@@ -9,20 +9,22 @@ import {AxiosService} from "../../services/axios/axios.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-add-product-page',
   standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        MatLabel,
-        MatButton,
-        MatProgressSpinner,
-        MatOption,
-        MatSelect
-    ],
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatButton,
+    MatProgressSpinner,
+    MatOption,
+    MatSelect,
+    NgIf
+  ],
   templateUrl: './add-product-page.component.html',
   styleUrl: './add-product-page.component.css'
 })
@@ -34,6 +36,8 @@ export class AddProductPageComponent {
     private snackBar: MatSnackBar
   ) {}
   selectedCategory: String | undefined;
+  file: File | null = null; // Variable to store file
+
   addProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -41,11 +45,15 @@ export class AddProductPageComponent {
     count: [ '', Validators.required],
   });
 
-
+  onChange(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+    }
+  }
 
   onSubmit(){
     if (this.addProductForm.valid) {
-      const formData = this.addProductForm.value;
       this.axiosService.request(
         "POST",
         "/api/products/add",
@@ -54,7 +62,8 @@ export class AddProductPageComponent {
           description: this.addProductForm.value.description,
           price: parseFloat(<string>this.addProductForm.value.price),
           count: parseInt(<string>this.addProductForm.value.count),
-          productCategory: this.selectedCategory
+          category: this.selectedCategory,
+          illustration: this.file
         }
       ).then(response => {
         this.snackBar.open("Product was added successfully", '', {

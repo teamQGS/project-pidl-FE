@@ -1,3 +1,4 @@
+import {Binary} from "bson";
 
 export class ProductsDTO{
     id!: string;
@@ -5,6 +6,6 @@ export class ProductsDTO{
     description!: string;
     price!: number;
     count!: number;
-    illustration!: string;
+    illustration!: Binary;
     category!: string;
 }

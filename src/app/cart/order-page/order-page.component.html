@@ -1,11 +1,7 @@
-<link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
-<!-- Контейнер полного контента тела -->
+<link href="../../../tailwind.css" rel="stylesheet" />
 <div class="flex flex-col items-center justify-center h-screen bg-custom-black">
-  <!-- Контейнер с формой для правки профильных данных -->
   <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
-    <!-- Меню навигации -->
     <div class="flex items-center w-full rounded-t-3xl bg-custom-blue p-5">
-      <!-- Левая колонка для кнопки "Назад" -->
       <div class="flex-1">
         <div class="font-semibold text-custom-white">
           <a routerLink="/cart" class="cursor-pointer">
@@ -13,42 +9,48 @@
           </a>
         </div>
       </div>
-      <!-- Центральная колонка для текста навигации -->
       <div class="flex-1 text-center">
         <p class="text-base font-semibold text-custom-white">
-          Address information <!-- {{ username }} -->
+          Address information
         </p>
       </div>
-      <!-- Правая колонка, пустая, для баланса -->
       <div class="flex-1 invisible">
-        <span class="text-base font-semibold">Back</span> <!-- Невидимый элемент, который занимает место -->
+        <span class="text-base font-semibold">Back</span>
       </div>
     </div>
-    <!-- Форма обновления данных пользователя -->
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex justify-center">
-      <form class="w-full flex flex-col">
-        <label class="block mb-1 text-base" >Country</label>
+      <form [formGroup]="addressForm" class="w-full flex flex-col" (submit)="onSubmit()">
+        <label class="block mb-1 text-base">Country</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Country" formControlName="Country" />
+          <input matInput placeholder="Country" formControlName="country" />
         </mat-form-field>
         <br />
-        <label class="block mb-1 text-base" >City</label>
+        <label class="block mb-1 text-base">City</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="City" formControlName="City" />
+          <input matInput placeholder="City" formControlName="city" />
         </mat-form-field>
         <br />
-        <label class="block mb-1 text-base" >Address</label>
+        <label class="block mb-1 text-base">Street</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Address" formControlName="Address" />
+          <input matInput placeholder="Street" formControlName="street" />
         </mat-form-field>
         <br />
-        <label class="block mb-1 text-base" >Entrance</label>
+        <label class="block mb-1 text-base">House</label>
         <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Entrance" formControlName="Entrance" />
+          <input matInput placeholder="House" formControlName="house" />
         </mat-form-field>
         <br />
-        <!-- Кнопка редактирования -->
-        <button mat-raised-button color="basic"  type="button" class="mb-4" (click)="onSubmit()">
+        <label class="block mb-1 text-base">Postcode</label>
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Postcode" formControlName="postcode" />
+        </mat-form-field>
+        <br />
+        <label class="block mb-1 text-base">Country Code</label>
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Country Code" formControlName="countrycode" />
+        </mat-form-field>
+        <br />
+        <button mat-raised-button color="basic" type="submit" class="mb-4">
           Submit
         </button>
       </form>

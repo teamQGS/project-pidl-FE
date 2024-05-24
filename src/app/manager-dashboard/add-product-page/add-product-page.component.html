@@ -7,12 +7,12 @@
   <form [formGroup]="addProductForm" class="mat-form-field" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width">
       <mat-label>Product name to add</mat-label>
-      <input matInput placeholder="" formControlName="name">
+      <input matInput placeholder="Product name" formControlName="name">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
       <mat-label>Price of the product</mat-label>
-      <input matInput placeholder="" formControlName="price">
+      <input matInput placeholder="Price" formControlName="price">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
@@ -47,6 +47,17 @@
       <input matInput placeholder="Quantity" formControlName="count">
     </mat-form-field>
     <br>
+    <div class="image-upload">
+      <mat-label>Illustration</mat-label>
+      <br>
+        <input type="file" class="file-input" (change)="onChange($event)"/>
+      <div *ngIf="file">
+          <p> File details: Type: {{file.type}}, Size: {{file.size}} bytes</p>
+      </div>
+    </div>
+    <br>
+    <div class="add-btn">
     <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
+    </div>
   </form>
 </div>
