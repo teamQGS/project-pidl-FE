@@ -1,19 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductsService } from '../services/products/products.service';
-import { NgForOf, NgOptimizedImage } from '@angular/common';
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { ProductsDTO } from '../model/products';
-import { ActivatedRoute } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
-import { MatIcon } from '@angular/material/icon';
-import { MatFabButton, MatMiniFabButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { CartService } from '../services/cart/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { NgIf, NgClass, NgStyle } from '@angular/common';
-
-interface Category {
-  name: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -22,13 +16,10 @@ interface Category {
     NgForOf,
     NgOptimizedImage,
     SearchComponent,
-    MatIcon,
-    MatFabButton,
-    MatMiniFabButton,
+    MatIconModule,
+    MatButtonModule,
     ProductDetailsComponent,
-    NgIf,
-    NgClass,
-    NgStyle
+    NgIf
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
@@ -57,6 +48,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   slideInterval: any;
   isFirstTransition: boolean = true;
 
+  currentIndices: { [category: string]: number } = {};
+  dragging: { [category: string]: boolean } = {};
+  startX: number = 0;
+  scrollLeft: number = 0;
+  showGradient: { [category: string]: boolean } = {};
+
   get currentSlideImage(): string {
     return this.slideImages[this.currentSlideIndex];
   }
@@ -77,12 +74,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async loadCategories(): Promise<void> {
     try {
-      console.log('Fetching categories...');
       this.categories = await this.productsService.getCategories();
-      console.log('Categories loaded:', this.categories);
       if (this.categories.length > 0) {
         this.selectedCategory = this.categories[0];
-        console.log('Loading products for the first category:', this.selectedCategory);
         this.loadProducts();
       }
     } catch (error) {
@@ -99,7 +93,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
         this.updatePaginatedProducts();
         this.productsLoaded = true;
-        console.log('All products loaded and categorized:', this.categorizedProducts);
+        for (let category of this.categories) {
+          this.currentIndices[category] = 0;
+          this.dragging[category] = false;
+          this.showGradient[category] = true; // Initialize the gradient visibility
+        }
       })
       .catch((error: any) => {
         console.error('Error while fetching products:', error);
@@ -119,7 +117,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onCategorySelected(categoryName: string): void {
     this.selectedCategory = categoryName;
-    console.log('Category selected:', this.selectedCategory);
     this.loadCategoryProducts(categoryName);
   }
 
@@ -153,7 +150,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (this.progressBarWidth >= 100) {
         this.nextSlide();
       }
-    }, 100); // Adjust the interval as needed
+    }, 100);
   }
 
   resetProgressBar(): void {
@@ -162,7 +159,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.progressBarWidth = 0;
         this.startSlideShow();
-      }, 100); // Delay before starting the first transition
+      }, 100);
     } else {
       this.progressBarWidth = 0;
     }
@@ -186,7 +183,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.paginatedProducts = this.products.slice(startIndex, endIndex);
-    console.log('Paginated products updated:', this.paginatedProducts);
   }
 
   categories: string[] = [];
@@ -202,8 +198,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.categorizedProducts[category] = [];
         }
         this.categorizedProducts[category].push(product);
-      } else {
-        console.warn('Product without category:', product);
       }
     });
   }
@@ -220,10 +214,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.categorizeProducts();
         this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
         this.updatePaginatedProducts();
-        console.log(`Products loaded for category ${categoryName}:`, this.categorizedProducts[categoryName]);
       })
       .catch((error: any) => {
         console.error(`Error while fetching products for category ${categoryName}:`, error);
       });
+  }
+
+  checkScroll(event: Event, category: string): void {
+    const target = event.target as HTMLElement;
+    if (target) {
+      this.showGradient[category] = target.scrollWidth > target.scrollLeft + target.clientWidth;
+    }
   }
 }

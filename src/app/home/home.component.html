@@ -27,37 +27,41 @@
   </div>
 </div>
 
-
-<!-- Контейнер с продуктами по категориям -->
-<div *ngFor="let category of categories" class="w-11/12 flex flex-wrap items-center max-w-6xl rounded-3xl my-8">
-  <!-- Заголовок категории -->
-  <div class="flex flex-col w-full m-2 px-2 text-custom-white">
-    <p class="font-bold text-2xl">{{ category }}</p>
-  </div>
-  <!-- Список продуктов -->
-  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full m-2 px-2 box-border text-center">
-    <!-- Контейнер продукта -->
-    <div *ngFor="let product of categorizedProducts[category]" class="rounded-xl text-white overflow-hidden bg-custom-green">
-      <!-- Иллюстрация продукта -->
-      <div class="aspect-square w-full" (click)="selectProduct(product)">
-        <img [src]="product.illustration" alt="{{ product.name }}" class="object-cover w-full h-full rounded-t-xl"/>
+  <!-- Контейнер с продуктами по категориям -->
+  <div *ngFor="let category of categories" class="w-11/12 flex flex-col items-center max-w-6xl rounded-3xl my-8">
+    <!-- Заголовок категории -->
+    <div class="flex flex-col w-full m-2 px-2 text-custom-white">
+      <p class="font-bold text-2xl">{{ category }}</p>
+    </div>
+    <!-- Список продуктов -->
+    <div class="relative w-full overflow-hidden">
+      <div class="flex overflow-x-auto space-x-4 scrollbar-thin scrollbar-thumb-custom-green scrollbar-track-gray-800 p-2 category-container" (scroll)="checkScroll($event, category)">
+        <!-- Контейнер продукта -->
+        <div *ngFor="let product of categorizedProducts[category]" 
+             class="flex-none rounded-xl text-white overflow-hidden bg-custom-green w-56 transition-opacity duration-300">
+          <!-- Иллюстрация продукта -->
+          <div class="aspect-square w-full" (click)="selectProduct(product)">
+            <img [src]="product.illustration" alt="{{ product.name }}" class="object-cover w-full h-full rounded-t-xl"/>
+          </div>
+          <!-- Информация о продукте -->
+          <div class="flex flex-col text-left my-1 p-1">
+            <!-- Название продукта -->
+            <div class="p-1">{{ product.name }}</div>
+            <!-- Цена продукта -->
+            <div class="text-red-900 font-semibold p-1">{{ product.price }} EUR</div>
+          </div>
+          <!-- Кнопка добавления в корзину -->
+          <div class="bg-custom-black rounded-xl text-custom-white font-semibold m-1 py-1">
+            <button (click)="addToCart(product.id); $event.stopPropagation()">
+              Add to cart
+            </button>
+          </div>
+        </div>
       </div>
-      <!-- Информация о продукте -->
-      <div class="flex flex-col text-left my-1 p-1">
-        <!-- Название продукта -->
-        <div class="p-1">{{ product.name }}</div>
-        <!-- Цена продукта -->
-        <div class="text-red-900 font-semibold p-1">{{ product.price }} EUR</div>
-      </div>
-      <!-- Кнопка добавления в корзину -->
-      <div class="bg-custom-black rounded-xl text-custom-white font-semibold m-1 py-1">
-        <button (click)="addToCart(product.id); $event.stopPropagation()">
-          Add to cart
-        </button>
-      </div>
+      <!-- Градиентный эффект справа -->
+      <div *ngIf="showGradient[category]" class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-custom-black to-transparent pointer-events-none"></div>
     </div>
   </div>
-</div>
 
 
 
