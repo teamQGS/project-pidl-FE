@@ -51,6 +51,9 @@ export class ManagerDashboardComponent implements OnInit {
   navigateToOrderMonitoringPage(): void {
     this.router.navigate(['order-monitoring']).then(r => {});
   }
+  navigateToUpdateProductPage(): void {
+    this.router.navigate(['update-product']).then(r => {});
+  }
 
   deleteProduct(product: ProductsDTO) {
     this.axiosService.request(
@@ -65,6 +68,21 @@ export class ManagerDashboardComponent implements OnInit {
     }).catch(error => {
       console.log(product);
       console.error('Error during delete:', error);
+    });
+  }
+  updateProduct(product: ProductsDTO) {
+    this.axiosService.request(
+      'DELETE',
+      `api/products/update/${product.id}`,
+      {}
+    ).then(response => {
+      this.snackBar.open("Product updated", '', {
+        duration: 3000
+      });
+      this.products = this.products.filter(p => p.id !== product.id);
+    }).catch(error => {
+      console.log(product);
+      console.error('Error during update:', error);
     });
   }
 }

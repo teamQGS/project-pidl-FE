@@ -3,22 +3,22 @@
   <app-search></app-search>
 </div>
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center min-h-screen bg-custom-black">
+<div class="flex flex-col items-center min-h-screen bg-custom-black text-custom-white">
   <!-- Контейнер дэшборда -->
   <div class="w-11/12 flex flex-wrap items-center max-w-6xl my-8">
     <!-- Контейнер заголовка -->
     <div class="flex flex-row items-center w-full">
       <!-- Заголовок дэшборда -->
-      <div class="flex flex-col w-full m-2 px-2 text-custom-white">
+      <div class="flex flex-col w-full m-2 px-2">
         <p class="font-bold text-2xl">Manager dashboard</p>
-        <p>Add, modify or remove products</p>
+        <p class="text-gray-400">Add, modify or remove products</p>
       </div>
       <!-- Кнопка добавления нового продукта -->
       <div class="flex w-full justify-end px-2">
-        <button (click)="navigateToAddPage()" class="bg-custom-white rounded-xl px-8 py-2 m-2" matTooltip="Add new product">
+        <button (click)="navigateToAddPage()" class="bg-gray-700 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105" matTooltip="Add new product">
           Add new product
         </button>
-        <button (click)="navigateToOrderMonitoringPage()" class="bg-custom-white rounded-xl px-8 py-2 m-2">
+        <button (click)="navigateToOrderMonitoringPage()" class="bg-gray-700 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105">
           Orders monitoring
         </button>
       </div>
@@ -26,10 +26,9 @@
 
     <!-- Список продуктов -->
     <div class="grid grid-rows-1 gap-4 w-full m-2 px-2 box-border text-center">
-      <div *ngFor="let product of products"
-        class="my-2 mx-4 bg-custom-green-dark-1 rounded-xl text-custom-white flex flex-col">
+      <div *ngFor="let product of products" class="my-2 mx-4 bg-gray-800 rounded-xl flex flex-col text-white shadow-lg transition-transform transform hover:scale-105">
         <!-- Левая: иллюстрация, название, описание -->
-        <div class="flex flex-row items-center w-full sm:w-auto">
+        <div class="flex flex-row items-center w-full sm:w-auto p-4">
           <!-- Иллюстрация продукта -->
           <div class="flex flex-row">
             <img [src]="product.illustration" alt="{{ product.name }}" class="rounded-xl w-24 h-24 mr-4" />
@@ -37,20 +36,19 @@
           <!-- Информация к продукту -->
           <div class="flex flex-col justify-center">
             <div class="flex flex-row">
-              <p>{{ product.name }}</p>
+              <p class="font-bold">{{ product.name }}</p>
             </div>
-            <div class="flex-row text-xs text-custom-white-dark-1 hidden lg:flex">
+            <div class="flex-row text-xs text-gray-400 hidden lg:flex">
               <p>{{ product.description }}</p>
             </div>
           </div>
         </div>
         <!-- Правая: количество продукта и кнопки -->
         <div class="flex flex-col sm:flex-row mr-0 mx-0 mt-2 sm:mr-4 sm:mt-2 text-left sm:text-center sm:items-center">
-          <div
-            class="flex flew-row sm:flex-col my-2 sm:my-auto sm:mx-4 min-w-64 justify-between items-center sm:justify-normal">
+          <div class="flex flew-row sm:flex-col my-2 sm:my-auto sm:mx-4 min-w-64 justify-between items-center sm:justify-normal">
             <!-- Контейнер с суммой -->
             <div class="text-sm sm:text-base">
-              Price: {{product.price}} EUR
+              Price: {{ product.price }} EUR
             </div>
             <!-- Контейнер с кнопками для увелечения или уменьшения на 1 и количество -->
             <div class="my-2 sm:my-3">
@@ -62,15 +60,17 @@
             </div>
           </div>
           <div>
-            <button class="bg-red-500 rounded-xl px-8 py-2 m-2" (click)="deleteProduct(product)">
+            <button class="bg-red-500 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105" (click)="deleteProduct(product)">
               Delete product
             </button>
           </div>
           <div>
-            <button class="bg-blue-500 rounded-xl px-8 py-2 m-2">
+            <button class="bg-blue-500 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105" (click)="navigateToUpdateProductPage()">
               Update product
             </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>

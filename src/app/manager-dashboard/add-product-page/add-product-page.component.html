@@ -1,7 +1,7 @@
 <div class="head">
-    <h1>
-      Add product page
-    </h1>
+  <h1>
+    Add product page
+  </h1>
 </div>
 <div class="container">
   <form [formGroup]="addProductForm" class="mat-form-field" (ngSubmit)="onSubmit()">
@@ -50,14 +50,14 @@
     <div class="image-upload">
       <mat-label>Illustration</mat-label>
       <br>
-        <input type="file" class="file-input" (change)="onChange($event)"/>
+      <input type="file" class="file-input" (change)="onChange($event)"/>
       <div *ngIf="file">
-          <p> File details: Type: {{file.type}}, Size: {{file.size}} bytes</p>
+        <p> File details: Type: {{file.type}}, Size: {{file.size}} bytes</p>
       </div>
     </div>
     <br>
     <div class="add-btn">
-    <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
+      <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
     </div>
   </form>
 </div>

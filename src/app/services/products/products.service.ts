@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ProductsService {
 
-  constructor(private axiosService: AxiosService, private http: HttpClient) {
+  constructor(private axiosService: AxiosService) {
   }
 
   async getAll(): Promise<ProductsDTO[]> {
