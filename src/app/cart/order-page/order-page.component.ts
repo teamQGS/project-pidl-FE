@@ -62,7 +62,7 @@ export class OrderPageComponent implements OnInit{
         address
       ).then(response => {
         const orderId = response.data.id;
-        this.router.navigate(['/order', orderId]);
+        this.router.navigate(['/active-order']);
         this.snackBar.open('Order was successfully created', '', {
           duration: 3000
         });
