@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
-import {NgForOf, NgIf} from "@angular/common";
+import {formatDate, NgForOf, NgIf} from "@angular/common";
 import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -64,5 +64,18 @@ export class OrderMonitoringComponent implements OnInit {
         duration: 3000
       });
     });
+  }
+
+  formatDate(dateString: Date): string {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false, // Use 24-hour format
+    };
+    return date.toLocaleDateString('en-GB', options); // Format date with time
   }
 }

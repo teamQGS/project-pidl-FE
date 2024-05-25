@@ -26,7 +26,7 @@
             <div class="space-y-2 mb-4 md:mb-0">
               <div class="font-semibold">Order Id: {{ order.id }}</div>
               <div>Customer Username: {{ order.customerUsername }}</div>
-              <div>Date: {{ order.date }}</div>
+              <div>Date: {{ formatDate(order.date) }}</div>
               <div>Status:
                 <span *ngIf="order.status == 'CREATED'" class="text-yellow-500 font-semibold">{{ order.status }}</span>
                 <span *ngIf="order.status == 'IN_PROCESS'" class="text-blue-500 font-semibold">{{ order.status }}</span>

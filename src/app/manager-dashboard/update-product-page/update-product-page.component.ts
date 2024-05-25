@@ -36,7 +36,7 @@ export class UpdateProductPageComponent {
   selectedCategory: String | undefined;
   file: File | null = null; // Variable to store file
 
-  addProductForm = this.formBuilder.group({
+  updateProductForm = this.formBuilder.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
     price: [ '', Validators.required],
@@ -50,30 +50,25 @@ export class UpdateProductPageComponent {
     }
   }
 
-  onSubmit(){
-    if (this.addProductForm.valid) {
-      this.axiosService.request(
-        "POST",
-        "/api/products/add",
-        {
-          name: this.addProductForm.value.name,
-          description: this.addProductForm.value.description,
-          price: parseFloat(<string>this.addProductForm.value.price),
-          count: parseInt(<string>this.addProductForm.value.count),
-          category: this.selectedCategory,
-          illustration: this.file
-        }
-      ).then(response => {
-        this.snackBar.open("Product was added successfully", '', {
-          duration: 3000
-        });
-        this.router.navigateByUrl('/manager-dashboard');
-      }).catch(error => {
-        console.log('error', error);
-        this.snackBar.open("Error occurred while adding product", '', {
-          duration: 3000
-        });
-      });
-    }
-  }
+  // onSubmit(){
+  //   if (this.updateProductForm.valid) {
+  //     this.axiosService.request(
+  //       "PUT",
+  //       `/api/products/update/${}`,
+  //       {
+  //
+  //       }
+  //     ).then(response => {
+  //       this.snackBar.open("Product was updated successfully", '', {
+  //         duration: 3000
+  //       });
+  //       this.router.navigateByUrl('/manager-dashboard');
+  //     }).catch(error => {
+  //       console.log('error', error);
+  //       this.snackBar.open("Error occurred while updating product", '', {
+  //         duration: 3000
+  //       });
+  //     });
+  //   }
+  // }
 }

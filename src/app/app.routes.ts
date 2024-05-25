@@ -8,7 +8,6 @@ import {RegisterPageComponent} from "./registration/register-page/register-page.
 import {ProfileComponent} from "./profile/profile.component";
 import {SettingsComponent} from "./profile/settings/settings.component";
 import {NgModule} from "@angular/core";
-import {UserDeshboardComponent} from "./user-dashboard/user-deshboard.component";
 import {AdminDeshboardComponent} from "./admin-dashboard/admin-deshboard.component";
 import {ManagerDashboardComponent} from "./manager-dashboard/manager-dashboard.component";
 import {AddProductPageComponent} from "./manager-dashboard/add-product-page/add-product-page.component";
@@ -32,7 +31,6 @@ export const routes: Routes = [
   { path: 'profile/settings', component: SettingsComponent, canActivate: [WithTokenGuardService] },
   { path: 'profile/settings/update', component: UpdateUserFormComponent, canActivate: [WithTokenGuardService] },
   { path: 'profile/settings/changePassword', component: ChangePasswordFormComponent, canActivate: [WithTokenGuardService] },
-  { path: 'user-dashboard', component: UserDeshboardComponent, canActivate: [CustomerGuardService] },
   { path: 'admin-dashboard', component: AdminDeshboardComponent, canActivate: [AdminGuardService] },
   { path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [ManagerGuardService] },
   { path: 'add-product', component: AddProductPageComponent, canActivate: [WithTokenGuardService] },

@@ -45,6 +45,16 @@ export class OrderHistoryComponent implements OnInit {
 
   formatDate(dateString: Date): string {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB'); // 'en-GB' форматирует дату как dd/mm/yyyy
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false, // Use 24-hour format
+    };
+    return date.toLocaleDateString('en-GB', options); // Format date with time
   }
+
+
 }

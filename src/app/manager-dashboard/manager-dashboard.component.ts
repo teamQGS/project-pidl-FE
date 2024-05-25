@@ -72,9 +72,15 @@ export class ManagerDashboardComponent implements OnInit {
   }
   updateProduct(product: ProductsDTO) {
     this.axiosService.request(
-      'DELETE',
+      'PUT',
       `api/products/update/${product.id}`,
-      {}
+      {
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        illustration: product.illustration,
+        count: product.count
+      }
     ).then(response => {
       this.snackBar.open("Product updated", '', {
         duration: 3000
@@ -85,4 +91,5 @@ export class ManagerDashboardComponent implements OnInit {
       console.error('Error during update:', error);
     });
   }
+
 }
