@@ -15,7 +15,7 @@
     <div class="w-full">
       <ul>
         <li *ngFor="let order of orders; let i = index" class="bg-gray-800 p-4 m-2 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-          <div *ngIf="order.status == 'COMPLETED' && order.customerUsername == username" class="flex justify-between items-center">
+          <div class="flex justify-between items-center">
             <div class="space-y-1">
               <div>Order Id: {{ order.id }}</div>
               <div>Date: {{ formatDate(order.date) }}</div>
