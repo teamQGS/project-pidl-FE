@@ -44,6 +44,19 @@ export class ActiveOrderPageComponent implements OnInit{
   }
 
   cancelOrder() {
-
+    // @ts-ignore
+    const orderId = this.order.id;
+    this.axiosService.request(
+      "PUT",
+      `/api/orders/changeStatus/${orderId}`,
+      "CANCELED"
+    ).then(response=>{
+        this.order = response.data;
+        this.date = new Date(response.data.date);
+      }
+    ).catch(error=>{
+      this.snackBar.open('Problem with cancelling', '', {
+        duration: 3000
+      })});
   }
 }
