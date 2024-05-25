@@ -26,8 +26,9 @@
     <!-- Кнопки корзины и логина -->
 
     <div class="flex-row flex">
-      <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" routerLink="cart">
-        <img [src]="cartIconPath" alt="Cart" />
+      <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="redirectToCartOrActiveOrder()">
+        <img *ngIf="!activeOrder" [src]="cartIconPath" alt="Cart" />
+        <img *ngIf="activeOrder" [src]="activeOrderIconPath" alt="Active Order" />
       </div>
 
 

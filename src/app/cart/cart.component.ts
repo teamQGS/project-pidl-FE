@@ -6,6 +6,7 @@ import { MatButton, MatFabButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartDTO } from '../model/cart';
 import {Route, Router, RouterLink} from '@angular/router';
+import {ProductsService} from "../services/products/products.service";
 
 @Component({
   selector: 'app-cart',
@@ -23,8 +24,10 @@ export class CartComponent implements OnInit {
   cartItems: ProductsDTO[] = [];
   cart: CartDTO = new CartDTO();
   totalPrice: number = 0;
+  warehouseProducts: ProductsDTO[] = [];
 
   constructor(
+    private productsService: ProductsService,
     private cartService: CartService,
     private snackBar: MatSnackBar,
     private router: Router
@@ -35,6 +38,12 @@ export class CartComponent implements OnInit {
     console.log(this.cart);
     this.cartItems = this.cart.products;
     this.calculateTotalPrice();
+    this.warehouseProducts = await this.productsService.getAll();
+  }
+
+  getProductWarehouseCount(productId: string): number {
+    const product = this.warehouseProducts.find(prod => prod.id === productId);
+    return product ? product.count : 0;
   }
 
   removeFromCart(productId: string) {

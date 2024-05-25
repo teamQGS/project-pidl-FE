@@ -9,6 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AxiosService} from "../../services/axios/axios.service";
 import {AddressService} from "../../services/adress/address.service";
 import {AddressDTO} from "../../model/address";
+import {HeaderComponent} from "../../header/header.component";
 
 @Component({
   selector: 'app-order-page',

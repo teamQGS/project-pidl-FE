@@ -1,10 +1,11 @@
-import { Component, HostListener } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import {Component, HostListener, OnInit} from '@angular/core';
+import {Route, Router, RouterLink} from "@angular/router";
 import { NgIf, NgOptimizedImage } from "@angular/common";
 import { SearchComponent } from '../search/search.component';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { NgZone } from '@angular/core';
+import {OrderService} from "../services/orders/order.service";
 
 @Component({
   selector: 'app-header',
@@ -18,8 +19,7 @@ import { NgZone } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit{
   // v1.0.0 icons
   logoLightPath = 'assets/logo/logo-light.svg';
   cartIconPath = 'assets/icons/cart-icon.svg';
@@ -29,7 +29,8 @@ export class HeaderComponent {
   administratorIconPath = 'assets/icons/administrator-icon.svg';
   menuIconPath = 'assets/icons/menu-icon.svg';
   loginIconPath = 'assets/icons/login-icon.svg';
-  
+  activeOrderIconPath = 'assets/icons/active-order-icon.svg';
+
   dashboardValue: String[] = ["User Dashboard", "Admin Dashboard", "Manager Dashboard"];
   protected readonly window = window;
 
@@ -43,8 +44,8 @@ export class HeaderComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const clickedInside = event
-    .composedPath()
-    .some(el => (el as HTMLElement).classList?.contains('dashboard-list'));
+      .composedPath()
+      .some(el => (el as HTMLElement).classList?.contains('dashboard-list'));
     if (!clickedInside) {
       this.showDashboardList = false;
     }
@@ -53,7 +54,7 @@ export class HeaderComponent {
   isLoggedIn = false;
   private authSubscription: Subscription;
 
-  constructor(private authService: AuthService, private zone: NgZone) {
+  constructor(private router: Router, private orderService: OrderService, private authService: AuthService, private zone: NgZone) {
     this.authSubscription = this.authService.isLoggedIn.subscribe(status => {
       this.zone.run(() => { // Используйте NgZone для обновления UI
         this.isLoggedIn = status;
@@ -62,7 +63,28 @@ export class HeaderComponent {
     });
   }
 
+
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
+  }
+
+  activeOrder: boolean | undefined;
+
+  async checkActiveOrder(): Promise<void> {
+    this.activeOrder = await this.orderService.getActiveOrder();
+  }
+
+  ngOnInit(): void {
+    this.checkActiveOrder();
+  }
+
+  async redirectToCartOrActiveOrder(): Promise<void> {
+    await this.checkActiveOrder();
+    console.log(this.activeOrder);
+    if (this.activeOrder) {
+      this.router.navigate(['/active-order']); // Редирект на страницу активного заказа
+    } else {
+      this.router.navigate(['/cart']); // Редирект на страницу корзины
+    }
   }
 }

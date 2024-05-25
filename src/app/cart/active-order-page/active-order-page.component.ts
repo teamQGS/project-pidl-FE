@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {AddressService} from "../../services/adress/address.service";
 import {OrderDTO} from "../../model/orders";
 import {NgForOf, NgIf} from "@angular/common";
+import {OrderService} from "../../services/orders/order.service";
 
 @Component({
   selector: 'app-active-order-page',
@@ -22,6 +23,7 @@ export class ActiveOrderPageComponent implements OnInit{
     private snackBar: MatSnackBar,
     private axiosService: AxiosService,
     private router: Router,
+    private orderService: OrderService,
     private addressService: AddressService
   ){}
 
@@ -58,5 +60,9 @@ export class ActiveOrderPageComponent implements OnInit{
       this.snackBar.open('Problem with cancelling', '', {
         duration: 3000
       })});
+  }
+
+  goToHomePage(): void {
+    this.router.navigate(['/']); // Перенаправление на главную страницу
   }
 }

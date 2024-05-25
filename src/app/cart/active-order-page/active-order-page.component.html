@@ -1,12 +1,12 @@
 <link href="../../../tailwind.css" rel="stylesheet" />
 
-<div class="max-w-5xl mx-auto my-10 p-5 bg-white rounded-lg shadow-lg">
+<div class="max-w-5xl mx-auto my-10 p-5 bg-white rounded-lg shadow-lg" *ngIf="order && (order.status === 'CREATED' || order.status === 'IN_PROCESS'); else noActiveOrder">
   <h1 class="text-3xl font-bold text-center mb-6">Your Order</h1>
   <div class="border-b pb-4 mb-4">
-    <p class="text-lg"><strong>Order ID:</strong> {{order?.id}}</p>
+    <p class="text-lg"><strong>Order ID:</strong> {{order.id}}</p>
     <p class="text-lg"><strong>Created at:</strong> {{date}}</p>
-    <p class="text-lg"><strong>Total Sum:</strong> {{order?.totalSum}} EUR</p>
-    <p class="text-lg"><strong>Status:</strong> {{order?.status}}</p>
+    <p class="text-lg"><strong>Total Sum:</strong> {{order.totalSum}} EUR</p>
+    <p class="text-lg"><strong>Status:</strong> {{order.status}}</p>
   </div>
 
   <div class="grid grid-cols-1 gap-4">
@@ -22,7 +22,15 @@
       </div>
     </div>
   </div>
-  <button *ngIf="order?.status === 'IN_PROCESS'" class="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" (click)="cancelOrder()">Cancel Order</button>
+  <button *ngIf="order?.status === 'CREATED'" class="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" (click)="cancelOrder()">Cancel Order</button>
 </div>
+
+<ng-template #noActiveOrder>
+  <div class="max-w-5xl mx-auto my-10 p-5 bg-white rounded-lg shadow-lg text-center">
+    <p class="text-xl font-bold mb-6">You don't have active order</p>
+    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" (click)="goToHomePage()">Go to home page</button>
+  </div>
+</ng-template>
+
 
 

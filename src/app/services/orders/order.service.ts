@@ -11,6 +11,7 @@ import {ProductsDTO} from "../../model/products";
 })
 export class OrderService {
   username = window.localStorage.getItem('username');
+
   constructor(private axiosService: AxiosService, private snackBar: MatSnackBar) { }
 
   async getAllOrders(): Promise<any[]> {
@@ -42,5 +43,19 @@ export class OrderService {
       return [];
     }
   }
+
+  async getActiveOrder(): Promise<boolean> {
+    try {
+      const response = await this.axiosService.request(
+        "GET",
+        `/api/orders/find/${this.username}`,
+        {}
+      );
+      return !!response.data;
+    } catch (error) {
+      return false;
+    }
+  }
+
 
 }
