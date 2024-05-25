@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -21,7 +21,8 @@ import {OrderService} from "../../services/orders/order.service";
     MatLabel,
     MatOption,
     MatSelect,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './order-monitoring.component.html',
   styleUrl: './order-monitoring.component.css'

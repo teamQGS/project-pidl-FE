@@ -15,7 +15,7 @@
     <div class="w-full">
       <ul>
         <li *ngFor="let order of orders; let i = index" class="flex flex-col bg-gray-800 p-4 m-2 rounded-lg">
-          <div class="content flex justify-between items-center">
+          <div *ngIf="order.status != 'COMPLETED' && order.status != 'CANCELED'" class="content flex justify-between items-center">
             <div class="mt-2">
               <div class="">Order Id: {{ order.id }}</div>
               <div class="">Date: {{ order.date }}</div>
