@@ -13,7 +13,6 @@ import { NgIf, NgClass, NgStyle } from '@angular/common';
 
 interface Category {
   name: string;
-  description: string;
 }
 
 @Component({
@@ -69,31 +68,47 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.loadProducts();
-    this.startSlideShow();
+    this.loadCategories();
   }
 
   ngOnDestroy(): void {
     clearInterval(this.slideInterval);
   }
 
+  async loadCategories(): Promise<void> {
+    try {
+      console.log('Fetching categories...');
+      this.categories = await this.productsService.getCategories();
+      console.log('Categories loaded:', this.categories);
+      if (this.categories.length > 0) {
+        this.selectedCategory = this.categories[0];
+        console.log('Loading products for the first category:', this.selectedCategory);
+        this.loadProducts();
+      }
+    } catch (error) {
+      console.error('Error while fetching categories:', error);
+    }
+  }
+
   loadProducts(): void {
-    if (this.selectedCategory) {
-      this.loadCategoryProducts(this.selectedCategory);
-    } else {
-      this.productsService.getAll().then((products: ProductsDTO[]) => {
+    this.productsService
+      .getAll()
+      .then((products: ProductsDTO[]) => {
         this.products = products;
+        this.categorizeProducts();
         this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
         this.updatePaginatedProducts();
         this.productsLoaded = true;
-      }).catch((error: any) => {
+        console.log('All products loaded and categorized:', this.categorizedProducts);
+      })
+      .catch((error: any) => {
         console.error('Error while fetching products:', error);
       });
-    }
   }
 
   onSearchResults(products: ProductsDTO[]): void {
     this.products = products;
+    this.categorizeProducts();
     this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
     this.updatePaginatedProducts();
   }
@@ -104,6 +119,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onCategorySelected(categoryName: string): void {
     this.selectedCategory = categoryName;
+    console.log('Category selected:', this.selectedCategory);
     this.loadCategoryProducts(categoryName);
   }
 
@@ -112,34 +128,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadProducts();
   }
 
-  loadCategoryProducts(categoryName: string): void {
-    this.productsService.getProductsByCategory(categoryName).then((products: ProductsDTO[]) => {
-      this.products = products;
-      this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
-      this.updatePaginatedProducts();
-    }).catch((error: any) => {
-      console.error(`Error while fetching products for category ${categoryName}:`, error);
-    });
-  }
-
   selectProduct(product: ProductsDTO): void {
     this.selectedProduct = product;
   }
 
   addToCart(productId: string): void {
     this.cartService.addToCart(productId);
-    this.snackBar.open('Product was added to cart', '', {
-      duration: 3000
-    });
+    this.snackBar.open('Product was added to cart', '', { duration: 3000 });
   }
 
   previousSlide(): void {
-    this.currentSlideIndex = (this.currentSlideIndex > 0) ? this.currentSlideIndex - 1 : this.slideImages.length - 1;
+    this.currentSlideIndex = this.currentSlideIndex > 0 ? this.currentSlideIndex - 1 : this.slideImages.length - 1;
     this.resetProgressBar();
   }
 
   nextSlide(): void {
-    this.currentSlideIndex = (this.currentSlideIndex < this.slideImages.length - 1) ? this.currentSlideIndex + 1 : 0;
+    this.currentSlideIndex = this.currentSlideIndex < this.slideImages.length - 1 ? this.currentSlideIndex + 1 : 0;
     this.resetProgressBar();
   }
 
@@ -182,5 +186,44 @@ export class HomeComponent implements OnInit, OnDestroy {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.paginatedProducts = this.products.slice(startIndex, endIndex);
+    console.log('Paginated products updated:', this.paginatedProducts);
+  }
+
+  categories: string[] = [];
+
+  categorizedProducts: { [category: string]: ProductsDTO[] } = {};
+
+  categorizeProducts(): void {
+    this.categorizedProducts = {};
+    this.products.forEach(product => {
+      const category = product.productCategory;
+      if (category) {
+        if (!this.categorizedProducts[category]) {
+          this.categorizedProducts[category] = [];
+        }
+        this.categorizedProducts[category].push(product);
+      } else {
+        console.warn('Product without category:', product);
+      }
+    });
+  }
+
+  getCategorizedProducts(category: string): ProductsDTO[] {
+    return this.categorizedProducts[category] || [];
+  }
+
+  loadCategoryProducts(categoryName: string): void {
+    this.productsService
+      .getProductsByCategory(categoryName)
+      .then((products: ProductsDTO[]) => {
+        this.products = products;
+        this.categorizeProducts();
+        this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
+        this.updatePaginatedProducts();
+        console.log(`Products loaded for category ${categoryName}:`, this.categorizedProducts[categoryName]);
+      })
+      .catch((error: any) => {
+        console.error(`Error while fetching products for category ${categoryName}:`, error);
+      });
   }
 }

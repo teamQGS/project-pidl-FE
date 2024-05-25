@@ -7,5 +7,5 @@ export class ProductsDTO{
     price!: number;
     count!: number;
     illustration!: Binary;
-    category!: string;
+    productCategory!: string;
 }

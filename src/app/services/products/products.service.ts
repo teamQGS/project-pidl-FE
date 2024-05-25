@@ -55,4 +55,20 @@ export class ProductsService {
       return [];
     }
   }
+
+  // Get all categories
+  async getCategories(): Promise<any> {
+    try {
+      const response = await this.axiosService.request(
+        'GET',
+        '/api/products/categories',
+        {}
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error while fetching categories:', error);
+      return [];
+    }
+  }
 }
