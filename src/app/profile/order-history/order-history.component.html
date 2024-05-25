@@ -19,7 +19,12 @@
             <div class="space-y-1">
               <div>Order Id: {{ order.id }}</div>
               <div>Date: {{ formatDate(order.date) }}</div>
-              <div>Status: <span class="text-green-500 font-semibold">{{ order.status }}</span></div>
+              <div>Status:
+                <span *ngIf="order.status == 'COMPLETED'" class="text-green-500 font-semibold">{{ order.status }}</span>
+                <span *ngIf="order.status == 'CREATED'" class="text-yellow-500 font-semibold">{{ order.status }}</span>
+                <span *ngIf="order.status == 'IN_PROGRESS'" class="text-blue-500 font-semibold">{{ order.status }}</span>
+                <span *ngIf="order.status == 'CANCELED'" class="text-red-500 font-semibold">{{ order.status }}</span>
+              </div>
             </div>
           </div>
         </li>
