@@ -3,25 +3,31 @@
   <app-search (searchResults)="onSearchResults($event)" (searchTermChange)="onSearchTermChange($event)" (categorySelected)="onCategorySelected($event)"></app-search>
 </div>
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center min-h-screen bg-custom-black">
+<div class="flex flex-col items-center min-h-screen bg-custom-black overflow-auto">
       <!-- Описание продуктов. Pop-up при нажатии на продукт -->
       <app-product-details [product]="selectedProduct"></app-product-details>
-  <!-- Маркетинговый контейнер -->
-  <div *ngIf="showMarketing" class="w-full max-w-6xl rounded-3xl my-8 overflow-hidden transition-all duration-300 ease-in-out">
-    <div class="relative w-full h-64 bg-gray-800 text-white">
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-center">
-          <h2 class="text-3xl font-bold mb-4">Special Offers</h2>
-          <p class="text-xl">Don't miss out on our exclusive deals!</p>
-        </div>
+<!-- Маркетинговый контейнер -->
+<div *ngIf="showMarketing" class="w-full max-w-6xl rounded-3xl my-8 overflow-hidden transition-all duration-300 ease-in-out">
+  <div class="relative w-full h-64 bg-gray-800 text-white">
+    <div class="absolute inset-1 flex items-center justify-center">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold mb-4">Special Offers</h2>
+        <p class="text-xl">Don't miss out on our exclusive deals!</p>
       </div>
-      <img [src]="currentSlideImage" alt="Marketing Image" class="w-full h-full object-cover opacity-50">
     </div>
-    <div class="flex justify-between mt-4">
-      <button (click)="previousSlide()" class="bg-gray-600 text-white px-4 py-2 rounded">Previous</button>
-      <button (click)="nextSlide()" class="bg-gray-600 text-white px-4 py-2 rounded">Next</button>
-    </div>
+    <img [src]="currentSlideImage" alt="Marketing Image" class="w-full h-full object-cover opacity-50">
   </div>
+  <div class="flex justify-between mt-1">
+    <button (click)="previousSlide()" class="bg-white hover:bg-custom-white duration-300 text-black font-medium px-4 py-2 rounded">
+      <img [src]="previousIconPath" alt="Previous" class="size-4">
+    </button>
+    <button (click)="nextSlide()" class="bg-white hover:bg-custom-white duration-300 text-black font-medium px-4 py-2 rounded">
+      <img [src]="nextIconPath" alt="Next" class="size-4">
+    </button>
+  </div>
+</div>
+
+
   <!-- Кнопка загрузки продуктов -->
   <div *ngIf="!productsLoaded && !selectedCategory" class="my-8">
     <button (click)="loadProducts()" class="bg-blue-500 text-white px-4 py-2 rounded">Load Products</button>

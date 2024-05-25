@@ -1,5 +1,4 @@
-// home.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductsService } from '../services/products/products.service';
 import { NgForOf, NgOptimizedImage } from '@angular/common';
 import { ProductsDTO } from '../model/products';
@@ -10,7 +9,7 @@ import { MatFabButton, MatMiniFabButton } from '@angular/material/button';
 import { CartService } from '../services/cart/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
-import {NgIf} from "@angular/common";
+import { NgIf, NgClass, NgStyle } from '@angular/common';
 
 interface Category {
   name: string;
@@ -28,12 +27,14 @@ interface Category {
     MatFabButton,
     MatMiniFabButton,
     ProductDetailsComponent,
-    NgIf
+    NgIf,
+    NgClass,
+    NgStyle
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   selectedProduct: ProductsDTO | null = null;
   products: ProductsDTO[] = [];
   paginatedProducts: ProductsDTO[] = [];
@@ -44,12 +45,18 @@ export class HomeComponent implements OnInit {
   showMarketing: boolean = true;
   selectedCategory: string | null = null;
 
+  nextIconPath: string = 'assets/icons/next-icon.svg';
+  previousIconPath: string = 'assets/icons/previous-icon.svg';
+
   slideImages: string[] = [
-    'path/to/slide1.jpg',
-    'path/to/slide2.jpg',
-    'path/to/slide3.jpg'
+    'assets/illustrations/marketing/welcome-pidl.webp',
+    'assets/illustrations/marketing/new-adult-category.webp',
+    'assets/illustrations/marketing/collab-edudate.webp'
   ];
   currentSlideIndex: number = 0;
+  progressBarWidth: number = 0;
+  slideInterval: any;
+  isFirstTransition: boolean = true;
 
   get currentSlideImage(): string {
     return this.slideImages[this.currentSlideIndex];
@@ -63,9 +70,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
+    this.startSlideShow();
   }
 
-
+  ngOnDestroy(): void {
+    clearInterval(this.slideInterval);
+  }
 
   loadProducts(): void {
     if (this.selectedCategory) {
@@ -125,10 +135,33 @@ export class HomeComponent implements OnInit {
 
   previousSlide(): void {
     this.currentSlideIndex = (this.currentSlideIndex > 0) ? this.currentSlideIndex - 1 : this.slideImages.length - 1;
+    this.resetProgressBar();
   }
 
   nextSlide(): void {
     this.currentSlideIndex = (this.currentSlideIndex < this.slideImages.length - 1) ? this.currentSlideIndex + 1 : 0;
+    this.resetProgressBar();
+  }
+
+  startSlideShow(): void {
+    this.slideInterval = setInterval(() => {
+      this.progressBarWidth += 1;
+      if (this.progressBarWidth >= 100) {
+        this.nextSlide();
+      }
+    }, 100); // Adjust the interval as needed
+  }
+
+  resetProgressBar(): void {
+    if (this.isFirstTransition) {
+      this.isFirstTransition = false;
+      setTimeout(() => {
+        this.progressBarWidth = 0;
+        this.startSlideShow();
+      }, 100); // Delay before starting the first transition
+    } else {
+      this.progressBarWidth = 0;
+    }
   }
 
   previousPage(): void {

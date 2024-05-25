@@ -5,6 +5,7 @@ import {ProductsService} from '../services/products/products.service';
 import {ProductsDTO} from '../model/products';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {Router} from '@angular/router';
+import {Renderer2} from '@angular/core';
 
 interface Category {
   name: string;
@@ -30,27 +31,28 @@ export class SearchComponent {
   isExpanded: boolean = false;
   showCatalog: boolean = false;
   categories: Category[] = [
-    { name: 'FRUITS', image: 'path/to/fruit.jpg', description: "Fruits"},
-    { name: 'VEGETABLES', image: 'path/to/vegetables.jpg', description: "Vegetables" },
-    { name: 'MEAT', image: 'path/to/meat.jpg', description: "Meat" },
-    { name: 'SEAFOOD', image: 'path/to/fish.jpg', description: "Fish and Seafood" },
-    { name: 'DAIRY', image: 'path/to/dairy.jpg', description: "Dairy Products" },
-    { name: 'CEREALS', image: 'path/to/grains.jpg', description: "Grains and Legumes" },
-    { name: 'PASTRIES', image: 'path/to/bakery.jpg', description: "Bakery and Pastries" },
-    { name: 'BEVERAGES', image: 'path/to/beverages.jpg', description: "Beverages" },
-    { name: 'SWEETS', image: 'path/to/sweets.jpg', description: "Sweets" },
-    { name: 'FROZENFOOD', image: 'path/to/frozen.jpg', description: "Frozen Products" },
-    { name: 'CANNED', image: 'path/to/canned.jpg', description: "Canned Goods" },
-    { name: 'CONDIMENTS', image: 'path/to/sauces.jpg', description: "Sauces and Condiments" },
-    { name: 'NUTS', image: 'path/to/nuts.jpg', description: "Nuts and Dried Fruits" },
-    { name: 'SNACKS', image: 'path/to/snacks.jpg', description: "Snacks" },
-    { name: 'ALCOHOL', image: 'path/to/alcohol.jpg', description: "Alcoholic Beverages" }
+    { name: 'FRUITS', image: 'assets/illustrations/fruits.svg', description: "Fruits"},
+    { name: 'VEGETABLES', image: 'assets/illustrations/vegetables.svg', description: "Vegetables" },
+    { name: 'MEAT', image: 'assets/illustrations/meat.svg', description: "Meat" },
+    { name: 'SEAFOOD', image: 'assets/illustrations/seafood.svg', description: "Fish and Seafood" },
+    { name: 'DAIRY', image: 'assets/illustrations/dairy.svg', description: "Dairy Products" },
+    { name: 'CEREALS', image: 'assets/illustrations/cereals.svg', description: "Grains and Legumes" },
+    { name: 'PASTRIES', image: 'assets/illustrations/pastries.svg', description: "Bakery and Pastries" },
+    { name: 'BEVERAGES', image: 'assets/illustrations/beverages.svg', description: "Beverages" },
+    { name: 'SWEETS', image: 'assets/illustrations/sweets.svg', description: "Sweets" },
+    { name: 'FROZENFOOD', image: 'assets/illustrations/frozenfood.svg', description: "Frozen Products" },
+    { name: 'CANNED', image: 'assets/illustrations/canned.svg', description: "Canned Goods" },
+    { name: 'CONDIMENTS', image: 'assets/illustrations/condiments.svg', description: "Sauces and Condiments" },
+    { name: 'NUTS', image: 'assets/illustrations/nuts.svg', description: "Nuts and Dried Fruits" },
+    { name: 'SNACKS', image: 'assets/illustrations/snacks.svg', description: "Snacks" },
+    { name: 'ALCOHOL', image: 'assets/illustrations/alcohol.svg', description: "Alcoholic Beverages" },
+    { name: 'ADULT', image: 'assets/illustrations/adult.svg', description: "Adult Products" }
   ];
   @Output() searchResults = new EventEmitter<ProductsDTO[]>();
   @Output() searchTermChange = new EventEmitter<boolean>();
   @Output() categorySelected = new EventEmitter<string>();
 
-  constructor(private productsService: ProductsService, private router: Router) {
+  constructor(private productsService: ProductsService, private router: Router, private renderer: Renderer2) {
     this.searchControl.valueChanges.pipe(
       debounceTime(400),
       distinctUntilChanged()
@@ -89,9 +91,9 @@ export class SearchComponent {
     }
   }
 
-  expandInput(isFocused: boolean): void {
-    this.isExpanded = isFocused;
-  }
+  // expandInput(isFocused: boolean): void {
+  //   this.isExpanded = isFocused;
+  // }
 
   toggleCatalog(): void {
     this.showCatalog = !this.showCatalog;
