@@ -19,20 +19,21 @@
       <!-- Приветствие -->
       <div class="px-4">
         <p class="font-bold text-3xl mb-1 dark:text-custom-white">Welcome, {{username}}</p>
-        <p class="text-gray-400">Pidl - Grocery shop you deserve</p>
+        <p class="text-gray-400">Pidl. Grocery shop you deserve.</p>
+        <p class="font-bold text-custom-white mt-2">Also try EduDate.</p>
       </div>
     <!-- Содержание профиля -->
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex flex-col justify-center">
       <!-- Кнопка настроек -->
-      <button routerLink="/profile/settings" mat-raised-button class="mb-4">
+      <button routerLink="/profile/settings" class="mb-4 dark:bg-custom-white dark:text-black dark:hover:bg-custom-white-dark-1 font-medium rounded-xl px-8 py-2 m-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform">
         Settings
       </button>
       <!-- Кнопка историй заказов -->
-      <button mat-raised-button class="mb-4" (click)="showOrderHistory()">
+      <button class="mb-4 dark:bg-custom-white dark:text-black dark:hover:bg-custom-white-dark-1 font-medium rounded-xl px-8 py-2 m-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform" (click)="showOrderHistory()">
         Show order history
       </button>
       <!-- Кнопка для выхода из аккаунта -->
-      <button mat-raised-button (click)="onLogout()" class="mb-4">
+      <button (click)="onLogout()" class="bg-red-500 dark:text-custom-white hover:bg-red-600 font-medium rounded-xl px-8 py-2 m-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform">
         Log out
       </button>
     </div>
