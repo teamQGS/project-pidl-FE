@@ -6,7 +6,6 @@ import {HeaderComponent} from "./header/header.component";
 import { FooterComponent } from './footer/footer.component';
 import {FormsModule} from "@angular/forms";
 import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
-import {MatSnackBar} from "@angular/material/snack-bar";
 import { ThemeService } from './services/theme.service';
 
 
