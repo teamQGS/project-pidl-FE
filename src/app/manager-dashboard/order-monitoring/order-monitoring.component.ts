@@ -22,7 +22,7 @@ import {OrderService} from "../../services/orders/order.service";
     MatOption,
     MatSelect,
     NgForOf,
-    NgIf
+    NgIf,
   ],
   templateUrl: './order-monitoring.component.html',
   styleUrl: './order-monitoring.component.css'

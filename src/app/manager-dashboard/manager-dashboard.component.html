@@ -3,11 +3,11 @@
   <app-search></app-search>
 </div>
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center min-h-screen bg-custom-black text-custom-white">
+<div class="flex flex-col items-center min-h-screen dark:text-custom-white dark:bg-gray-700">
   <!-- Контейнер дэшборда -->
-  <div class="w-11/12 flex flex-wrap items-center max-w-6xl my-8">
+  <div class="w-11/12 flex flex-wrap items-center max-w-6xl my-8 dark:bg-custom-dark rounded-3xl pb-8">
     <!-- Контейнер заголовка -->
-    <div class="flex flex-row items-center w-full">
+    <div class="flex flex-row items-center w-full dark:bg-gray-800 rounded-3xl dark:shadow-md px-6 py-4">
       <!-- Заголовок дэшборда -->
       <div class="flex flex-col w-full m-2 px-2">
         <p class="font-bold text-2xl">Manager dashboard</p>
@@ -15,10 +15,12 @@
       </div>
       <!-- Кнопка добавления нового продукта -->
       <div class="flex w-full justify-end px-2">
-        <button (click)="navigateToAddPage()" class="bg-gray-700 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105" matTooltip="Add new product">
+        <button (click)="navigateToAddPage()"
+          class="dark:bg-gray-700 font-medium rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105 dark:shadow-md dark:shadow-gray-900">
           Add new product
         </button>
-        <button (click)="navigateToOrderMonitoringPage()" class="bg-gray-700 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105">
+        <button (click)="navigateToOrderMonitoringPage()"
+          class="dark:bg-gray-700 font-medium rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105 dark:shadow-md dark:shadow-gray-900">
           Orders monitoring
         </button>
       </div>
@@ -26,7 +28,8 @@
 
     <!-- Список продуктов -->
     <div class="grid grid-rows-1 gap-4 w-full m-2 px-2 box-border text-center">
-      <div *ngFor="let product of products" class="my-2 mx-4 bg-gray-800 rounded-xl flex flex-col text-white shadow-lg transition-transform transform hover:scale-105">
+      <div *ngFor="let product of products"
+        class="my-2 mx-4 dark:bg-gray-800 rounded-xl flex flex-col dark:text-white dark:shadow-md dark:shadow-gray-900">
         <!-- Левая: иллюстрация, название, описание -->
         <div class="flex flex-row items-center w-full sm:w-auto p-4">
           <!-- Иллюстрация продукта -->
@@ -38,36 +41,40 @@
             <div class="flex flex-row">
               <p class="font-bold">{{ product.name }}</p>
             </div>
-            <div class="flex-row text-xs text-gray-400 hidden lg:flex">
+            <div class="flex-row text-xs dark:text-gray-400 hidden lg:flex">
               <p>{{ product.description }}</p>
             </div>
           </div>
         </div>
+
         <!-- Правая: количество продукта и кнопки -->
-        <div class="flex flex-col sm:flex-row mr-0 mx-0 mt-2 sm:mr-4 sm:mt-2 text-left sm:text-center sm:items-center">
-          <div class="flex flew-row sm:flex-col my-2 sm:my-auto sm:mx-4 min-w-64 justify-between items-center sm:justify-normal">
-            <!-- Контейнер с суммой -->
-            <div class="text-sm sm:text-base">
-              Price: {{ product.price }} EUR
-            </div>
-            <!-- Контейнер с кнопками для увелечения или уменьшения на 1 и количество -->
-            <div class="my-2 sm:my-3">
-              <div class="flex flex-row">
-                <div class="px-3 py-1 sm:px-4 text-sm sm:text-base w-10 flex justify-center">
-                  Quantity: {{ product.count }}
-                </div>
+        <div class="flex flex-col w-full p-4 lg:p-8">
+          <div class="flex flex-row justify-between items-center">
+            <div class="flex flex-row">
+              <!-- Контейнер с суммой -->
+              <div class="text-sm sm:text-base pr-8 font-medium">
+                Price: {{ product.price }} EUR
+              </div>
+              <!-- Контейнер с количеством -->
+              <div class="text-sm sm:text-base pr-8 font-medium">
+                Quantity: {{ product.count }}
               </div>
             </div>
-          </div>
-          <div>
-            <button class="bg-red-500 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105" (click)="deleteProduct(product)">
-              Delete product
-            </button>
-          </div>
-          <div>
-            <button class="bg-blue-500 text-white rounded-xl px-8 py-2 m-2 transition-transform transform hover:scale-105" (click)="navigateToUpdateProductPage(product.id)">
-              Update product
-            </button>
+
+            <div>
+              <!-- Кнопка удаления продукта -->
+              <button
+                class="bg-red-500 dark:text-custom-white font-medium rounded-xl px-8 py-2 m-2 transform dark:shadow-md dark:shadow-gray-900 duration hover:bg-red-600"
+                (click)="deleteProduct(product)">
+                Delete product
+              </button>
+              <!-- Кнопка обновления продукта -->
+              <button
+                class="dark:bg-custom-white dark:text-black dark:hover:bg-custom-white-dark-1 font-medium rounded-xl px-8 py-2 m-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform"
+                (click)="navigateToUpdateProductPage(product.id)">
+                Update product
+              </button>
+            </div>
           </div>
         </div>
       </div>
