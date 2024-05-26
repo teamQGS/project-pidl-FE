@@ -47,14 +47,10 @@
       <input matInput placeholder="Quantity" formControlName="count">
     </mat-form-field>
     <br>
-    <div class="image-upload">
-      <mat-label>Illustration</mat-label>
-      <br>
-      <input type="file" class="file-input" (change)="onChange($event)"/>
-      <div *ngIf="file">
-        <p> File details: Type: {{file.type}}, Size: {{file.size}} bytes</p>
-      </div>
-    </div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Illustration of the product (link)</mat-label>
+      <input matInput placeholder="Illustration" formControlName="illustration">
+    </mat-form-field>
     <br>
     <div class="add-btn">
       <button mat-raised-button color="green" type="submit" id="add_button">Add</button>

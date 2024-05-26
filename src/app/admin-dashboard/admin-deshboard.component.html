@@ -15,8 +15,8 @@
     <div class="w-full">
       <ul>
         <li *ngFor="let user of users; let i = index" class="flex flex-col bg-gray-800 p-4 m-2 rounded-lg">
-          <div class="content flex justify-between items-center">
-            <div class="mt-2">
+          <div class="content flex justify-between items-center accent-custom-white-dark-1">
+            <div class="mt-2 text-custom-grey">
               <div class="">User Id: {{ user.id }}</div>
               <div class="">Username: {{ user.username }}</div>
               <div class="">Role: {{ user.role }}</div>
@@ -32,10 +32,10 @@
               </mat-form-field>
               <button mat-flat-button class="button-assign ml-4" color="primary" (click)="assignRole(user, selectedRole[i])">Assign Role</button>
             </div>
-            
+
             <button mat-flat-button class="button-delete" (click)="deleteUser(user)" color="warn">Delete User</button>
           </div>
-          
+
         </li>
       </ul>
     </div>

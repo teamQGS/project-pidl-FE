@@ -43,6 +43,7 @@ export class AddProductPageComponent {
     description: ['', Validators.required],
     price: [ '', Validators.required],
     count: [ '', Validators.required],
+    illustration: [ '', Validators.required]
   });
 
   onChange(event: any) {
@@ -63,7 +64,7 @@ export class AddProductPageComponent {
           price: parseFloat(<string>this.addProductForm.value.price),
           count: parseInt(<string>this.addProductForm.value.count),
           category: this.selectedCategory,
-          illustration: this.file
+          illustration: this.addProductForm.value.illustration
         }
       ).then(response => {
         this.snackBar.open("Product was added successfully", '', {

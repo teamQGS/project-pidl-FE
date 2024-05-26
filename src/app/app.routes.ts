@@ -22,6 +22,7 @@ import {OrderPageComponent} from "./cart/order-page/order-page.component";
 import {OrderHistoryComponent} from "./profile/order-history/order-history.component";
 import {OrderMonitoringComponent} from "./manager-dashboard/order-monitoring/order-monitoring.component";
 import {ActiveOrderPageComponent} from "./cart/active-order-page/active-order-page.component";
+import {UpdateProductPageComponent} from "./manager-dashboard/update-product-page/update-product-page.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [WithoutTokenGuardService] },
@@ -40,7 +41,7 @@ export const routes: Routes = [
   { path: 'order-history', component: OrderHistoryComponent, canActivate: [WithTokenGuardService]},
   { path: 'order-monitoring', component: OrderMonitoringComponent, canActivate: [ManagerGuardService]},
   { path: 'active-order', component: ActiveOrderPageComponent, canActivate: [WithTokenGuardService]},
-  { path: 'update-product', component: ActiveOrderPageComponent, canActivate: [WithTokenGuardService]}
+  { path: 'update-product', component: UpdateProductPageComponent, canActivate: [WithTokenGuardService]}
 ];
 
 @NgModule({

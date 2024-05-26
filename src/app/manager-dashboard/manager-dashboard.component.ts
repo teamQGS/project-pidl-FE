@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForOf } from "@angular/common";
 import { ProductsDTO } from "../model/products";
 import { ProductsService } from "../services/products/products.service";
-import { ActivatedRoute, RouterLink } from "@angular/router";
+import {ActivatedRoute, NavigationExtras, RouterLink} from "@angular/router";
 import { MatButton, MatFabButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { MatTooltip } from "@angular/material/tooltip";
@@ -51,9 +51,18 @@ export class ManagerDashboardComponent implements OnInit {
   navigateToOrderMonitoringPage(): void {
     this.router.navigate(['order-monitoring']).then(r => {});
   }
-  navigateToUpdateProductPage(): void {
-    this.router.navigate(['update-product']).then(r => {});
+  navigateToUpdateProductPage(productId: string): void {
+    // Define navigation extras including the product ID as a query parameter
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        productId: productId
+      }
+    };
+
+    // Navigate to the update product page with the product ID as a query parameter
+    this.router.navigate(['update-product'], navigationExtras).then(r => {});
   }
+
 
   deleteProduct(product: ProductsDTO) {
     this.axiosService.request(
