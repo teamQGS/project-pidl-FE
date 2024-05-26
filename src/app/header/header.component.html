@@ -1,8 +1,8 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер хэдера -->
-<header class="dark-mode">
+<header class="dark:bg-gray-800 dark:text-custom-white">
   <!-- Главная строка -->
-  <div class="w-full h-20 flex flex-row items-center justify-between  relative font-semibold text-base p-4
+  <div class="w-full h-20 flex flex-row items-center justify-between dark:bg-gray-800 dark:text-custom-white relative font-semibold text-base p-4
   mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
     <!-- Логотип -->
     <div class="logo cursor-pointer duration-50 transform hover:scale-105" routerLink="/">
@@ -13,7 +13,7 @@
       <!-- Навигационная панель по центру -->
       <ul class="flex flex-row">
         <!-- Продукты -->
-        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105 text-white dark:text-black" routerLink="/">
+        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105 dark:text-custom-white" routerLink="/">
           Products
         </li>
         <!-- О нас / Контакты -->
@@ -47,7 +47,7 @@
         <img [src]="employeeIconPath" alt="Dashboard List" class="duration-50 transform hover:scale-105"/>
         <!-- Содержание меню -->
         <div
-          class="hidden sm:flex text-gray-600 absolute flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
+          class="hidden sm:flex dark:text-gray-800 absolute flex-col top-full left-1/2 -translate-x-1/2 dark:bg-custom-white-light-1 rounded-3xl z-50 w-80 mt-4 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
           *ngIf="showDashboardList">
           <!-- Начало списка -->
           <div class="w-full">
@@ -56,14 +56,14 @@
               window.localStorage.getItem('role') == 'MANAGER' ||
               window.localStorage.getItem('role') == 'ADMIN'
             " routerLink="manager-dashboard"
-              class="flex p-2 cursor-pointer w-full gap-2 items-center border-b border-gray-200">
-              <img [src]="managerIconPath" alt="Manager Dashboard Icon" class="size-6"/>
+              class="flex p-3 cursor-pointer w-full gap-2 items-center border-b dark:border-gray-800 dark:border-gray-200">
+              <img [src]="managerIconPath" alt="Manager Dashboard Icon" class="size-6 duration-100 transform hover:scale-105"/>
               Manager Dashboard
             </div>
             <!-- Дэшборд администратора -->
             <div *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard"
-              class="flex p-2 cursor-pointer w-full gap-2 items-center border-gray-200">
-              <img [src]="administratorIconPath" alt="Admin Dashboard Icon" class="size-6"/>
+              class="flex p-3 cursor-pointer w-full gap-2 items-center dark:border-gray-200">
+              <img [src]="administratorIconPath" alt="Admin Dashboard Icon" class="size-6 duration-100 transform hover:scale-105"/>
               Admin Dashboard
             </div>
           </div>
