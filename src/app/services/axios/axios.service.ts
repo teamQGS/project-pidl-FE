@@ -11,7 +11,9 @@ import { AuthService } from '../auth.service';
 export class AxiosService {
 
   constructor(private router: Router, private snackBar: MatSnackBar, private authService: AuthService) {
-    axios.defaults.baseURL = 'http://localhost:8080';
+    // axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.baseURL = 'https://project-pidl-be.onrender.com';
+
     axios.defaults.headers.post["Content-Type"] = 'application/json';
   }
 
@@ -39,8 +41,8 @@ export class AxiosService {
       }
     }
   }
-  
-  
+
+
 
   request(method: string, url: string, data: any): Promise<any> {
     let headers = {}

@@ -2,10 +2,10 @@
 
 <div>
   <app-search (searchResults)="onSearchResults($event)" (searchTermChange)="onSearchTermChange($event)"
-    (categorySelected)="onCategorySelected($event)"></app-search>
+              (categorySelected)="onCategorySelected($event)"></app-search>
 </div>
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center min-h-screen overflow-auto">
+<div class="flex flex-col items-center min-h-screen dark:bg-gray-700 overflow-auto">
   <!-- Описание продуктов. Pop-up при нажатии на продукт -->
   <app-product-details [product]="selectedProduct"></app-product-details>
 
@@ -13,7 +13,7 @@
   <div *ngIf="showMarketing"
     class="w-full max-w-6xl rounded-3xl my-8 overflow-hidden transition-all duration-300 ease-in-out">
     <div class="relative w-full h-64 dark:bg-gray-800 dark:text-white">
-      <div class="absolute inset-1 flex items-top justify-left mt-8 ml-8">
+      <div class="absolute inset-1 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-3xl font-bold mb-4">Special Offers</h2>
           <p class="text-xl">Don't miss out on our exclusive deals...</p>
@@ -23,11 +23,11 @@
     </div>
     <div class="flex justify-between mt-1">
       <button (click)="previousSlide()"
-        class="dark:bg-gray-800 dark:hover:bg-gray-900 duration-300 dark:text-custom-white font-medium px-4 py-2 rounded">
+              class="bg-gray-800 hover:bg-gray-900 duration-300 text-custom-white font-medium px-4 py-2 rounded">
         <img [src]="previousIconPath" alt="Previous" class="size-4">
       </button>
       <button (click)="nextSlide()"
-        class="dark:bg-gray-800 dark:hover:bg-gray-900 duration-300 dark:text-custom-white font-medium px-4 py-2 rounded">
+              class="bg-gray-800 hover:bg-gray-900 duration-300 text-custom-white font-medium px-4 py-2 rounded">
         <img [src]="nextIconPath" alt="Next" class="size-4">
       </button>
     </div>
@@ -35,10 +35,10 @@
 
   <!-- Контейнер с продуктами по категориям -->
   <div *ngIf="!selectedCategory && !isSearching; else resultsView"
-    class="w-11/12 flex flex-col items-center max-w-6xl rounded-3xl my-8">
+       class="w-11/12 flex flex-col items-center max-w-6xl rounded-3xl my-8">
     <ng-container *ngFor="let category of categories">
       <!-- Заголовок категории -->
-      <div class="flex flex-col w-full m-2 px-2 text-custom-white">
+      <div class="flex flex-col w-full m-2 px-2 text-gray-900">
         <p class="font-bold text-2xl">{{ category }}</p>
       </div>
       <!-- Список продуктов -->
@@ -48,36 +48,36 @@
           (scroll)="checkScroll($event, category)">
           <!-- Контейнер продукта -->
           <div *ngFor="let product of categorizedProducts[category]"
-            class="flex-none rounded-xl dark:text-white overflow-hidden dark:bg-gray-500 w-56 transition-opacity duration-300 relative group hover:shadow-lg">
+               class="flex-none rounded-xl text-gray-900 overflow-hidden bg-white w-56 transition-opacity duration-300 relative group hover:shadow-lg"
+               (click)="selectProduct(product)">
             <!-- Иллюстрация продукта -->
             <div class="aspect-square w-full relative">
               <img [src]="product.illustration" alt="{{ product.name }}"
-                class="object-cover w-full h-full rounded-t-xl" />
+                   class="object-cover w-full h-full rounded-t-xl" />
               <div
-                class="absolute inset-0 flex items-center justify-center dark:bg-black dark:bg-opacity-50 dark:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button (click)="selectProduct(product)"
-                  class="dark:bg-gray-700 dark:text-custom-white font-bold py-2 px-4 rounded duration-300 dark:hover:bg-gray-800">Details</button>
+                class="absolute inset-x-0 bottom-0 flex items-center justify-center bg-[#DACEC1] bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button (click)="selectProduct(product); $event.stopPropagation()"
+                        class="bg-[#DACEC1] text-gray-900 font-bold py-2 px-4 rounded duration-300 hover:bg-gray-700 hover:text-white">Details</button>
               </div>
             </div>
             <!-- Информация о продукте -->
             <div class="flex flex-col text-left my-1 p-1">
               <!-- Название продукта -->
-              <div class="p-1 text-custom-white font-medium">{{ product.name }}</div>
+              <div class="p-1 text-gray-900 font-medium">{{ product.name }}</div>
               <!-- Цена продукта -->
-              <div class="dark:text-gray-800 font-semibold p-1">{{ product.price }} EUR</div>
+              <div class="text-gray-800 font-semibold p-1">{{ product.price }} EUR</div>
             </div>
             <!-- Кнопка добавления в корзину -->
             <div
-              class="dark:bg-gray-700 rounded-xl dark:text-custom-white font-semibold m-1 py-2 text-center dark:hover:bg-gray-800 duration-300">
-              <button (click)="addToCart(product.id); $event.stopPropagation()">
-                Add to cart
-              </button>
+              class="bg-gray-700 rounded-xl text-white font-semibold m-1 py-2 text-center hover:bg-gray-800 duration-300 cursor-pointer hover:opacity-75"
+              (click)="addToCart(product.id); $event.stopPropagation()">
+              Add to cart
             </div>
           </div>
         </div>
         <!-- Градиентный эффект справа -->
         <div *ngIf="showGradient[category]"
-          class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l dark:from-gray-700 to-transparent pointer-events-none">
+             class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-gray-700 to-transparent pointer-events-none">
         </div>
       </div>
     </ng-container>
@@ -87,43 +87,47 @@
   <ng-template #resultsView>
     <div class="w-11/12 flex flex-col items-center max-w-6xl rounded-3xl my-8">
       <!-- Заголовок и кнопка "Назад" -->
-      <div class="flex items-center justify-between w-full m-2 px-2 dark:text-custom-white text-center">
+      <div class="flex items-center justify-between w-full m-2 px-2 text-gray-900 text-center">
         <p class="font-bold text-2xl justify-center">{{ displayHeader }}</p>
         <button (click)="clearCategory()"
-          class="dark:bg-gray-800 dark:text-white px-4 py-2 rounded mt-2 m-2 dark:hover:bg-gray-900 duration-300">Back</button>
+                class="bg-gray-800 text-white px-4 py-2 rounded mt-2 m-2 hover:bg-gray-900 duration-300">Back</button>
       </div>
       <!-- Список продуктов -->
       <div
         class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full м-2 px-2 box-border text-center">
         <!-- Контейнер продукта -->
         <div *ngFor="let product of displayProducts"
-          class="rounded-xl dark:text-white overflow-hidden dark:bg-gray-500 transition-opacity group duration-300 hover:shadow-lg">
+             class="rounded-xl text-gray-900 overflow-hidden bg-white transition-opacity group duration-300 hover:shadow-lg"
+             (click)="selectProduct(product)">
           <!-- Иллюстрация продукта -->
           <div class="aspect-square w-full relative">
             <img [src]="product.illustration" alt="{{ product.name }}"
-              class="object-cover w-full h-full rounded-t-xl" />
+                 class="object-cover w-full h-full rounded-t-xl" />
             <div
-              class="absolute inset-0 flex items-center justify-center dark:bg-black dark:bg-opacity-50 dark:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button (click)="selectProduct(product)"
-                class="dark:bg-gray-700 dark:text-custom-white font-bold py-2 px-4 rounded duration-300 dark:hover:bg-gray-800">Details</button>
+              class="absolute inset-x-0 bottom-0 flex items-center justify-center bg-[#DACEC1] bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <button (click)="selectProduct(product); $event.stopPropagation()"
+                      class="bg-[#DACEC1] text-gray-900 font-bold py-2 px-4 rounded duration-300 hover:bg-gray-700 hover:text-white">Details</button>
             </div>
           </div>
           <!-- Информация о продукте -->
           <div class="flex flex-col text-left my-1 p-1">
             <!-- Название продукта -->
-            <div class="p-1 dark:text-custom-white font-medium">{{ product.name }}</div>
+            <div class="p-1 text-gray-900 font-medium">{{ product.name }}</div>
             <!-- Цена продукта -->
-            <div class="dark:text-gray-800 font-semibold p-1">{{ product.price }} EUR</div>
+            <div class="text-gray-800 font-semibold p-1">{{ product.price }} EUR</div>
           </div>
           <!-- Кнопка добавления в корзину -->
           <div
-            class="dark:bg-gray-700 rounded-xl dark:text-custom-white font-semibold m-1 py-2 text-center dark:hover:bg-gray-800 duration-300">
-            <button (click)="addToCart(product.id); $event.stopPropagation()">
-              Add to cart
-            </button>
+            class="bg-gray-700 rounded-xl text-white font-semibold m-1 py-2 text-center hover:bg-gray-800 duration-300 cursor-pointer hover:opacity-75"
+            (click)="addToCart(product.id); $event.stopPropagation()">
+            Add to cart
           </div>
         </div>
       </div>
     </div>
   </ng-template>
 </div>
+
+
+
+
