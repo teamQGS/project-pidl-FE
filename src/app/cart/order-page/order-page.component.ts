@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -33,12 +33,12 @@ export class OrderPageComponent implements OnInit{
     private addressService: AddressService
   ) {
     this.addressForm = this.fb.group({
-      country: [''],
-      city: [''],
-      street: [''],
-      house: [''],
-      postcode: [''],
-      countrycode: ['']
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      street: ['', Validators.required],
+      house: ['', Validators.required],
+      postcode: ['', Validators.required],
+      countrycode: ['', Validators.required]
     });
   }
   addressForm: FormGroup;

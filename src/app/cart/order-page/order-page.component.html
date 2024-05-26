@@ -50,7 +50,7 @@
           <input matInput placeholder="Country Code" formControlName="countrycode" />
         </mat-form-field>
         <br />
-        <button mat-raised-button color="basic" type="submit" class="mb-4">
+        <button mat-raised-button color="basic" type="submit" [disabled]="!addressForm.valid" class="mb-4">
           Submit
         </button>
       </form>
