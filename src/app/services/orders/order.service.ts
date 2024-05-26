@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {AxiosService} from "../axios/axios.service";
-import {UsersDTO} from "../../model/users";
-import {OrderDTO} from "../../model/orders";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ProductsDTO} from "../../model/products";
 
 @Injectable({
   providedIn: 'root'

@@ -32,11 +32,13 @@
       </div>
 
 
-      <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="redirectToCartOrActiveOrder()">
-        <img *ngIf="!activeOrder" [src]="cartIconPath" alt="Cart" class="duration-50 transform hover:scale-105"/>
-        <img *ngIf="activeOrder" [src]="activeOrderIconPath" alt="Active Order" class="duration-50 transform hover:scale-105"/>
-      </div>
+      <div *ngIf="!activeOrder" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="redirectToCartOrActiveOrder()">
+        <img [src]="cartIconPath" alt="Cart" class="duration-50 transform hover:scale-105"/>
+        </div>
 
+      <div *ngIf="activeOrder" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="redirectToCartOrActiveOrder()">
+       <img [src]="activeOrderIconPath" alt="Active Order" class="duration-50 transform hover:scale-105"/>
+      </div>
 
       <!-- Содержание контейнера кнопки меню -->
       <div class="hidden sm:flex list-none mr-5 relative cursor-pointer size-6" (click)="toggleDashboardList($event)" *ngIf="

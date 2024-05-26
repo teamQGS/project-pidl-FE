@@ -4,12 +4,10 @@ import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router, RouterLink} from "@angular/router";
-import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AxiosService} from "../../services/axios/axios.service";
 import {AddressService} from "../../services/adress/address.service";
 import {AddressDTO} from "../../model/address";
-import {HeaderComponent} from "../../header/header.component";
 
 @Component({
   selector: 'app-order-page',

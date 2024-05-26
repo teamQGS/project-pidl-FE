@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {jwtDecode, JwtPayload} from "jwt-decode";
 import { AuthService } from '../auth.service';
 
 @Injectable({
