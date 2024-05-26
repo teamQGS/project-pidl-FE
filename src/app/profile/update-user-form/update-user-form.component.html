@@ -1,58 +1,39 @@
 <link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center justify-center h-screen bg-custom-black">
+<div class="flex flex-col items-center justify-center min-h-screen overflow-auto">
   <!-- Контейнер с формой для правки профильных данных -->
-  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
-    <!-- Меню навигации -->
-    <div class="flex items-center w-full rounded-t-3xl bg-custom-blue p-5">
-      <!-- Левая колонка для кнопки "Назад" -->
-      <div class="flex-1">
-        <div class="font-semibold text-custom-white">
-          <a routerLink="/profile/settings" class="cursor-pointer">
-            Back
-          </a>
-        </div>
+  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 dark:bg-custom-dark rounded-3xl my-8">
+    <!-- Заголовок дэшборда -->
+    <div class="w-full flex justify-between items-center px-6 py-4 dark:bg-gray-800 rounded-3xl shadow-md">
+      <div>
+        <p class="font-bold text-2xl mb-1 dark:text-custom-white">Personal information</p>
+        <p class="text-gray-300">Update your account information</p>
       </div>
-      <!-- Центральная колонка для текста навигации -->
-      <div class="flex-1 text-center">
-        <p class="text-base font-semibold text-custom-white">
-          Profile information <!-- {{ username }} -->
-        </p>
-      </div>
-      <!-- Правая колонка, пустая, для баланса -->
-      <div class="flex-1 invisible">
-        <span class="text-base font-semibold">Back</span> <!-- Невидимый элемент, который занимает место -->
-      </div>
+      <button class="bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 duration-300"
+        routerLink="/profile/settings">Back</button>
     </div>
     <!-- Форма обновления данных пользователя -->
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex justify-center">
       <form [formGroup]="updateForm" class="w-full flex flex-col" (submit)="updateUser()">
-        <label class="block mb-1 text-base" for="firstName">First name</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="First name" formControlName="firstName" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="firstName">First name</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform enabled:hover:scale-105 bg-gray-400 enabled:bg-gray-300 mb-6 p-1 rounded-lg enabled:dark:shadow-sm enabled:dark:shadow-gray-800" placeholder="First name" formControlName="firstName" [disabled]="!isEditEnabled"/>
         <br />
-        <label class="block mb-1 text-base" for="lastName">Last name</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Last name" formControlName="lastName" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="lastName">Last name</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform enabled:hover:scale-105 bg-gray-400 enabled:bg-gray-300 mb-6 p-1 rounded-lg enabled:dark:shadow-sm enabled:dark:shadow-gray-800" placeholder="Last name" formControlName="lastName" [disabled]="!isEditEnabled"/>
         <br />
-        <label class="block mb-1 text-base" for="email">Email</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Email" formControlName="email" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="email">Email</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform enabled:hover:scale-105 bg-gray-400 enabled:bg-gray-300 mb-6 p-1 rounded-lg enabled:dark:shadow-sm enabled:dark:shadow-gray-800" placeholder="Email" formControlName="email" [disabled]="!isEditEnabled"/>
         <br />
-        <label class="block mb-1 text-base" for="phoneNumber">Phone number</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Phone number" formControlName="phoneNumber" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="phoneNumber">Phone number</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform enabled:hover:scale-105 bg-gray-400 enabled:bg-gray-300 mb-6 p-1 rounded-lg enabled:dark:shadow-sm enabled:dark:shadow-gray-800" placeholder="Phone number" formControlName="phoneNumber" [disabled]="!isEditEnabled"/>
         <br />
         <!-- Кнопка редактирования -->
-        <button mat-raised-button color="basic" type="button" class="mb-4">
+        <button type="button" class="px-4 py-2 bg-gray-800 text-custom-white font-medium hover:bg-gray-900 duration-300 dark:shadow-sm dark:shadow-gray-800 rounded-lg my-2"
+          (click)="enableEdit()">
           Edit
         </button>
         <!-- Кнопка обновления -->
-        <button mat-raised-button color="basic" type="submit" class="mb-4">
+        <button type="submit" [disabled]="!isEditEnabled" class="px-4 py-2 bg-gray-700 text-custom-white-light-1 enabled:bg-gray-800 enabled:text-custom-white font-medium enabled:hover:bg-gray-900 duration-300 enabled:dark:shadow-sm enabled:dark:shadow-gray-800 rounded-lg my-2">
           Update
         </button>
       </form>
