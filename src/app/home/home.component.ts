@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadCategories();
+    this.loadProducts();
   }
 
   ngOnDestroy(): void {
