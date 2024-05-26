@@ -5,7 +5,7 @@
     (categorySelected)="onCategorySelected($event)"></app-search>
 </div>
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center min-h-screen dark:bg-gray-700 overflow-auto">
+<div class="flex flex-col items-center min-h-screen overflow-auto">
   <!-- Описание продуктов. Pop-up при нажатии на продукт -->
   <app-product-details [product]="selectedProduct"></app-product-details>
 
@@ -13,10 +13,10 @@
   <div *ngIf="showMarketing"
     class="w-full max-w-6xl rounded-3xl my-8 overflow-hidden transition-all duration-300 ease-in-out">
     <div class="relative w-full h-64 dark:bg-gray-800 dark:text-white">
-      <div class="absolute inset-1 flex items-center justify-center">
+      <div class="absolute inset-1 flex items-top justify-left mt-8 ml-8">
         <div class="text-center">
           <h2 class="text-3xl font-bold mb-4">Special Offers</h2>
-          <p class="text-xl">Don't miss out on our exclusive deals!</p>
+          <p class="text-xl">Don't miss out on our exclusive deals...</p>
         </div>
       </div>
       <img [src]="currentSlideImage" alt="Marketing Image" class="w-full h-full object-cover opacity-50">

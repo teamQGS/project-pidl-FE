@@ -101,6 +101,6 @@ export class SearchComponent {
   }
 
   clearSearchField(): void {
-    this.searchControl.reset();
+    this.searchControl.setValue('');
   }
 }
