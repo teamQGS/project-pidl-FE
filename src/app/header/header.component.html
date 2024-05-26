@@ -66,10 +66,15 @@
               <img [src]="administratorIconPath" alt="Admin Dashboard Icon" class="size-6 duration-100 transform hover:scale-105"/>
               Admin Dashboard
             </div>
+            <div *ngIf="window.localStorage.getItem('role') == 'ADMIN' || window.localStorage.getItem('role') == 'MANAGER'" routerLink="order-monitoring"
+                 class="flex p-3 cursor-pointer w-full gap-2 items-center dark:border-gray-200">
+              <img [src]="managerIconPath" alt="Active Orders Icon" class="size-6 duration-100 transform hover:scale-105"/>
+              Active Orders
+            </div>
           </div>
         </div>
       </div>
-      
+
       <div *ngIf="isLoggedIn; else loginButton" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="/profile">
         <img [src]="customerIconPath" alt="Profile" class="size-6 duration-50 transform hover:scale-105"/>
       </div>

@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
   protected readonly window = window;
 
   showDashboardList = false;
+  role = window.localStorage.getItem('role');
 
   toggleDashboardList(event: MouseEvent): void {
     event.stopPropagation();

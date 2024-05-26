@@ -44,13 +44,12 @@
       <label class="block text-sm font-medium text-gray-700" for="count">Quantity</label>
       <input id="count" type="text" placeholder="Quantity" formControlName="count" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Illustration</label>
-      <input type="file" class="mt-1 block w-full text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" (change)="onChange($event)"/>
-      <div *ngIf="file" class="mt-2 text-sm text-gray-500">
-        File details: Type: {{file.type}}, Size: {{file.size}} bytes
-      </div>
-    </div>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Illustration of the product (link)</mat-label>
+      <input matInput placeholder="Illustration" formControlName="illustration">
+    </mat-form-field>
+    <br>
     <div class="text-center">
       <button type="submit" id="add_button" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         Update

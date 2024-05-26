@@ -30,7 +30,7 @@ export class LoginPageComponent {
       this.snackBar.open("Login successfully", '', {
         duration: 3000
       })
-      this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
+      this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/profile']);
       });
     }).catch(error => {
