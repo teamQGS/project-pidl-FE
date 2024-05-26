@@ -1,11 +1,11 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер хэдера -->
-<div class="bg-custom-blue">
+<div class="bg-gray-800">
   <!-- Главная строка -->
-  <div class="w-full h-20 flex flex-row items-center justify-between bg-slate-500 relative text-custom-white font-semibold text-base p-4
+  <div class="w-full h-20 flex flex-row items-center justify-between bg-gray-800 relative text-custom-white font-semibold text-base p-4
   mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
     <!-- Логотип -->
-    <div class="logo cursor-pointer" routerLink="/">
+    <div class="logo cursor-pointer duration-50 transform hover:scale-105" routerLink="/">
       <img [src]="logoLightPath" alt="logo" height="" width="" class="flex size-16" />
     </div>
 
@@ -13,11 +13,11 @@
       <!-- Навигационная панель по центру -->
       <ul class="flex flex-row">
         <!-- Продукты -->
-        <li class="list-none mr-5 relative cursor-pointer" routerLink="/">
+        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105" routerLink="/">
           Products
         </li>
         <!-- О нас / Контакты -->
-        <li class="list-none mr-5 relative cursor-pointer" routerLink="/contact-us">
+        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105" routerLink="/contact-us">
           Contact us
         </li>
       </ul> <!-- Конец навигационной панели по центру -->
@@ -26,9 +26,15 @@
     <!-- Кнопки корзины и логина -->
 
     <div class="flex-row flex">
+      <!-- Иконка для переключения темы -->
+      <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="toggleTheme()">
+        <img [src]="lightThemeIconPath" alt="Toggle Theme" class="duration-50 transform hover:scale-105"/>
+      </div>
+
+
       <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="redirectToCartOrActiveOrder()">
-        <img *ngIf="!activeOrder" [src]="cartIconPath" alt="Cart" />
-        <img *ngIf="activeOrder" [src]="activeOrderIconPath" alt="Active Order" />
+        <img *ngIf="!activeOrder" [src]="cartIconPath" alt="Cart" class="duration-50 transform hover:scale-105"/>
+        <img *ngIf="activeOrder" [src]="activeOrderIconPath" alt="Active Order" class="duration-50 transform hover:scale-105"/>
       </div>
 
 
@@ -38,7 +44,7 @@
         window.localStorage.getItem('role') == 'ADMIN'
         ">
         <!-- Иконка меню -->
-        <img [src]="employeeIconPath" alt="Dashboard List" />
+        <img [src]="employeeIconPath" alt="Dashboard List" class="duration-50 transform hover:scale-105"/>
         <!-- Содержание меню -->
         <div
           class="hidden sm:flex text-gray-600 absolute flex-col top-full left-1/2 -translate-x-1/2 bg-gray-50 rounded-3xl z-50 w-80 mt-2 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
@@ -63,12 +69,13 @@
           </div>
         </div>
       </div>
+      
       <div *ngIf="isLoggedIn; else loginButton" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="/profile">
-        <img [src]="customerIconPath" alt="Profile" class="size-6"/>
+        <img [src]="customerIconPath" alt="Profile" class="size-6 duration-50 transform hover:scale-105"/>
       </div>
       <ng-template #loginButton>
         <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="/login">
-          <img [src]="loginIconPath" alt="Login" class="size-6" />
+          <img [src]="loginIconPath" alt="Login" class="size-6 duration-50 transform hover:scale-105" />
         </div>
       </ng-template>
 

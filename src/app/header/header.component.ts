@@ -30,6 +30,8 @@ export class HeaderComponent implements OnInit{
   menuIconPath = 'assets/icons/menu-icon.svg';
   loginIconPath = 'assets/icons/login-icon.svg';
   activeOrderIconPath = 'assets/icons/active-order-icon.svg';
+  darkThemeIconPath = 'assets/icons/dark-theme-icon.svg';
+  lightThemeIconPath = 'assets/icons/light-theme-icon.svg';
 
   dashboardValue: String[] = ["User Dashboard", "Admin Dashboard", "Manager Dashboard"];
   protected readonly window = window;
@@ -87,4 +89,16 @@ export class HeaderComponent implements OnInit{
       this.router.navigate(['/cart']); // Редирект на страницу корзины
     }
   }
+
+    // Метод для переключения темы
+    toggleTheme(): void {
+      const body = document.body;
+      if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+      } else {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+      }
+    }
 }

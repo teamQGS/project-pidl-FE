@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ProductsService } from '../services/products/products.service';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { ProductsDTO } from '../model/products';
@@ -25,6 +25,8 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  @ViewChild(SearchComponent) searchComponent!: SearchComponent;
+
   selectedProduct: ProductsDTO | null = null;
   products: ProductsDTO[] = [];
   paginatedProducts: ProductsDTO[] = [];
@@ -34,6 +36,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   totalPages: number = 1;
   showMarketing: boolean = true;
   selectedCategory: string | null = null;
+  searchResults: ProductsDTO[] = [];
+  isSearching: boolean = false;
+  searchTerm: string = '';
 
   nextIconPath: string = 'assets/icons/next-icon.svg';
   previousIconPath: string = 'assets/icons/previous-icon.svg';
@@ -76,7 +81,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     try {
       this.categories = await this.productsService.getCategories();
       if (this.categories.length > 0) {
-        this.selectedCategory = this.categories[0];
         this.loadProducts();
       }
     } catch (error) {
@@ -105,28 +109,41 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSearchResults(products: ProductsDTO[]): void {
-    this.products = products;
-    this.categorizeProducts();
-    this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
-    this.updatePaginatedProducts();
+    this.searchResults = products;
+    this.isSearching = products.length > 0;
+    this.filterSearchResults();
   }
 
   onSearchTermChange(hasSearchTerm: boolean): void {
     this.showMarketing = !hasSearchTerm;
+    if (!hasSearchTerm) {
+      this.isSearching = false;
+      this.searchTerm = '';
+      this.loadProducts(); // Reload all products when search term is cleared
+    }
   }
 
   onCategorySelected(categoryName: string): void {
     this.selectedCategory = categoryName;
-    this.loadCategoryProducts(categoryName);
+    this.clearSearch();
+    this.filterSearchResults();
   }
 
   clearCategory(): void {
     this.selectedCategory = null;
+    this.isSearching = false;
+    this.searchTerm = '';
     this.loadProducts();
   }
 
   selectProduct(product: ProductsDTO): void {
-    this.selectedProduct = product;
+    // If the same product is clicked again, reset selectedProduct to allow re-selection
+    if (this.selectedProduct && this.selectedProduct.id === product.id) {
+      this.selectedProduct = null;
+      setTimeout(() => this.selectedProduct = product, 0); // Allow re-selection after a tiny delay
+    } else {
+      this.selectedProduct = product;
+    }
   }
 
   addToCart(productId: string): void {
@@ -202,7 +219,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCategorizedProducts(category: string): ProductsDTO[] {
+  getCategorizedProducts(category: string | null): ProductsDTO[] {
+    if (!category) {
+      return [];
+    }
     return this.categorizedProducts[category] || [];
   }
 
@@ -220,10 +240,52 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
+  filterSearchResults(): void {
+    if (this.isSearching) {
+      if (this.selectedCategory) {
+        this.searchResults = this.searchResults.filter(product => product.productCategory === this.selectedCategory);
+      } else {
+        // Reload search results if category is cleared
+        this.onSearchResults(this.searchResults);
+      }
+    }
+  }
+
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.isSearching = false;
+    if (this.searchComponent) {
+      this.searchComponent.clearSearchField();
+    }
+  }
+
   checkScroll(event: Event, category: string): void {
     const target = event.target as HTMLElement;
     if (target) {
       this.showGradient[category] = target.scrollWidth > target.scrollLeft + target.clientWidth;
     }
+  }
+
+  get displayProducts(): ProductsDTO[] {
+    if (this.isSearching) {
+      return this.searchResults;
+    }
+    if (this.selectedCategory) {
+      return this.getCategorizedProducts(this.selectedCategory);
+    }
+    return [];
+  }
+
+  get displayHeader(): string {
+    if (this.isSearching && this.selectedCategory) {
+      return `Search Results in ${this.selectedCategory}`;
+    }
+    if (this.isSearching) {
+      return 'Search Results';
+    }
+    if (this.selectedCategory) {
+      return this.selectedCategory;
+    }
+    return '';
   }
 }

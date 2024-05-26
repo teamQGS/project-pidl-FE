@@ -1,11 +1,10 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {ProductsService} from '../services/products/products.service';
-import {ProductsDTO} from '../model/products';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
-import {Router} from '@angular/router';
-import {Renderer2} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ProductsService } from '../services/products/products.service';
+import { ProductsDTO } from '../model/products';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface Category {
   name: string;
@@ -31,7 +30,7 @@ export class SearchComponent {
   isExpanded: boolean = false;
   showCatalog: boolean = false;
   categories: Category[] = [
-    { name: 'FRUITS', image: 'assets/illustrations/fruits.svg', description: "Fruits"},
+    { name: 'FRUITS', image: 'assets/illustrations/fruits.svg', description: "Fruits" },
     { name: 'VEGETABLES', image: 'assets/illustrations/vegetables.svg', description: "Vegetables" },
     { name: 'MEAT', image: 'assets/illustrations/meat.svg', description: "Meat" },
     { name: 'SEAFOOD', image: 'assets/illustrations/seafood.svg', description: "Fish and Seafood" },
@@ -52,7 +51,7 @@ export class SearchComponent {
   @Output() searchTermChange = new EventEmitter<boolean>();
   @Output() categorySelected = new EventEmitter<string>();
 
-  constructor(private productsService: ProductsService, private router: Router, private renderer: Renderer2) {
+  constructor(private productsService: ProductsService, private router: Router) {
     this.searchControl.valueChanges.pipe(
       debounceTime(400),
       distinctUntilChanged()
@@ -91,10 +90,6 @@ export class SearchComponent {
     }
   }
 
-  // expandInput(isFocused: boolean): void {
-  //   this.isExpanded = isFocused;
-  // }
-
   toggleCatalog(): void {
     this.showCatalog = !this.showCatalog;
   }
@@ -102,5 +97,10 @@ export class SearchComponent {
   selectCategory(categoryName: string): void {
     this.categorySelected.emit(categoryName);
     this.toggleCatalog();
+    this.clearSearchField(); // Clear the search field when a new category is selected
+  }
+
+  clearSearchField(): void {
+    this.searchControl.reset();
   }
 }

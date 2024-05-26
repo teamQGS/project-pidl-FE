@@ -1,7 +1,7 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <div class="relative items-center justify-between text-base p-4 mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
   <div class="flex items-center rounded-md overflow-hidden">
-    <button (click)="toggleCatalog()" class="px-4 py-2 bg-white text-custom-white-700 font-medium hover:bg-custom-white duration-300">Categories</button>
+    <button (click)="toggleCatalog()" class="px-4 py-2 bg-gray-800 text-custom-white font-medium hover:bg-gray-900 duration-300">Categories</button>
     <input
       type="text"
       [formControl]="searchControl"
@@ -12,13 +12,13 @@
 
 <!-- Каталог попап -->
 <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20" *ngIf="showCatalog">
-  <div class="bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full">
+  <div class="bg-gray-700 text-custom-white rounded-lg shadow-lg p-6 max-w-4xl w-full">
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold">Categories</h2>
-      <button (click)="toggleCatalog()" class="text-gray-500 hover:text-gray-700">&times;</button>
+      <button (click)="toggleCatalog()" class="text-custom-white hover:text-gray-800 duration-300">&times;</button>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div *ngFor="let category of categories" (click)="selectCategory(category.name)" class="flex items-center p-4 border rounded hover:bg-custom-white duration-300 cursor-pointer">
+      <div *ngFor="let category of categories" (click)="selectCategory(category.name)" class="flex items-center p-4 border border-gray-800 rounded hover:bg-gray-800 duration-300 cursor-pointer">
         <img [src]="category.image" [alt]="category.name" class="w-16 h-16 mr-4">
         <span>{{ category.description }}</span>
       </div>
