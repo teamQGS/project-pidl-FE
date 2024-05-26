@@ -7,6 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import {FormsModule} from "@angular/forms";
 import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { ThemeService } from './services/theme.service';
+
 
 
 @Component({
@@ -19,4 +21,13 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class AppComponent {
   title = 'Project Pidl';
 
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit(): void {
+    this.themeService.loadTheme();
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
 }

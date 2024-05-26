@@ -1,11 +1,13 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {Route, Router, RouterLink} from "@angular/router";
-import { NgIf, NgOptimizedImage } from "@angular/common";
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { SearchComponent } from '../search/search.component';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { NgZone } from '@angular/core';
-import {OrderService} from "../services/orders/order.service";
+import { OrderService } from '../services/orders/order.service';
+import { ThemeService } from '../services/theme.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -14,12 +16,13 @@ import {OrderService} from "../services/orders/order.service";
     RouterLink,
     NgOptimizedImage,
     NgIf,
-    SearchComponent
+    SearchComponent,
+    NgClass
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   // v1.0.0 icons
   logoLightPath = 'assets/logo/logo-light.svg';
   cartIconPath = 'assets/icons/cart-icon.svg';
@@ -30,7 +33,6 @@ export class HeaderComponent implements OnInit{
   menuIconPath = 'assets/icons/menu-icon.svg';
   loginIconPath = 'assets/icons/login-icon.svg';
   activeOrderIconPath = 'assets/icons/active-order-icon.svg';
-  darkThemeIconPath = 'assets/icons/dark-theme-icon.svg';
   lightThemeIconPath = 'assets/icons/light-theme-icon.svg';
 
   dashboardValue: String[] = ["User Dashboard", "Admin Dashboard", "Manager Dashboard"];
@@ -56,17 +58,27 @@ export class HeaderComponent implements OnInit{
   isLoggedIn = false;
   private authSubscription: Subscription;
 
-  constructor(private router: Router, private orderService: OrderService, private authService: AuthService, private zone: NgZone) {
+  constructor(
+    private router: Router,
+    private orderService: OrderService,
+    private authService: AuthService,
+    private zone: NgZone,
+    private themeService: ThemeService
+  ) {
     this.authSubscription = this.authService.isLoggedIn.subscribe(status => {
-      this.zone.run(() => { // Используйте NgZone для обновления UI
+      this.zone.run(() => {
         this.isLoggedIn = status;
         console.log("Login status changed:", status);
       });
     });
   }
 
+  ngOnInit(): void {
+    this.checkActiveOrder();
+    this.themeService.loadTheme();
+  }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
 
@@ -74,10 +86,6 @@ export class HeaderComponent implements OnInit{
 
   async checkActiveOrder(): Promise<void> {
     this.activeOrder = await this.orderService.getActiveOrder();
-  }
-
-  ngOnInit(): void {
-    this.checkActiveOrder();
   }
 
   async redirectToCartOrActiveOrder(): Promise<void> {
@@ -90,15 +98,7 @@ export class HeaderComponent implements OnInit{
     }
   }
 
-    // Метод для переключения темы
-    toggleTheme(): void {
-      const body = document.body;
-      if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-      } else {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-      }
-    }
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
 }
