@@ -13,11 +13,13 @@
       <!-- Навигационная панель по центру -->
       <ul class="flex flex-row">
         <!-- Продукты -->
-        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105 dark:text-custom-white" routerLink="/">
+        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105 dark:text-custom-white"
+          routerLink="/">
           Products
         </li>
         <!-- О нас / Контакты -->
-        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105" routerLink="/contact-us">
+        <li class="list-none mr-5 relative cursor-pointer duration-50 transform hover:scale-105"
+          routerLink="/contact-us">
           Contact us
         </li>
       </ul> <!-- Конец навигационной панели по центру -->
@@ -28,57 +30,67 @@
     <div class="flex-row flex">
       <!-- Иконка для переключения темы -->
       <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="toggleTheme()">
-        <img [src]="lightThemeIconPath" alt="Toggle Theme" class="duration-50 transform hover:scale-105"/>
+        <img [src]="lightThemeIconPath" alt="Toggle Theme" class="duration-50 transform hover:scale-105" />
       </div>
 
 
-      <div *ngIf="!activeOrder" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="redirectToCartOrActiveOrder()">
-        <img [src]="cartIconPath" alt="Cart" class="duration-50 transform hover:scale-105"/>
-        </div>
+      <div *ngIf="!activeOrder" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex"
+        (click)="redirectToCartOrActiveOrder()">
+        <img [src]="cartIconPath" alt="Cart" class="duration-50 transform hover:scale-105" />
+      </div>
 
-      <div *ngIf="activeOrder" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex" (click)="redirectToCartOrActiveOrder()">
-       <img [src]="activeOrderIconPath" alt="Active Order" class="duration-50 transform hover:scale-105"/>
+      <div *ngIf="activeOrder" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:flex"
+        (click)="redirectToCartOrActiveOrder()">
+        <img [src]="activeOrderIconPath" alt="Active Order" class="duration-50 transform hover:scale-105" />
       </div>
 
       <!-- Содержание контейнера кнопки меню -->
-      <div class="hidden sm:flex list-none mr-5 relative cursor-pointer size-6" (click)="toggleDashboardList($event)" *ngIf="
+      <div class="hidden sm:flex list-none mr-5 relative cursor-pointer size-6" (click)="toggleDashboardList($event)"
+        *ngIf="
         window.localStorage.getItem('role') == 'MANAGER' ||
         window.localStorage.getItem('role') == 'ADMIN'
         ">
         <!-- Иконка меню -->
-        <img [src]="employeeIconPath" alt="Dashboard List" class="duration-50 transform hover:scale-105"/>
+        <img [src]="employeeIconPath" alt="Dashboard List" class="duration-50 transform hover:scale-105" />
         <!-- Содержание меню -->
         <div
           class="hidden sm:flex dark:text-gray-800 absolute flex-col top-full left-1/2 -translate-x-1/2 dark:bg-custom-white-light-1 rounded-3xl z-50 w-80 mt-4 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
           *ngIf="showDashboardList">
           <!-- Начало списка -->
           <div class="w-full">
+            <div
+              *ngIf="window.localStorage.getItem('role') == 'ADMIN' || window.localStorage.getItem('role') == 'MANAGER'"
+              routerLink="order-monitoring"
+              class="flex p-3 cursor-pointer w-full gap-2 items-center border-b dark:border-gray-800">
+              <img [src]="managerIconPath" alt="Orders Monitoring Icon"
+                class="size-6 duration-100 transform hover:scale-105" />
+              Orders Monitoring
+            </div>
             <!-- Дэшборд менеджера -->
             <div *ngIf="
-              window.localStorage.getItem('role') == 'MANAGER' ||
-              window.localStorage.getItem('role') == 'ADMIN'
-            " routerLink="manager-dashboard"
-              class="flex p-3 cursor-pointer w-full gap-2 items-center border-b dark:border-gray-800 dark:border-gray-200">
-              <img [src]="managerIconPath" alt="Manager Dashboard Icon" class="size-6 duration-100 transform hover:scale-105"/>
+  window.localStorage.getItem('role') == 'MANAGER' ||
+  window.localStorage.getItem('role') == 'ADMIN'
+" routerLink="manager-dashboard" class="flex p-3 cursor-pointer w-full gap-2 items-center"
+              [ngClass]="{ 'border-b dark:border-gray-800': window.localStorage.getItem('role') == 'ADMIN' }">
+              <img [src]="managerIconPath" alt="Manager Dashboard Icon"
+                class="size-6 duration-100 transform hover:scale-105" />
               Manager Dashboard
             </div>
             <!-- Дэшборд администратора -->
             <div *ngIf="window.localStorage.getItem('role') == 'ADMIN'" routerLink="admin-dashboard"
-              class="flex p-3 cursor-pointer w-full gap-2 items-center dark:border-gray-200">
-              <img [src]="administratorIconPath" alt="Admin Dashboard Icon" class="size-6 duration-100 transform hover:scale-105"/>
+              class="flex p-3 cursor-pointer w-full gap-2 items-center">
+              <img [src]="administratorIconPath" alt="Admin Dashboard Icon"
+                class="size-6 duration-100 transform hover:scale-105" />
               Admin Dashboard
             </div>
-            <div *ngIf="window.localStorage.getItem('role') == 'ADMIN' || window.localStorage.getItem('role') == 'MANAGER'" routerLink="order-monitoring"
-                 class="flex p-3 cursor-pointer w-full gap-2 items-center dark:border-gray-200">
-              <img [src]="managerIconPath" alt="Active Orders Icon" class="size-6 duration-100 transform hover:scale-105"/>
-              Active Orders
-            </div>
+
           </div>
         </div>
       </div>
 
-      <div *ngIf="isLoggedIn; else loginButton" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="/profile">
-        <img [src]="customerIconPath" alt="Profile" class="size-6 duration-50 transform hover:scale-105"/>
+      <div *ngIf="isLoggedIn; else loginButton" class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block"
+        routerLink="/profile">
+        <img [src]="customerIconPath" alt="Profile" class="size-6 duration-50 transform hover:scale-105" />
       </div>
       <ng-template #loginButton>
         <div class="list-none mr-5 relative cursor-pointer size-6 hidden sm:block" routerLink="/login">

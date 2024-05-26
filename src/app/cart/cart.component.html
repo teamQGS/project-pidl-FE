@@ -2,7 +2,9 @@
 <!-- Контейнер полного контента тела -->
 <div class="flex flex-col items-center min-h-screen justify-center"> <!-- тест: добавлен justify-center -->
   <!-- Контейнер корзины -->
-  <div class="w-11/12 flex flex-col items-center max-w-6xl rounded-3xl my-8 dark:bg-gray-800 dark:shadow-md dark:shadow-gray-900 duration-200 pb-4"> <!-- тест: убрано dark:bg-gray-800 -->
+  <div
+    class="w-11/12 flex flex-col items-center max-w-6xl rounded-3xl my-8 dark:bg-gray-800 dark:shadow-md dark:shadow-gray-900 duration-200 pb-4">
+    <!-- тест: убрано dark:bg-gray-800 -->
     <!-- Заголовок корзины -->
     <div class="flex flex-col w-full m-4 px-8 dark:text-custom-white-light-1">
       <p class="font-bold text-2xl">Cart</p>
@@ -15,10 +17,12 @@
         <div>
           <p class="font-bold text-xl my-3 dark:text-custom-white-light-1">There are no items in your cart</p>
           <p class="dark:text-custom-white-light-1">
-            <span routerLink="/" class="dark:text-custom-white cursor-pointer font-semibold hover:underline">Go to the main page</span>
+            <span routerLink="/" class="dark:text-custom-white cursor-pointer font-semibold hover:underline">Go to the
+              main page</span>
             or use the search to find the product you are looking for
           </p>
-          <button routerLink="/" class="dark:bg-custom-white rounded-xl py-2 px-6 my-6 text-l hover:scale-105 duration-300">
+          <button routerLink="/"
+            class="dark:bg-custom-white rounded-xl py-2 px-6 my-6 text-l hover:scale-105 duration-300">
             Start shopping
           </button>
         </div>
@@ -73,9 +77,9 @@
           </div>
           <div>
             <img [src]="removeIconPath" (click)="removeFromCart(product.id)"
-              class="cursor-pointer size-6 hidden sm:flex duration-200 transform hover:scale-110" alt="Remove from cart">
+              class="cursor-pointer size-6 hidden sm:flex duration-200 transform hover:scale-110"
+              alt="Remove from cart">
           </div>
-
         </div>
         <div (click)="removeFromCart(product.id)"
           class="cursor-pointer flex flex-col text-center font-semibold text-red-700 text-base sm:hidden dark:bg-gray-900 w-full rounded-b-xl">
@@ -90,7 +94,8 @@
         </div>
         <!-- Кнопка очистки корзины -->
         <div class="items-center flex mr-4">
-          <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="bg-custom-white rounded-xl px-4 py-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform hover:bg-custom-white-dark-1">
+          <button *ngIf="cartItems.length > 0" (click)="clearCart()"
+            class="bg-custom-white rounded-xl px-4 py-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform hover:bg-custom-white-dark-1">
             Clear cart
           </button>
         </div>
@@ -102,11 +107,6 @@
           Place an order
         </button>
       </div>
-
     </div>
-
-
-
-
   </div>
 </div>
