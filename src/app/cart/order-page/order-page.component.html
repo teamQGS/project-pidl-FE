@@ -1,56 +1,41 @@
 <link href="../../../tailwind.css" rel="stylesheet" />
-<div class="flex flex-col items-center justify-center h-screen bg-custom-black">
-  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
-    <div class="flex items-center w-full rounded-t-3xl bg-custom-blue p-5">
-      <div class="flex-1">
-        <div class="font-semibold text-custom-white">
-          <a routerLink="/cart" class="cursor-pointer">
-            Back
-          </a>
-        </div>
+<div class="flex flex-col items-center justify-center min-h-screen overflow-auto">
+  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 dark:bg-custom-dark rounded-3xl my-8">
+    <!-- Заголовок дэшборда -->
+    <div class="w-full flex justify-between items-center px-6 py-4 dark:bg-gray-800 rounded-3xl shadow-md">
+      <div>
+        <p class="font-bold text-2xl mb-1 dark:text-custom-white">Address information</p>
+        <p class="text-gray-300">Please enter your address</p>
       </div>
-      <div class="flex-1 text-center">
-        <p class="text-base font-semibold text-custom-white">
-          Address information
-        </p>
-      </div>
-      <div class="flex-1 invisible">
-        <span class="text-base font-semibold">Back</span>
-      </div>
+      <button
+        class="bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 duration-300"
+        onclick="window.history.back()">Back</button>
     </div>
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex justify-center">
       <form [formGroup]="addressForm" class="w-full flex flex-col" (submit)="onSubmit()">
-        <label class="block mb-1 text-base">Country</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Country" formControlName="country" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium">Country</label>
+        <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Country"
+          formControlName="country" />
         <br />
-        <label class="block mb-1 text-base">City</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="City" formControlName="city" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium">City</label>
+        <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="City" formControlName="city" />
         <br />
-        <label class="block mb-1 text-base">Street</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Street" formControlName="street" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium">Street</label>
+        <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Street"
+          formControlName="street" />
         <br />
-        <label class="block mb-1 text-base">House</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="House" formControlName="house" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium">House</label>
+        <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="House" formControlName="house" />
         <br />
-        <label class="block mb-1 text-base">Postcode</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Postcode" formControlName="postcode" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium">Postcode</label>
+        <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Postcode"
+          formControlName="postcode" />
         <br />
-        <label class="block mb-1 text-base">Country Code</label>
-        <mat-form-field class="w-full mb-2">
-          <input matInput placeholder="Country Code" formControlName="countrycode" />
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium">Country Code</label>
+        <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Country Code"
+          formControlName="countrycode" />
         <br />
-        <button mat-raised-button color="basic" type="submit" class="mb-4">
+        <button type="submit" [disabled]="!addressForm.valid" class="px-4 py-2 bg-gray-800 text-custom-white font-medium hover:bg-gray-900 duration-300 dark:shadow-sm dark:shadow-gray-800 rounded-lg">
           Submit
         </button>
       </form>
