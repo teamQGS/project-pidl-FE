@@ -1,31 +1,28 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col items-center justify-center h-screen bg-custom-black">
-  <!-- Контейнер с профилем -->
-  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
-    <!-- Меню навигации -->
-    <div class="flex items-center w-full rounded-t-3xl bg-custom-blue p-5">
-      <!-- Левая колонка, пустая, для баланса -->
-      <div class="flex-1 invisible">
-        <span class="text-base font-semibold">Back</span> <!-- Невидимый элемент, который занимает место -->
-      </div>
-      <!-- Центральная колонка для текста навигации -->
-      <div class="flex-1 text-center">
-        <p class="text-base font-semibold text-custom-white">
-          My profile
-        </p>
-      </div>
-      <!-- Правая колонка, пустая, для баланса -->
-      <div class="flex-1 invisible">
-        <span class="text-base font-semibold">Back</span> <!-- Невидимый элемент, который занимает место -->
+<div class="flex flex-col items-center min-h-screen dark:text-custom-white dark:bg-gray-700 justify-center">
+  <div class="w-11/12 flex flex-col items-center max-w-6xl my-8 dark:bg-custom-dark rounded-3xl">
+    <div class="w-full flex flex-wrap items-center  dark:bg-custom-dark rounded-3xl">
+    <!-- Заголовок дэшборда -->
+    <div class="w-full flex justify-between items-center px-6 py-4 dark:bg-gray-800 rounded-3xl shadow-md">
+      <div>
+        <p class="font-bold text-2xl mb-1 dark:text-custom-white">My Pidl</p>
+        <p class="text-gray-400">Manage your profile</p>
       </div>
     </div>
+  <!-- Контейнер с профилем -->
+  <div class="w-full flex flex-wrap items-center  dark:bg-custom-dark rounded-3xl">
+    <!-- Меню навигации -->
+    <div class="flex items-center w-full rounded-t-3xl">
+    <!-- Заголовок дэшборда -->
+    <div class="w-full flex justify-between items-center px-6 py-4 rounded-3xl shadow-md">
+      <!-- Приветствие -->
+      <div class="px-4">
+        <p class="font-bold text-3xl mb-1 dark:text-custom-white">Welcome, {{username}}</p>
+        <p class="text-gray-400">Pidl - Grocery shop you deserve</p>
+      </div>
     <!-- Содержание профиля -->
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex flex-col justify-center">
-      <!-- Приветствие -->
-      <div class="mb-4 text-center font-medium">
-        <p>Welcome, {{ username }}</p>
-      </div>
       <!-- Кнопка настроек -->
       <button routerLink="/profile/settings" mat-raised-button class="mb-4">
         Settings
@@ -39,7 +36,6 @@
         Log out
       </button>
     </div>
+    </div>
   </div>
-
-
 </div>
