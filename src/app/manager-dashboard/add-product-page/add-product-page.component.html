@@ -1,59 +1,59 @@
-<div class="head">
-  <h1>
-    Add product page
-  </h1>
-</div>
-<div class="container">
-  <form [formGroup]="addProductForm" class="mat-form-field" (ngSubmit)="onSubmit()">
-    <mat-form-field class="example-full-width">
-      <mat-label>Product name to add</mat-label>
-      <input matInput placeholder="Product name" formControlName="name">
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Price of the product</mat-label>
-      <input matInput placeholder="Price" formControlName="price">
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Description of the product</mat-label>
-      <textarea matInput placeholder="Description" formControlName="description"></textarea>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Category</mat-label>
-      <mat-select [(value)]="selectedCategory">
-        <mat-option value="FRUITS">Fruits</mat-option>
-        <mat-option value="VEGETABLES">Vegetables</mat-option>
-        <mat-option value="MEAT">Meat</mat-option>
-        <mat-option value="SEAFOOD">Fish and seafood</mat-option>
-        <mat-option value="DAIRY">Dairy products</mat-option>
-        <mat-option value="CEREALS">Cereals and legumes</mat-option>
-        <mat-option value="PASTRIES">Bread and pastries</mat-option>
-        <mat-option value="BEVERAGES">Beverages</mat-option>
-        <mat-option value="SWEETS">Sweets</mat-option>
-        <mat-option value="FROZENFOOD">Frozen foods</mat-option>
-        <mat-option value="CANNED">Canned food</mat-option>
-        <mat-option value="CONDIMENTS">Sauces and condiments</mat-option>
-        <mat-option value="NUTS">Nuts and dried fruits</mat-option>
-        <mat-option value="SNACKS">Snacks</mat-option>
-        <mat-option value="ALCOHOL">Alcoholic beverages</mat-option>
-        <mat-option value="ADULT">Adult products</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Quantity of the product</mat-label>
-      <input matInput placeholder="Quantity" formControlName="count">
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Illustration of the product (link)</mat-label>
-      <input matInput placeholder="Illustration" formControlName="illustration">
-    </mat-form-field>
-    <br>
-    <div class="add-btn">
-      <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
-    </div>
-  </form>
-</div>
+  <div class="head">
+    <h1>
+      Add product page
+    </h1>
+  </div>
+  <div class="container">
+    <form [formGroup]="addProductForm" class="mat-form-field" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Product name to add</mat-label>
+        <input matInput placeholder="Product name" formControlName="name">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Price of the product</mat-label>
+        <input matInput placeholder="Price" formControlName="price">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Description of the product</mat-label>
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Category</mat-label>
+        <mat-select [(value)]="selectedCategory">
+          <mat-option value="FRUITS">Fruits</mat-option>
+          <mat-option value="VEGETABLES">Vegetables</mat-option>
+          <mat-option value="MEAT">Meat</mat-option>
+          <mat-option value="SEAFOOD">Fish and seafood</mat-option>
+          <mat-option value="DAIRY">Dairy products</mat-option>
+          <mat-option value="CEREALS">Cereals and legumes</mat-option>
+          <mat-option value="PASTRIES">Bread and pastries</mat-option>
+          <mat-option value="BEVERAGES">Beverages</mat-option>
+          <mat-option value="SWEETS">Sweets</mat-option>
+          <mat-option value="FROZENFOOD">Frozen foods</mat-option>
+          <mat-option value="CANNED">Canned food</mat-option>
+          <mat-option value="CONDIMENTS">Sauces and condiments</mat-option>
+          <mat-option value="NUTS">Nuts and dried fruits</mat-option>
+          <mat-option value="SNACKS">Snacks</mat-option>
+          <mat-option value="ALCOHOL">Alcoholic beverages</mat-option>
+          <mat-option value="ADULT">Adult products</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Quantity of the product</mat-label>
+        <input matInput placeholder="Quantity" formControlName="count">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Illustration of the product (link)</mat-label>
+        <input matInput placeholder="Illustration" formControlName="illustration">
+      </mat-form-field>
+      <br>
+      <div class="add-btn">
+        <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
+      </div>
+    </form>
+  </div>

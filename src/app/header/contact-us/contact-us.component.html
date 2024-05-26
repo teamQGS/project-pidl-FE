@@ -14,7 +14,7 @@
     .container {
       max-width: 800px;
       margin: 0 auto;
-      background-color: #DACEC1; /* custom-grey */
+      background-color: #DACEC1;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -70,11 +70,6 @@
     <p>Toll-Free: 1-800-123-4567</p>
     <p>Local: 123-456-7890</p>
 
-    <h3>Email:</h3>
-    <p>General Inquiries: <a href="mailto:support@grocerieshop.com">support</a></p>
-    <p>Order Support: <a href="mailto:orders@grocerieshop.com">orders</a></p>
-    <p>Feedback: <a href="mailto:feedback@grocerieshop.com">feedback</a></p>
-
     <h3>Address:</h3>
     <p>Groceries Shop Inc.</p>
     <p>123 Market Street</p>
@@ -86,22 +81,32 @@
 
   <div class="contact-form">
     <h3>Contact Form:</h3>
-    <form action="submitForm.jsp" method="post">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="subject">Subject:</label>
-      <input type="text" id="subject" name="subject" required>
-
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-
-      <button type="submit">Send Message</button>
+    <form [formGroup]="contactUsForm" class="mat-form-field" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="username">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Subject</mat-label>
+        <input matInput placeholder="Subject" formControlName="subject">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Describe your problem</mat-label>
+        <textarea matInput placeholder="Describe your problem" formControlName="feedbackContent"></textarea>
+      </mat-form-field>
+      <br>
+      <div class="add-btn">
+        <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
+      </div>
     </form>
   </div>
+
 </div>
 </body>
 </html>
