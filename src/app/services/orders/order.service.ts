@@ -14,7 +14,7 @@ export class OrderService {
     try {
       const response = await this.axiosService.request(
         'GET',
-        'http://localhost:8080/api/manager/orders',
+        '/api/manager/orders',
         {}
       );
       console.log(response.data);
@@ -29,7 +29,7 @@ export class OrderService {
     try {
       const response = await this.axiosService.request(
         'GET',
-        `http://localhost:8080/api/orders/findAll/${(this.username)}`,
+        `/api/orders/findAll/${(this.username)}`,
         {}
       );
       console.log(response.data);
