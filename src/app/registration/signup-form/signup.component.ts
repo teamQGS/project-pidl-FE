@@ -39,7 +39,7 @@ export class SignupComponent {
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.registerFormular = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required]
@@ -54,7 +54,7 @@ export class SignupComponent {
       this.checkPasswordsMatch();
   });
 
-  
+
 
   }
 
@@ -76,8 +76,8 @@ export class SignupComponent {
     const pass = group.get('password')?.value;
     const confirmPass = group.get('confirmPassword')?.value;
     return pass === confirmPass ? null : { notSame: true };
-  }  
-  
+  }
+
 
   checkPasswordsMatch() {
     const password = this.registerFormular.get('password')?.value;
