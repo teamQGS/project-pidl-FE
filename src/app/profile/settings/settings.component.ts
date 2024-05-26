@@ -1,14 +1,13 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {AxiosService} from "../../services/axios/axios.service";
 import {Router, RouterLink} from "@angular/router";
-import {ToastService} from "angular-toastify";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { AuthService } from '../../services/auth.service';
 
@@ -30,8 +29,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './settings.component.css'
 })
 export class SettingsComponent{
-  constructor(private formBuilder: FormBuilder, private router:Router,
-              private toastService: ToastService, private axiosService: AxiosService, private snackBar: MatSnackBar, private authService: AuthService) {}
+  constructor(private router:Router,
+              private axiosService: AxiosService, private snackBar: MatSnackBar, private authService: AuthService) {}
   username = window.localStorage.getItem("username");
   onDelete() {
     this.axiosService.request(

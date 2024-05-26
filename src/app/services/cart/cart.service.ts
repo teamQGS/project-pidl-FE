@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {ProductsDTO} from "../../model/products";
 import {CartDTO} from "../../model/cart";
 import {AxiosService} from "../axios/axios.service";
 import {MatSnackBar} from "@angular/material/snack-bar";

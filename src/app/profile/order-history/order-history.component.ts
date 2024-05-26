@@ -6,7 +6,6 @@ import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {OrderDTO} from "../../model/orders";
-import {FormBuilder} from "@angular/forms";
 import {OrderService} from "../../services/orders/order.service";
 
 @Component({
@@ -53,7 +52,7 @@ export class OrderHistoryComponent implements OnInit {
       minute: '2-digit',
       hour12: false, // Use 24-hour format
     };
-    return date.toLocaleDateString('en-GB', options); // Format date with time
+    return date.toLocaleDateString('en-GB', options);
   }
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForOf } from "@angular/common";
 import { ProductsDTO } from "../model/products";
 import { ProductsService } from "../services/products/products.service";
-import {ActivatedRoute, NavigationExtras, RouterLink} from "@angular/router";
+import {NavigationExtras, RouterLink} from "@angular/router";
 import { MatButton, MatFabButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { MatTooltip } from "@angular/material/tooltip";
