@@ -49,7 +49,7 @@
       <iframe class="w-full h-96"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2661.5374637245554!2d19.141678216065702!3d48.73627727927483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47155e2c7c5aa84d%3A0x15c6f2339b2b46f3!2sTajovsk%C3%A9ho%2051%2C%20974%2001%20Bansk%C3%A1%20Bystrica%2C%20Slovakia!5e0!3m2!1sen!2sus!4v1621446756041!5m2!1sen!2sus"></iframe>
 
-      
+
       <div class="w-full box-border flex flex-col justify-start my-4">
         <p class="text-2xl font-bold my-4">Contact Form:</p>
         <form [formGroup]="contactUsForm" class="flex-grow mt-5 mx-2" (ngSubmit)="onSubmit()">
@@ -65,7 +65,7 @@
             <mat-label class="block mb-1 text-base dark:text-custom-white font-medium">Describe your problem</mat-label>
             <textarea class="text-black w-full flex-grow px-3 py-2 focus:outline-none bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" placeholder="Describe your problem" formControlName="feedbackContent"></textarea>
           <br>
-          <button type="submit"
+          <button type="submit" [disabled]="!contactUsForm.valid"
             class="dark:bg-custom-white dark:text-black dark:hover:bg-custom-white-dark-1 font-medium rounded-xl px-3 w-full py-2 p-1 dark:shadow-md dark:shadow-gray-900 duration-200 transform">
             Send
           </button>
