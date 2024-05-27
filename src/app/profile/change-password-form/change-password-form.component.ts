@@ -50,7 +50,6 @@ export class ChangePasswordFormComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // Watch for changes on the password fields
     this.passwordForm.get('password')?.valueChanges.subscribe(value => {
       this.updatePasswordRequirements(value);
     });

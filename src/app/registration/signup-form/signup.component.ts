@@ -45,7 +45,6 @@ export class SignupComponent {
       confirmPassword: ['', Validators.required]
     }, { validator: this.checkPasswords });
 
-    // Watch for changes on the password fields
     this.registerFormular.get('password')?.valueChanges.subscribe(value => {
       this.updatePasswordRequirements(value);
     });

@@ -1,59 +1,76 @@
-  <div class="head">
-    <h1>
-      Add product page
-    </h1>
-  </div>
-  <div class="container">
-    <form [formGroup]="addProductForm" class="mat-form-field" (ngSubmit)="onSubmit()">
-      <mat-form-field class="example-full-width">
-        <mat-label>Product name to add</mat-label>
-        <input matInput placeholder="Product name" formControlName="name">
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Price of the product</mat-label>
-        <input matInput placeholder="Price" formControlName="price">
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Description of the product</mat-label>
-        <textarea matInput placeholder="Description" formControlName="description"></textarea>
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Category</mat-label>
-        <mat-select [(value)]="selectedCategory">
-          <mat-option value="FRUITS">Fruits</mat-option>
-          <mat-option value="VEGETABLES">Vegetables</mat-option>
-          <mat-option value="MEAT">Meat</mat-option>
-          <mat-option value="SEAFOOD">Fish and seafood</mat-option>
-          <mat-option value="DAIRY">Dairy products</mat-option>
-          <mat-option value="CEREALS">Cereals and legumes</mat-option>
-          <mat-option value="PASTRIES">Bread and pastries</mat-option>
-          <mat-option value="BEVERAGES">Beverages</mat-option>
-          <mat-option value="SWEETS">Sweets</mat-option>
-          <mat-option value="FROZENFOOD">Frozen foods</mat-option>
-          <mat-option value="CANNED">Canned food</mat-option>
-          <mat-option value="CONDIMENTS">Sauces and condiments</mat-option>
-          <mat-option value="NUTS">Nuts and dried fruits</mat-option>
-          <mat-option value="SNACKS">Snacks</mat-option>
-          <mat-option value="ALCOHOL">Alcoholic beverages</mat-option>
-          <mat-option value="ADULT">Adult products</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Quantity of the product</mat-label>
-        <input matInput placeholder="Quantity" formControlName="count">
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Illustration of the product (link)</mat-label>
-        <input matInput placeholder="Illustration" formControlName="illustration">
-      </mat-form-field>
-      <br>
-      <div class="add-btn">
-        <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
+<link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center justify-center min-h-screen overflow-auto">
+  <!-- Контейнер с формой для обновления пароля -->
+  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 dark:bg-custom-dark rounded-3xl my-8">
+    <!-- Заголовок дэшборда -->
+    <div class="w-full flex justify-between items-center px-6 py-4 dark:bg-gray-800 rounded-3xl shadow-md">
+      <div>
+        <p class="font-bold text-2xl mb-1 dark:text-custom-white">Add product</p>
+        <p class="text-gray-300">Manage warehouse by adding new products</p>
       </div>
-    </form>
+      <button class="bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 duration-300"
+        onclick="window.history.back()">Back</button>
+    </div>
+
+    <!-- Форма обновления данных пользователя -->
+    <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex justify-center">
+
+
+      <form [formGroup]="addProductForm" class="w-full flex flex-col" (ngSubmit)="onSubmit()">
+  
+
+        <mat-form-field appearance="fill" class="flex-grow mt-5 mx-2">
+          <mat-label>Category</mat-label>
+          <mat-select [(value)]="selectedCategory" class="font-medium">
+            <mat-option value="FRUITS">Fruits</mat-option>
+            <mat-option value="VEGETABLES">Vegetables</mat-option>
+            <mat-option value="MEAT">Meat</mat-option>
+            <mat-option value="SEAFOOD">Fish and seafood</mat-option>
+            <mat-option value="DAIRY">Dairy products</mat-option>
+            <mat-option value="CEREALS">Cereals and legumes</mat-option>
+            <mat-option value="PASTRIES">Bread and pastries</mat-option>
+            <mat-option value="BEVERAGES">Beverages</mat-option>
+            <mat-option value="SWEETS">Sweets</mat-option>
+            <mat-option value="FROZENFOOD">Frozen foods</mat-option>
+            <mat-option value="CANNED">Canned food</mat-option>
+            <mat-option value="CONDIMENTS">Sauces and condiments</mat-option>
+            <mat-option value="NUTS">Nuts and dried fruits</mat-option>
+            <mat-option value="SNACKS">Snacks</mat-option>
+            <mat-option value="ALCOHOL">Alcoholic beverages</mat-option>
+            <mat-option value="ADULT">Adult products</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+          <label class="block mb-1 text-base dark:text-custom-white font-medium" for="name">Product name to add</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Product name*" formControlName="name">
+        <br>
+          <label class="block mb-1 text-base dark:text-custom-white font-medium" for="price">Price of the product</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Price*" formControlName="price">
+        <br>
+          <label class="block mb-1 text-base dark:text-custom-white font-medium" for="description">Description of the product</label>
+          <textarea class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Description*" formControlName="description"></textarea>
+        <br>
+
+
+
+
+
+      
+          <label class="block mb-1 text-base dark:text-custom-white font-medium" for="count">Quantity of the product</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Quantity*" formControlName="count">
+        <br>
+          <label class="block mb-1 text-base dark:text-custom-white font-medium" for="illustration">Illustration of the product (link)</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg  dark:shadow-sm dark:shadow-gray-800" placeholder="Illustration*" formControlName="illustration">
+        <br>
+        
+
+
+          <button class="dark:bg-custom-white dark:text-black dark:hover:bg-custom-white-dark-1 font-medium rounded-xl px-8 py-2 m-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform" type="submit">Add</button>
+        
+      </form>
+
+
+    </div>
   </div>
+</div>

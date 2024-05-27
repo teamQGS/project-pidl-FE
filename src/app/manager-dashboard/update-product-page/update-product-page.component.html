@@ -1,62 +1,81 @@
-
-<link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
-<div class="head text-center my-8">
-  <h1 class="text-4xl font-bold">
-    Update Product Page
-  </h1>
-</div>
-<div class="container mx-auto max-w-lg p-6 bg-white shadow-md rounded-md">
-  <form [formGroup]="updateProductForm" class="space-y-6" (ngSubmit)="onSubmit()">
-    <div>
-      <label class="block text-sm font-medium text-gray-700" for="name">Product Name</label>
-      <input id="name" type="text" placeholder="Product name" formControlName="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700" for="price">Price</label>
-      <input id="price" type="text" placeholder="Price" formControlName="price" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700" for="description">Description</label>
-      <textarea id="description" placeholder="Description" formControlName="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700" for="category">Category</label>
-      <select id="category" formControlName="category" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        <option value="FRUITS">Fruits</option>
-        <option value="VEGETABLES">Vegetables</option>
-        <option value="MEAT">Meat</option>
-        <option value="SEAFOOD">Fish and seafood</option>
-        <option value="DAIRY">Dairy products</option>
-        <option value="CEREALS">Cereals and legumes</option>
-        <option value="PASTRIES">Bread and pastries</option>
-        <option value="BEVERAGES">Beverages</option>
-        <option value="SWEETS">Sweets</option>
-        <option value="FROZENFOOD">Frozen foods</option>
-        <option value="CANNED">Canned food</option>
-        <option value="CONDIMENTS">Sauces and condiments</option>
-        <option value="NUTS">Nuts and dried fruits</option>
-        <option value="SNACKS">Snacks</option>
-        <option value="ALCOHOL">Alcoholic beverages</option>
-        <option value="ADULT">Adult products</option>
-      </select>
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700" for="count">Quantity</label>
-      <input id="count" type="text" placeholder="Quantity" formControlName="count" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Illustration of the product (link)</mat-label>
-      <input matInput placeholder="Illustration" formControlName="illustration">
-    </mat-form-field>
-    <br>
-    <div class="text-center">
-      <button type="submit" id="add_button" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        Update
+<link href="../../../tailwind.css" rel="stylesheet" />
+<!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center justify-center min-h-screen overflow-auto">
+  <!-- Контейнер с формой для обновления пароля -->
+  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 dark:bg-custom-dark rounded-3xl my-8">
+    <!-- Заголовок дэшборда -->
+    <div class="w-full flex justify-between items-center px-6 py-4 dark:bg-gray-800 rounded-3xl shadow-md">
+      <div>
+        <p class="font-bold text-2xl mb-1 dark:text-custom-white">
+          Update product
+        </p>
+        <p class="text-gray-300">Edit name, description, category etc.</p>
+      </div>
+      <button class="bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 duration-300"
+        onclick="window.history.back()">
+        Back
       </button>
     </div>
-  </form>
-</div>
 
-<!-- Add this in your HTML head or import it in your CSS/SCSS file -->
-<script src="https://cdn.tailwindcss.com"></script>
+    <!-- Форма обновления данных пользователя -->
+    <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex justify-center">
+      <form [formGroup]="updateProductForm" class="w-full flex flex-col" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="flex-grow mt-5 mx-2">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category" class="font-medium">
+            <mat-option value="FRUITS">Fruits</mat-option>
+            <mat-option value="VEGETABLES">Vegetables</mat-option>
+            <mat-option value="MEAT">Meat</mat-option>
+            <mat-option value="SEAFOOD">Fish and seafood</mat-option>
+            <mat-option value="DAIRY">Dairy products</mat-option>
+            <mat-option value="CEREALS">Cereals and legumes</mat-option>
+            <mat-option value="PASTRIES">Bread and pastries</mat-option>
+            <mat-option value="BEVERAGES">Beverages</mat-option>
+            <mat-option value="SWEETS">Sweets</mat-option>
+            <mat-option value="FROZENFOOD">Frozen foods</mat-option>
+            <mat-option value="CANNED">Canned food</mat-option>
+            <mat-option value="CONDIMENTS">Sauces and condiments</mat-option>
+            <mat-option value="NUTS">Nuts and dried fruits</mat-option>
+            <mat-option value="SNACKS">Snacks</mat-option>
+            <mat-option value="ALCOHOL">Alcoholic beverages</mat-option>
+            <mat-option value="ADULT">Adult products</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="name">Product Name</label>
+        <input
+          class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800"
+          type="text" placeholder="Product name" formControlName="name" />
+        <br />
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="price">Price</label>
+        <input
+          class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800"
+          type="text" placeholder="Price" formControlName="price" />
+        <br />
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="description">Description</label>
+        <textarea
+          class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800"
+          placeholder="Description" formControlName="description"></textarea>
+
+        <br />
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="count">Quantity</label>
+        <input id="count" type="text" placeholder="Quantity" formControlName="count"
+          class="lex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" />
+
+        <br />
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="illustration">Illustration of the
+          product (link)</label>
+        <input placeholder="Illustration" formControlName="illustration"
+          class="lex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" />
+        <br />
+
+
+          <button type="submit" id="add_button"
+            class="dark:bg-custom-white dark:text-black dark:hover:bg-custom-white-dark-1 font-medium rounded-xl px-8 py-2 m-2 dark:shadow-md dark:shadow-gray-900 duration-200 transform">
+            Update
+          </button>
+
+      </form>
+    </div>
+  </div>
+</div>

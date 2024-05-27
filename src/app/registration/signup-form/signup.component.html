@@ -1,8 +1,8 @@
 <link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col justify-center items-center h-screen bg-custom-black">
+<div class="flex flex-col justify-center items-center h-screen">
   <!-- Контейнер (окно) регистрации -->
-  <div class="w-full flex flex-row items-center max-w-6xl h-5/6 max-h-750 bg-custom-green rounded-3xl">
+  <div class="w-full flex flex-row items-center max-w-6xl h-5/6 max-h-750 dark:bg-gray-800 rounded-3xl my-8">
     <!-- Логотип и промо-текст -->
     <div class="hidden md:flex w-2/5 h-full flex-col items-center justify-center bg-custom-white rounded-3xl">
       <img class="size-48" src="assets/logo/logo-black.svg" alt="logo">
@@ -10,28 +10,20 @@
     </div>
     <!-- Форма регистрации -->
     <div class="w-full md:w-3/5 p-5 box-border flex items-center justify-center flex-col">
-      <form [formGroup]="registerFormular" (ngSubmit)="onSubmitRegister()" class="w-3/5">
-        <h1 class="text-2xl font-semibold w-full text-center mb-5">Create account</h1>
-        <label class="block mb-0 text-base" for="email">Email</label>
-        <mat-form-field class="w-full mb-2 example-full-width">
-          <input matInput id="email" placeholder="email@example.com" formControlName="email" />
-        </mat-form-field>
+      <form [formGroup]="registerFormular" (ngSubmit)="onSubmitRegister()" class="w-3/5 flex flex-col">
+        <h1 class="text-2xl font-semibold w-full text-center mb-5 dark:text-custom-white">Create account</h1>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="email">Email</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" id="email" placeholder="email@example.com" formControlName="email" />
         <br />
-        <label class="block mb-0 text-base" for="username">Username</label>
-        <mat-form-field class="w-full mb-2 example-full-width">
-          <input matInput id="username" placeholder="Enter your username" formControlName="username">
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="username">Username</label>
+          <input class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" id="username" placeholder="Enter your username" formControlName="username">
         <br />
-        <label class="block mb-0 text-base" for="password">Password</label>
-        <mat-form-field class="w-full mb-2 example-full-width">
-          <input type="password" matInput id="password" placeholder="Enter your password" formControlName="password">
-        </mat-form-field>
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="password">Password</label>
+          <input type="password" class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" id="password" placeholder="Enter your password" formControlName="password">
         <br>
-        <label class="block mb-0 text-base" for="confirmPassword">Confirm Password</label>
-        <mat-form-field class="w-full mb-2 example-full-width">
-          <input type="password" matInput id="confirmPassword" placeholder="Confirm your password"
+        <label class="block mb-1 text-base dark:text-custom-white font-medium" for="confirmPassword">Confirm Password</label>
+          <input type="password" class="flex-grow px-3 py-2 focus:outline-none transition-transform transform hover:scale-105 bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" id="confirmPassword" placeholder="Confirm your password"
             formControlName="confirmPassword">
-        </mat-form-field>
         <br>
         <!-- Требования к паролю (динамические) -->
         <div class="text-custom-white text-sm p-2 -mt-4 mb-2">
@@ -59,7 +51,7 @@
           </ul>
         </div>
         <!-- Кнопка регистрации -->
-        <button class="w-full rounded-xl h-10 mb-5 enabled:bg-custom-button enabled:text-custom-white" mat-raised-button matTooltip="Sign up" type="submit"
+        <button class="px-4 py-2 bg-gray-600 text-gray-500 enableed:text-custom-white-light-1 enabled:bg-gray-700 enabled:text-custom-white font-medium enabled:hover:bg-gray-900 duration-300 enabled:dark:shadow-sm enabled:dark:shadow-gray-900 rounded-lg my-2" type="submit"
           [disabled]="!registerFormular.valid || !allRequirementsMet()">SIGN UP</button>
       </form>
       <br>
