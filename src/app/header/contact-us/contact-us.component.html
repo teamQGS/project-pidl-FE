@@ -1,112 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Contact Us - Grocery Shop</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-      background-color: #4B5966; /* custom-white */
-      color: #4B5966; /* custom-black */
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #DACEC1;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h2, h3 {
-      color: #2c3e50; /* Adjusted for readability */
-    }
-    .contact-details, .contact-form {
-      margin-bottom: 20px;
-    }
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      background-color: #F2E5D7; /* custom-white */
-      color: #4B5966; /* custom-black */
-    }
-    .contact-form button {
-      padding: 10px 15px;
-      background-color: #425157; /* custom-button */
-      color: #F2E5D7; /* custom-white */
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .social-links a {
-      margin-right: 10px;
-      text-decoration: none;
-      color: #4B5966; /* custom-black */
-    }
-    .social-links img {
-      height: 30px;
-      width: 30px;
-      vertical-align: middle;
-    }
-  </style>
-</head>
-<body>
-<div class="container">
-  <h2>Contact Us</h2>
-  <h3>We'd Love to Hear from You!</h3>
-  <p>Whether you have a question about our products, need assistance, or just want to provide feedback, we're here to help.</p>
+<link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
+<!-- Контейнер полного контента тела -->
+<div class="flex flex-col items-center justify-center min-h-screen overflow-auto">
+  <!-- Контейнер с формой для обновления пароля -->
+  <div class="w-11/12 flex flex-col items-center max-w-5xl h-5/6 dark:bg-custom-dark rounded-3xl my-8">
+    <!-- Заголовок дэшборда -->
+    <div class="w-full flex justify-between items-center px-6 py-4 dark:bg-gray-800 rounded-3xl shadow-md">
+      <div>
+        <p class="font-bold text-2xl mb-1 dark:text-custom-white py-2">
+          Contact Us
+        </p>
 
-  <div class="contact-details">
-    <h3>Customer Service Hours:</h3>
-    <p>Monday to Friday: 8 AM - 8 PM</p>
-    <p>Saturday: 9 AM - 6 PM</p>
-    <p>Sunday: Closed</p>
-
-    <h3>Phone:</h3>
-    <p>Toll-Free: 1-800-123-4567</p>
-    <p>Local: 123-456-7890</p>
-
-    <h3>Address:</h3>
-    <p>Groceries Shop Inc.</p>
-    <p>123 Market Street</p>
-    <p>Townsville, TS 12345</p>
-
-    <h3>Get in Touch:</h3>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2661.5374637245554!2d19.141678216065702!3d48.73627727927483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47155e2c7c5aa84d%3A0x15c6f2339b2b46f3!2sTajovsk%C3%A9ho%2051%2C%20974%2001%20Bansk%C3%A1%20Bystrica%2C%20Slovakia!5e0!3m2!1sen!2sus!4v1621446756041!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-
-  <div class="contact-form">
-    <h3>Contact Form:</h3>
-    <form [formGroup]="contactUsForm" class="mat-form-field" (ngSubmit)="onSubmit()">
-      <mat-form-field class="example-full-width">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" formControlName="username">
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Subject</mat-label>
-        <input matInput placeholder="Subject" formControlName="subject">
-      </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <mat-label>Describe your problem</mat-label>
-        <textarea matInput placeholder="Describe your problem" formControlName="feedbackContent"></textarea>
-      </mat-form-field>
-      <br>
-      <div class="add-btn">
-        <button mat-raised-button color="green" type="submit" id="add_button">Add</button>
       </div>
-    </form>
-  </div>
+    </div>
+    <div class="my-4 p-5 flex flex-col dark:text-custom-white">
 
+      <div class="mb-4">
+        <p class="font-bold text-2xl">We'd Love to Hear from You</p>
+        <p>Whether you have a question about our products, need assistance, or just want to provide feedback, we're here
+          to
+          help.</p>
+      </div>
+
+
+
+      <div class=" mb-4">
+        <p class="font-bold text-2xl">Customer Service Hours:</p>
+        <p>Monday to Friday: 8 AM - 8 PM</p>
+        <p>Saturday: 9 AM - 6 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+
+
+      <div class=" mb-4">
+        <p class="font-bold text-2xl">Phone:
+        <p>
+        <p>Local: +421 900 900 900</p>
+        <P>Worldwide: +421 912 000 000</P>
+      </div>
+
+      <div class="mb-4">
+        <p class="font-bold text-2xl">Address:
+        <p>
+        <p>Pidl Slovensko</p>
+        <p>Tajovskeho 51</p>
+        <p>Banska Bystrica, 97409</p>
+      </div>
+
+      <iframe class="w-full h-96"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2661.5374637245554!2d19.141678216065702!3d48.73627727927483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47155e2c7c5aa84d%3A0x15c6f2339b2b46f3!2sTajovsk%C3%A9ho%2051%2C%20974%2001%20Bansk%C3%A1%20Bystrica%2C%20Slovakia!5e0!3m2!1sen!2sus!4v1621446756041!5m2!1sen!2sus"></iframe>
+
+      
+      <div class="w-full box-border flex flex-col justify-start my-4">
+        <p class="text-2xl font-bold my-4">Contact Form:</p>
+        <form [formGroup]="contactUsForm" class="flex-grow mt-5 mx-2" (ngSubmit)="onSubmit()">
+            <mat-label class="block mb-1 text-base dark:text-custom-white font-medium">Name</mat-label>
+            <input class="text-black w-full flex-grow px-3 py-2 focus:outline-none bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" placeholder="Name" formControlName="username">
+          <br>
+            <mat-label class="block mb-1 text-base dark:text-custom-white font-medium">Email</mat-label>
+            <input class="text-black w-full flex-grow px-3 py-2 focus:outline-none bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" placeholder="Email" formControlName="email">
+          <br>
+            <mat-label class="block mb-1 text-base dark:text-custom-white font-medium">Subject</mat-label>
+            <input class="text-black w-full flex-grow px-3 py-2 focus:outline-none bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" placeholder="Subject" formControlName="subject">
+          <br>
+            <mat-label class="block mb-1 text-base dark:text-custom-white font-medium">Describe your problem</mat-label>
+            <textarea class="text-black w-full flex-grow px-3 py-2 focus:outline-none bg-gray-300 mb-6 p-1 rounded-lg dark:shadow-sm dark:shadow-gray-800" placeholder="Describe your problem" formControlName="feedbackContent"></textarea>
+          <br>
+          <button type="submit"
+            class="dark:bg-custom-white dark:text-black dark:hover:bg-custom-white-dark-1 font-medium rounded-xl px-3 w-full py-2 p-1 dark:shadow-md dark:shadow-gray-900 duration-200 transform">
+            Send
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+
+  </div>
 </div>
-</body>
-</html>
