@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AxiosService} from "../../services/axios/axios.service";
 import {Router} from "@angular/router";
-import {AddressService} from "../../services/adress/address.service";
 import {OrderDTO} from "../../model/orders";
 import {NgForOf, NgIf} from "@angular/common";
-import {OrderService} from "../../services/orders/order.service";
 
 @Component({
   selector: 'app-active-order-page',
@@ -23,8 +20,6 @@ export class ActiveOrderPageComponent implements OnInit{
     private snackBar: MatSnackBar,
     private axiosService: AxiosService,
     private router: Router,
-    private orderService: OrderService,
-    private addressService: AddressService
   ){}
 
   username = window.localStorage.getItem("username");

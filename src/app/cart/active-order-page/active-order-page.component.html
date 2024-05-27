@@ -19,7 +19,7 @@
       <div class="border-b pb-4 mb-4">
         <p class="text-lg"><strong>Order ID:</strong> {{order.id}}</p>
         <p class="text-lg"><strong>Created at:</strong> {{date}}</p>
-        <p class="text-lg"><strong>Total Sum:</strong> {{order.totalSum}} EUR</p>
+        <p class="text-lg"><strong>Total Sum:</strong> {{order.totalSum?.toFixed(2)}} EUR</p>
         <p class="text-lg"><strong>Status:</strong> {{order.status}}</p>
       </div>
 
