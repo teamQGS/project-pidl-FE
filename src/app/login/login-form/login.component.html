@@ -1,8 +1,8 @@
 <link href="../../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер полного контента тела -->
-<div class="flex flex-col justify-center items-center h-screen">
+<div class="flex flex-col justify-center items-center h-screen bg-custom-green-1200 dark:bg-gray-700">
   <!-- Контейнер (окно) авторизации -->
-  <div class="w-full flex flex-row items-center max-w-6xl h-5/6 max-h-750 dark:bg-gray-800 rounded-3xl my-8">
+  <div class="w-full flex flex-row items-center max-w-6xl h-5/6 max-h-750 dark:bg-gray-800 rounded-3xl my-8 bg-custom-green-100">
     <!-- Форма авторизации -->
     <div class="w-full md:w-3/5 p-5 box-border flex items-center justify-center flex-col">
       <form [formGroup]="loginFormular" (ngSubmit)="onSubmitLogin()" class="w-3/5 flex flex-col">

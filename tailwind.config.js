@@ -14,6 +14,7 @@ module.exports = { // Конфигурация tailwindcss
         'custom-green-400': '#4a6669',
         'custom-green-500': '#405a5c',
         'custom-green-1100': '#70979a',
+        'custom-green-1200': '#b7cbcc',
         'custom-white': '#F2E5D7',
         'custom-black': '#4B5966',
         'custom-button': '#425157',
