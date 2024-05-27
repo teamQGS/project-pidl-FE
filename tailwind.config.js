@@ -8,15 +8,17 @@ module.exports = { // Конфигурация tailwindcss
     extend: {
       // Особые цвета проекта (для использования в tailwind)
       colors: {
-        'custom-green': '#5C8083',
+        'custom-green-100': '#5C8083',
+        'custom-green-200': '#537376',
+        'custom-green-300': '#4e6d6f',
+        'custom-green-400': '#4a6669',
+        'custom-green-500': '#405a5c',
+        'custom-green-1100': '#70979a',
         'custom-white': '#F2E5D7',
         'custom-black': '#4B5966',
         'custom-button': '#425157',
         'custom-blue': '#64748B',
         'custom-grey': '#DACEC1',
-        'custom-green-dark-1': '#4e6d6f',
-        'custom-green-dark-2': '#4a6669',
-        'custom-green-dark-3': '#446062',
         'custom-white-dark-1': '#e1c3a3',
         'custom-white-light-1': '#f8f2eb',
         'custom-dark': '#364760',

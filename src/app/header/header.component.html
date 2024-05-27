@@ -1,9 +1,9 @@
 <link href="../../tailwind.css" rel="stylesheet" /> <!-- Подключение стилей Tailwind CSS -->
 <!-- Контейнер хэдера -->
-<header class="dark:bg-gray-800 dark:text-custom-white">
+<header class="dark:bg-gray-800 text-custom-white bg-custom-green-100">
   <!-- Главная строка -->
-  <div class="w-full h-20 flex flex-row items-center justify-between dark:bg-gray-800 dark:text-custom-white relative font-semibold text-base p-4
-  mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+  <div class="w-full h-20 flex flex-row items-center justify-between dark:bg-gray-800 text-custom-white relative font-semibold text-base p-4
+  mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl bg-custom-green-100">
     <!-- Логотип -->
     <div class="logo cursor-pointer duration-50 transform hover:scale-105" routerLink="/">
       <img [src]="logoLightPath" alt="logo" height="" width="" class="flex size-16" />
@@ -54,7 +54,7 @@
         <img [src]="employeeIconPath" alt="Dashboard List" class="duration-50 transform hover:scale-105" />
         <!-- Содержание меню -->
         <div
-          class="hidden sm:flex dark:text-gray-800 absolute flex-col top-full left-1/2 -translate-x-1/2 dark:bg-custom-white-light-1 rounded-3xl z-50 w-80 mt-4 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto"
+          class="hidden sm:flex dark:text-gray-800 absolute flex-col top-full left-1/2 -translate-x-1/2 dark:bg-custom-white-light-1 rounded-3xl z-50 w-80 mt-4 h-auto pb-1 pt-1 pr-2.5 pl-2.5 overflow-y-auto bg-gray-600"
           *ngIf="showDashboardList">
           <!-- Начало списка -->
           <div class="w-full">
