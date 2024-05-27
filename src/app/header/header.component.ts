@@ -39,11 +39,16 @@ export class HeaderComponent implements OnInit {
   protected readonly window = window;
 
   showDashboardList = false;
+  showMobileMenu = false;
   role = window.localStorage.getItem('role');
 
   toggleDashboardList(event: MouseEvent): void {
     event.stopPropagation();
     this.showDashboardList = !this.showDashboardList;
+  }
+
+  toggleMenu(): void {
+    this.showMobileMenu = !this.showMobileMenu;
   }
 
   @HostListener('document:click', ['$event'])
