@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators, FormGroup } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
 import { MatError, MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
@@ -8,7 +8,6 @@ import { AxiosService } from "../../services/axios/axios.service";
 import { Router } from "@angular/router";
 import { NgIf } from "@angular/common";
 import { RouterLink } from '@angular/router';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-change-password-form',
@@ -28,7 +27,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './change-password-form.component.html',
   styleUrls: ['./change-password-form.component.css']
 })
-export class ChangePasswordFormComponent {
+export class ChangePasswordFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private axiosService: AxiosService, private router: Router) { }
 
   username = window.localStorage.getItem("username");
@@ -37,8 +36,7 @@ export class ChangePasswordFormComponent {
     currentPassword: ['', Validators.required],
     password: ['', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.pattern('(?=.*[A-Z]).*')
+      Validators.minLength(5)
     ]],
     confirmPassword: ['', Validators.required]
   }, { validator: this.checkPasswords });
@@ -67,6 +65,7 @@ export class ChangePasswordFormComponent {
     this.passwordRequirements.uppercase = /[A-Z]/.test(value);
     this.passwordRequirements.number = /\d/.test(value);
     this.passwordRequirements.specialChar = /[!@#$%^&*_-]/.test(value);
+    this.checkPasswordsMatch();
   }
 
   checkPasswords(group: FormGroup) {
