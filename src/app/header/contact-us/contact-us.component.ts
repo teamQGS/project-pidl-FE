@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AxiosService } from '../../services/axios/axios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {MatButton} from "@angular/material/button";
-import {MatFormField, MatLabel} from "@angular/material/form-field";
-import {MatInput} from "@angular/material/input";
-import {MatOption} from "@angular/material/autocomplete";
-import {MatSelect} from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 
 @Component({
   selector: 'app-contact-us',
@@ -14,33 +13,32 @@ import {MatSelect} from "@angular/material/select";
   standalone: true,
   imports: [
     FormsModule,
-    MatButton,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    MatOption,
-    MatSelect,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent {
+  contactUsForm = this.formBuilder.group({
+    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+    subject: ['', Validators.required],
+    feedbackContent: ['', Validators.required]
+  });
+
   constructor(
     private axiosService: AxiosService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder
   ) {}
 
-  contactUsForm = this.formBuilder.group({
-    username: ['', Validators.required, ],
-    email: ['', Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)],
-    subject: [ '', Validators.required],
-    feedbackContent: [ '', Validators.required]
-  });
-
   onSubmit() {
-    const formattedDate = this.formatDate(new Date());
-    this.axiosService.request(
+    if (this.contactUsForm.valid) {
+      const formattedDate = this.formatDate(new Date());
+      this.axiosService.request(
         "POST",
         "/api/feedback/add",
         {
@@ -61,11 +59,12 @@ export class ContactUsComponent {
         });
       });
     }
+  }
+
   private formatDate(date: Date): string {
     const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
-
     return `${day} ${month} ${year}`;
   }
 }
