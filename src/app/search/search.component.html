@@ -10,19 +10,19 @@
     >
   </div>
 
-<!-- Каталог попап -->
-<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20" *ngIf="showCatalog">
-  <div class="bg-gray-700 text-custom-white rounded-lg shadow-lg p-6 max-w-4xl w-full">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-xl font-bold">Categories</h2>
-      <button (click)="toggleCatalog()" class="text-custom-white hover:text-gray-800 duration-300">&times;</button>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div *ngFor="let category of categories" (click)="selectCategory(category.name)" class="flex items-center p-4 border border-gray-800 rounded hover:bg-gray-800 duration-300 cursor-pointer">
-        <img [src]="category.image" [alt]="category.name" class="w-16 h-16 mr-4">
-        <span>{{ category.description }}</span>
+  <!-- Каталог попап -->
+  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20" *ngIf="showCatalog">
+    <div class="bg-gray-700 text-custom-white rounded-lg shadow-lg p-6 max-w-4xl w-full sm:h-auto h-4/5 overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Categories</h2>
+        <button (click)="toggleCatalog()" class="text-custom-white hover:text-gray-800 duration-300">&times;</button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div *ngFor="let category of categories" (click)="selectCategory(category.name)" class="flex items-center p-4 border border-gray-800 rounded hover:bg-gray-800 duration-300 cursor-pointer">
+          <img [src]="category.image" [alt]="category.name" class="w-16 h-16 mr-4">
+          <span>{{ category.description }}</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
