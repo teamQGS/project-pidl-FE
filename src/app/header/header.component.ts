@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu(): void {
     this.showMobileMenu = !this.showMobileMenu;
-  }
+  }  
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {

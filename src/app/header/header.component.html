@@ -104,36 +104,37 @@
     </div>
   </div>
 
-  <!-- Меню для мобильных устройств -->
-  <div *ngIf="showMobileMenu" class="sm:hidden flex flex-col items-center w-full bg-gray-800 text-white">
-    <ul class="flex flex-col w-full">
-      <li class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/">
-        Products
-      </li>
-      <li class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/contact-us">
-        Contact us
-      </li>
-      <li class="p-4 border-b border-gray-700 cursor-pointer" (click)="toggleTheme()">
-        Change Theme
-      </li>
-      <li class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/profile">
-        Profile
-      </li>
-      <li *ngIf="window.localStorage.getItem('role') == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'"
-          class="p-4 border-b border-gray-700 cursor-pointer" routerLink="order-monitoring">
-        Orders Monitoring
-      </li>
-      <li *ngIf="window.localStorage.getItem('role') == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'"
-          class="p-4 border-b border-gray-700 cursor-pointer" routerLink="manager-dashboard">
-        Manager Dashboard
-      </li>
-      <li *ngIf="window.localStorage.getItem('role') == 'ADMIN'" class="p-4 border-b border-gray-700 cursor-pointer"
-          routerLink="admin-dashboard">
-        Admin Dashboard
-      </li>
-      <li *ngIf="!isLoggedIn" class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/login">
-        Login
-      </li>
-    </ul>
-  </div>
+<!-- Меню для мобильных устройств -->
+<div *ngIf="showMobileMenu" class="sm:hidden flex flex-col items-center w-full bg-gray-800 text-white">
+  <ul class="flex flex-col w-full">
+    <li class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/" (click)="toggleMenu()">
+      Products
+    </li>
+    <li class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/contact-us" (click)="toggleMenu()">
+      Contact us
+    </li>
+    <li class="p-4 border-b border-gray-700 cursor-pointer" (click)="toggleTheme(); toggleMenu()">
+      Change Theme
+    </li>
+    <li class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/profile" (click)="toggleMenu()">
+      Profile
+    </li>
+    <li *ngIf="window.localStorage.getItem('role') == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'"
+        class="p-4 border-b border-gray-700 cursor-pointer" routerLink="order-monitoring" (click)="toggleMenu()">
+      Orders Monitoring
+    </li>
+    <li *ngIf="window.localStorage.getItem('role') == 'MANAGER' || window.localStorage.getItem('role') == 'ADMIN'"
+        class="p-4 border-b border-gray-700 cursor-pointer" routerLink="manager-dashboard" (click)="toggleMenu()">
+      Manager Dashboard
+    </li>
+    <li *ngIf="window.localStorage.getItem('role') == 'ADMIN'" class="p-4 border-b border-gray-700 cursor-pointer"
+        routerLink="admin-dashboard" (click)="toggleMenu()">
+      Admin Dashboard
+    </li>
+    <li *ngIf="!isLoggedIn" class="p-4 border-b border-gray-700 cursor-pointer" routerLink="/login" (click)="toggleMenu()">
+      Login
+    </li>
+  </ul>
+</div>
+
 </header>
