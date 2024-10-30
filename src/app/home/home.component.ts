@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  addToCart(productId: string): void {
+  addToCart(productId: number): void {
     this.cartService.addToCart(productId);
     this.snackBar.open('Product was added to cart', '', { duration: 3000 });
   }

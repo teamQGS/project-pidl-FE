@@ -1,7 +1,7 @@
 import {Binary} from "bson";
 
 export class ProductsDTO{
-    id!: string;
+    id!: number;
     name!: string;
     description!: string;
     price!: number;

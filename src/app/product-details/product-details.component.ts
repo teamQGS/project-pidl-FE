@@ -23,7 +23,7 @@ export class ProductDetailsComponent {
     this.product = null;
   }
 
-  addToCart(productId: string) {
+  addToCart(productId: number) {
     this.cartService.addToCart(productId);
     this.snackBar.open("Product was added to cart", '', {
       duration: 3000

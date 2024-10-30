@@ -1,5 +1,5 @@
 export class AddressDTO {
-  id!: string;
+  id!: number;
   username!: string;
   country!: string;
   city!: string;

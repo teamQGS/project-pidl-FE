@@ -1,7 +1,7 @@
 import {ProductsDTO} from "./products";
 
 export class CartDTO {
-  id!: string;
+  id!: number;
   username!: string;
   products!: ProductsDTO[];
 }

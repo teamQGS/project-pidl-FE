@@ -17,12 +17,12 @@
       </button>
     </div>
 
-    <!-- Форма обновления данных пользователя -->
+    <!-- Форма обновления данных продукта -->
     <div class="w-3/5 md:w-2/5 my-4 p-5 mx-4 box-border flex justify-center">
       <form [formGroup]="updateProductForm" class="w-full flex flex-col" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill" class="flex-grow mt-5 mx-2">
           <mat-label>Category</mat-label>
-          <mat-select formControlName="category" class="font-medium">
+          <mat-select formControlName="productCategory" class="font-medium">
             <mat-option value="FRUITS">Fruits</mat-option>
             <mat-option value="VEGETABLES">Vegetables</mat-option>
             <mat-option value="MEAT">Meat</mat-option>

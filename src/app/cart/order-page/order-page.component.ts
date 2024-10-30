@@ -6,7 +6,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {Router, RouterLink} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AxiosService} from "../../services/axios/axios.service";
-import {AddressService} from "../../services/adress/address.service";
+import {AddressService} from "../../services/address/address.service";
 import {AddressDTO} from "../../model/address";
 
 @Component({

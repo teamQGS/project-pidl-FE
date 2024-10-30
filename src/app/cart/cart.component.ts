@@ -41,12 +41,12 @@ export class CartComponent implements OnInit {
     this.warehouseProducts = await this.productsService.getAll();
   }
 
-  getProductWarehouseCount(productId: string): number {
+  getProductWarehouseCount(productId: number): number {
     const product = this.warehouseProducts.find(prod => prod.id === productId);
     return product ? product.count : 0;
   }
 
-  removeFromCart(productId: string) {
+  removeFromCart(productId: number) {
     this.cartService
       .removeFromCart(productId)
       .then(() => {
@@ -91,7 +91,7 @@ export class CartComponent implements OnInit {
     return parseFloat(value.toFixed(2));
   }
 
-  increaseCount(productId: string) {
+  increaseCount(productId: number) {
     let product = this.cartItems.find((product) => product.id === productId);
     if (product) {
       product.count++;
@@ -100,7 +100,7 @@ export class CartComponent implements OnInit {
     this.calculateTotalPrice();
   }
 
-  decreaseCount(productId: string) {
+  decreaseCount(productId: number) {
     let product = this.cartItems.find((product) => product.id === productId);
     if (product) {
       if (product.count > 1) {

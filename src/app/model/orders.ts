@@ -1,7 +1,7 @@
 import {ProductsDTO} from "./products";
 
 export class OrderDTO {
-  id!: string;
+  id!: number;
   date!: Date;
   customerUsername!: string;
   managerUsername!: string;

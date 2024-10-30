@@ -51,7 +51,7 @@ export class ManagerDashboardComponent implements OnInit {
   navigateToOrderMonitoringPage(): void {
     this.router.navigate(['order-monitoring']).then(r => {});
   }
-  navigateToUpdateProductPage(productId: string): void {
+  navigateToUpdateProductPage(productId: number): void {
     // Define navigation extras including the product ID as a query parameter
     const navigationExtras: NavigationExtras = {
       queryParams: {

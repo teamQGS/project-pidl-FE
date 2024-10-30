@@ -36,7 +36,7 @@ export class UpdateProductPageComponent implements OnInit{
   ) {}
   selectedCategory: String | undefined;
   file: File | null = null; // Variable to store file
-  @Input() productId: string | undefined;
+  @Input() productId: number | undefined;
 
   updateProductForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -64,7 +64,8 @@ export class UpdateProductPageComponent implements OnInit{
           description: this.updateProductForm.value.description,
           price: this.updateProductForm.value.price,
           count: this.updateProductForm.value.count,
-          illustration: this.updateProductForm.value.illustration
+          illustration: this.updateProductForm.value.illustration,
+          productCategory: this.updateProductForm.value.productCategory
         }
       ).then(response => {
         this.snackBar.open("Product was updated successfully", '', {

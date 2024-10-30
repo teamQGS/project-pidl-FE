@@ -30,7 +30,7 @@ export class CartService {
   }
 
 
-  addToCart(productId: string) {
+  addToCart(productId: number) {
     let username = window.localStorage.getItem('username')
     this.axiosService.request(
       'PUT',
@@ -45,7 +45,7 @@ export class CartService {
     })
   }
 
-  async removeFromCart(productId: string): Promise<any> {
+  async removeFromCart(productId: number): Promise<any> {
     let username = window.localStorage.getItem('username')
     try {
       const response = await this.axiosService.request(
@@ -76,7 +76,7 @@ export class CartService {
     })
   }
 
-  decreaseCount(productId: string) {
+  decreaseCount(productId: number) {
     let username = window.localStorage.getItem('username')
     this.axiosService.request(
       'PUT',
@@ -91,7 +91,7 @@ export class CartService {
     })
   }
 
-  increaseCount(productId: string) {
+  increaseCount(productId: number) {
     let username = window.localStorage.getItem('username')
     this.axiosService.request(
       'PUT',
