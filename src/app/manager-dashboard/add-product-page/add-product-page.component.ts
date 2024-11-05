@@ -63,7 +63,7 @@ export class AddProductPageComponent {
           description: this.addProductForm.value.description,
           price: parseFloat(<string>this.addProductForm.value.price),
           count: parseInt(<string>this.addProductForm.value.count),
-          category: this.selectedCategory,
+          productCategory: this.selectedCategory,
           illustration: this.addProductForm.value.illustration
         }
       ).then(response => {
